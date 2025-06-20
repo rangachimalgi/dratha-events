@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Global Colors */
+    --global-1: #050b20;
+    --global-2: #3d923a;
+    --global-3: #405ff2;
+    --global-4: #e1c03f;
+    --global-5: #e1e1e1;
+    --global-6: #e9f2ff;
+    --global-7: #eef1fb;
+    --global-8: #f9fbfc;
+    --global-9: #ffe9f3;
+    --global-10: #ffffff;
+    --global-11: #ffffff11;
+    --global-12: #ffffff2d;
+
+    /* Footer Colors */
+    --footer-1: #ffffff1c;
+    --footer-2: #ffffff21;
+  }
+}
+
+@layer utilities {
+  /* Global Background Colors */
+  .bg-global-1 {
+    background-color: var(--global-1);
+  }
+  .bg-global-2 {
+    background-color: var(--global-2);
+  }
+  .bg-global-3 {
+    background-color: var(--global-3);
+  }
+  .bg-global-4 {
+    background-color: var(--global-4);
+  }
+  .bg-global-5 {
+    background-color: var(--global-5);
+  }
+  .bg-global-6 {
+    background-color: var(--global-6);
+  }
+  .bg-global-7 {
+    background-color: var(--global-7);
+  }
+  .bg-global-8 {
+    background-color: var(--global-8);
+  }
+  .bg-global-9 {
+    background-color: var(--global-9);
+  }
+  .bg-global-10 {
+    background-color: var(--global-10);
+  }
+  .bg-global-11 {
+    background-color: var(--global-11);
+  }
+  .bg-global-12 {
+    background-color: var(--global-12);
+  }
+
+  /* Global Text Colors */
+  .text-global-1 {
+    color: var(--global-1);
+  }
+  .text-global-2 {
+    color: var(--global-2);
+  }
+  .text-global-3 {
+    color: var(--global-3);
+  }
+
+  /* Footer Colors */
+  .bg-footer-1 {
+    background-color: var(--footer-1);
+  }
+  .bg-footer-2 {
+    background-color: var(--footer-2);
+  }
+}
