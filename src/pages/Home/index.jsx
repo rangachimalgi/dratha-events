@@ -12,76 +12,81 @@ const Home = () => {
   const [selectedBrandTab, setSelectedBrandTab] = useState('Audi');
   const [selectedShopTab, setSelectedShopTab] = useState('New Cars For Sale');
 
-  const vehicleTabs = ['All', 'New', 'Used'];
-  const vehicleTypeTabs = ['In Stock', 'New Cars', 'Used Cars'];
-  const brandTabs = ['Audi', 'Ford', 'Mercedes Benz'];
+  const vehicleTabs = ['All'];
+  const vehicleTypeTabs = ['Wedding', 'Birthday', 'Housewarming'];
+  const brandTabs = ['Wedding', 'House Warming', 'Birthday'];
   const shopTabs = ['New Cars For Sale', 'Used Cars For Sale', 'Browse By Type', 'Browse By Brand'];
 
   const brands = [
-    { name: 'Audi', image: '/images/img_b1jpg.png' },
-    { name: 'BMW', image: '/images/img_b2jpg.png' },
-    { name: 'Ford', image: '/images/img_b3jpg.png' },
-    { name: 'Mercedes Benz', image: '/images/img_b4jpg.png' },
-    { name: 'Peugeot', image: '/images/img_b5jpg.png' },
-    { name: 'Volkswagen', image: '/images/img_b6jpg.png' }
+    { name: 'Wedding', image: '/images/img_b1jpg.png' },
+    { name: 'Birthday', image: '/images/img_b2jpg.png' },
+    { name: 'House Warming', image: '/images/img_b3jpg.png' },
+    { name: 'Corporate', image: '/images/img_b4jpg.png' },
+    { name: 'Engagement', image: '/images/img_b5jpg.png' },
+    { name: 'Birthday', image: '/images/img_b6jpg.png' },
   ];
 
   const vehicles = [
     {
       id: 1,
       image: '/images/img_car13660x440jpg.png',
-      badge: 'Great Price',
-      badgeColor: 'bg-global-2',
-      title: 'Ford Transit – 2021',
-      description: '4.0 D5 PowerPulse Momentum 5dr AW…\nGeartronic Estate',
+      badge: 'Discounted Price',
+      badgeColor: 'bg-global-3',
+      title: 'Basic Package',
+      description:
+        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
       miles: '2500 Miles',
       fuel: 'Diesel',
       transmission: 'Manual',
-      price: '$22,000'
+      price: '₹22,000',
     },
     {
       id: 2,
       image: '/images/img_car19660x440jpg.png',
-      badge: 'Low Mileage',
-      badgeColor: 'bg-global-5',
-      title: 'New GLC – 2023',
-      description: '4.0 D5 PowerPulse Momentum 5dr AW…\nGeartronic Estate',
+      badge: 'Discounted Price',
+      badgeColor: 'bg-global-3',
+      title: 'Premium Package',
+      description:
+        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
       miles: '50 Miles',
       fuel: 'Petrol',
       transmission: 'Automatic',
-      price: '$95,000'
+      price: '₹45,000',
     },
     {
       id: 3,
       image: '/images/img_car12660x440jpg.png',
-      title: 'Audi A6 3.5 – New',
-      description: '3.5 D5 PowerPulse Momentum 5dr AW…\nGeartronic Estate',
+      title: 'Pre Wedding',
+      description:
+        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
       miles: '100 Miles',
       fuel: 'Petrol',
       transmission: 'Automatic',
-      price: '$58,000'
+      price: '₹58,000',
     },
     {
       id: 4,
       image: '/images/img_car5660x440jpg.png',
-      title: 'Corolla Altis – 2023',
-      description: '3.5 D5 PowerPulse Momentum 5dr AW…\nGeartronic Estate',
+      title: 'Luxury Wedding',
+      description:
+        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
       miles: '15000 Miles',
       fuel: 'Petrol',
       transmission: 'CVT',
-      price: '$45,000'
+      price: '₹90,000',
     },
     {
       id: 5,
       image: '/images/img_car1660x440jpg.png',
       badge: 'Great Price',
-      badgeColor: 'bg-global-2',
-      title: 'Ford Explorer 2023',
-      description: '3.5 D5 PowerPulse Momentum 5dr AW\n…',
+      badgeColor: 'bg-global-3',
+      title: 'Destination Wedding',
+      description:
+        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
       miles: '10 Miles',
       fuel: 'Diesel',
-      price: '$35,000'
-    }
+      price: '₹100,000',
+    },
   ];
 
   const popularCars = [
@@ -90,26 +95,27 @@ const Home = () => {
       image: '/images/img_car15640x550jpg.png',
       badge: 'Sale',
       badgeColor: 'bg-global-5',
-      title: 'Audi A5 – 2023',
-      description: '2.0 D5 PowerPulse Momentum 5dr AWD…\nGeartronic Estate',
-      miles: '500 Miles',
-      fuel: 'Petrol',
-      transmission: 'Automatic',
-      originalPrice: '$50,000',
-      price: '$45,000'
+      title: 'Luxury Wedding',
+      description:
+        'Our Wedding Basic Package offers \nessential coverage of your special day with professional photography',
+      miles: '500 Guests',
+      fuel: 'Banquet Hall',
+      transmission: 'Veg & Non-Veg',
+      price: '₹100,000',
     },
     {
       id: 2,
       image: '/images/img_car20640x550jpg.png',
       badge: 'Sale',
       badgeColor: 'bg-global-5',
-      title: 'Audi A4 – 2022',
-      description: '2.0 D5 PowerPulse Momentum 5dr AWD…\nGeartronic Estate',
-      miles: '150 Miles',
-      fuel: 'Diesel',
-      transmission: 'CVT',
-      price: '$120,000'
-    }
+      title: 'Destination Wedding',
+      description:
+        'Our Wedding Basic Package offers \nessential coverage of your special day with professional photography',
+      miles: '500 Guests',
+      fuel: 'Banquet Hall',
+      transmission: 'Veg & Non-Veg',
+      price: '₹120,000',
+    },
   ];
 
   const blogPosts = [
@@ -119,7 +125,7 @@ const Home = () => {
       category: 'Sound',
       author: 'admin',
       date: 'November 22, 2023',
-      title: '2024 BMW ALPINA XB7 with exclusive details, extraordinary'
+      title: '2024 BMW ALPINA XB7 with exclusive details, extraordinary',
     },
     {
       id: 2,
@@ -127,7 +133,7 @@ const Home = () => {
       category: 'Accessories',
       author: 'admin',
       date: 'November 22, 2023',
-      title: 'BMW X6 M50i is designed to exceed your sportiest.'
+      title: 'BMW X6 M50i is designed to exceed your sportiest.',
     },
     {
       id: 3,
@@ -135,16 +141,41 @@ const Home = () => {
       category: 'Exterior',
       author: 'admin',
       date: 'November 22, 2023',
-      title: 'BMW X5 Gold 2024 Sport Review: Light on Sport'
-    }
+      title: 'BMW X5 Gold 2024 Sport Review: Light on Sport',
+    },
   ];
 
   const carBrands = [
-    'Ford Cars', 'Honda Cars', 'Hyundai Cars', 'Infiniti Cars', 'Jaguar Cars', 'Jeep Cars',
-    'Chrysler Cars', 'Citroen Cars', 'Cupra Cars', 'Dacia Cars', 'DS Cars', 'Fiat Cars',
-    'Land Rover Cars', 'Lexus Cars', 'Mercedes-Benz Cars', 'Mazda Cars', 'MG Cars', 'Kia Cars',
-    'Abarth Cars', 'Romeo Cars', 'Audi Cars', 'Bentley Cars', 'BMW Cars', 'Chevrolet Cars',
-    'Mini Cars', 'Mitsubishi Cars', 'Nissan Cars', 'Peugeot Cars', 'Porsche Cars', 'Renault Cars'
+    'Ford Cars',
+    'Honda Cars',
+    'Hyundai Cars',
+    'Infiniti Cars',
+    'Jaguar Cars',
+    'Jeep Cars',
+    'Chrysler Cars',
+    'Citroen Cars',
+    'Cupra Cars',
+    'Dacia Cars',
+    'DS Cars',
+    'Fiat Cars',
+    'Land Rover Cars',
+    'Lexus Cars',
+    'Mercedes-Benz Cars',
+    'Mazda Cars',
+    'MG Cars',
+    'Kia Cars',
+    'Abarth Cars',
+    'Romeo Cars',
+    'Audi Cars',
+    'Bentley Cars',
+    'BMW Cars',
+    'Chevrolet Cars',
+    'Mini Cars',
+    'Mitsubishi Cars',
+    'Nissan Cars',
+    'Peugeot Cars',
+    'Porsche Cars',
+    'Renault Cars',
   ];
 
   const handleSearch = () => {
@@ -162,23 +193,23 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-global-10">
       <Header />
-      
+
       {/* Hero Section */}
-      <section 
+      <section
         className="relative min-h-screen bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('/images/img_.png')` }}
+        style={{ backgroundImage: `url('/images/events.png')` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
           <p className="text-global-5 font-dm-sans text-base leading-5 mb-4">
-            Find cars for sale and for rent near you
+            Find Packages for wedding, birthday parties, etc ..
           </p>
           <h1 className="text-global-5 font-dm-sans font-bold text-7xl leading-23 mb-8 max-w-4xl">
-            Find Your Perfect Car
+            Find Your Package
           </h1>
-          
+
           {/* Vehicle Type Tabs */}
-          <div className="flex space-x-6 mb-8">
+          {/* <div className="flex space-x-6 mb-8">
             {vehicleTabs.map((tab) => (
               <button
                 key={tab}
@@ -190,20 +221,20 @@ const Home = () => {
                 {tab}
               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* Search Form */}
-          <div className="bg-global-10 rounded-full p-6 flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 w-full max-w-4xl">
+          {/* <div className="bg-global-10 rounded-full p-6 flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4 w-full max-w-4xl">
             <div className="flex-1 border-r border-global-5 pr-4">
               <select 
                 value={selectedMake}
                 onChange={(e) => setSelectedMake(e.target.value)}
                 className="w-full bg-transparent text-global-1 font-dm-sans text-base outline-none"
               >
-                <option value="Any Makes">Any Makes</option>
-                <option value="Audi">Audi</option>
-                <option value="BMW">BMW</option>
-                <option value="Ford">Ford</option>
+                <option value="Any Makes">Any Packages</option>
+                <option value="Audi">Wedding</option>
+                <option value="BMW">Birthday</option>
+                <option value="Ford">House Warming</option>
               </select>
             </div>
             <div className="flex-1 border-r border-global-5 pr-4">
@@ -226,9 +257,9 @@ const Home = () => {
                 className="bg-transparent text-global-1 font-dm-sans text-base outline-none ml-2"
               >
                 <option value="All Prices">All Prices</option>
-                <option value="Under $20,000">Under $20,000</option>
-                <option value="$20,000 - $50,000">$20,000 - $50,000</option>
-                <option value="Over $50,000">Over $50,000</option>
+                <option value="Under $20,000">Under ₹20,000</option>
+                <option value="$20,000 - $50,000">₹20,000 - ₹50,000</option>
+                <option value="Over $50,000">Over ₹50,000</option>
               </select>
             </div>
             <Button 
@@ -236,20 +267,20 @@ const Home = () => {
               className="bg-global-5 text-global-5 border-global-5 hover:bg-blue-600 rounded-full px-8 py-4 flex items-center space-x-2"
             >
               <img src="/images/img_icon_white_a700.svg" alt="Search" className="w-4 h-4" />
-              <span className="font-dm-sans font-medium text-base leading-5">Search Cars</span>
+              <span className="font-dm-sans font-medium text-base leading-5">Search Package</span>
             </Button>
-          </div>
+          </div> */}
 
           <p className="text-global-5 font-dm-sans text-base leading-5 mt-8 mb-6">
-            Or Browse Featured Model
+            Browse Featured Package
           </p>
 
           {/* Featured Models */}
           <div className="flex flex-wrap justify-center gap-4">
-            {['suv', 'Sedan', 'Hatchback', 'Coupe', 'Hybrid'].map((model) => (
+            {['Wedding', 'Birthday', 'Corporate', 'House Warming'].map((model) => (
               <button
                 key={model}
-                className="bg-global-12 text-global-5 font-dm-sans font-medium text-base leading-5 px-6 py-3 rounded-full hover:bg-opacity-50 transition-colors"
+                className="bg-global-12 text-global-5 font-dm-sans font-medium text-base leading-5 px-6 py-3 rounded-full hover:bg-global-3 transition-colors"
               >
                 {model}
               </button>
@@ -263,27 +294,23 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
-              Explore Our Premium Brands
+              Explore Our Premium Events
             </h2>
             <div className="flex items-center space-x-2">
               <span className="text-global-1 font-dm-sans font-medium text-base leading-5">
-                Show All Brands
+                Show All Events
               </span>
               <img src="/images/img_vector.svg" alt="Arrow" className="w-4 h-4" />
             </div>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {brands.map((brand) => (
-              <div 
+              <div
                 key={brand.name}
                 className="bg-global-10 border border-global-5 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow"
               >
-                <img 
-                  src={brand.image} 
-                  alt={brand.name}
-                  className="w-25 h-25 mx-auto mb-4"
-                />
+                <img src={brand.image} alt={brand.name} className="w-25 h-25 mx-auto mb-4" />
                 <h3 className="text-global-1 font-dm-sans font-medium text-lg leading-6">
                   {brand.name}
                 </h3>
@@ -298,7 +325,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
-              Explore All Vehicles
+              Explore All Packages
             </h2>
             <div className="flex items-center space-x-2">
               <span className="text-global-1 font-dm-sans font-medium text-base leading-5">
@@ -315,8 +342,9 @@ const Home = () => {
                 key={tab}
                 onClick={() => setSelectedVehicleTab(tab)}
                 className={`font-dm-sans font-medium text-base leading-5 pb-4 ${
-                  selectedVehicleTab === tab 
-                    ? 'text-global-1 border-b-2 border-global-5' :'text-global-1'
+                  selectedVehicleTab === tab
+                    ? 'text-global-1 border-b-2 border-global-5'
+                    : 'text-global-1'
                 }`}
               >
                 {tab}
@@ -329,14 +357,16 @@ const Home = () => {
             {vehicles.map((vehicle) => (
               <div key={vehicle.id} className="bg-global-10 rounded-2xl overflow-hidden shadow-lg">
                 <div className="relative">
-                  <img 
-                    src={vehicle.image} 
+                  <img
+                    src={vehicle.image}
                     alt={vehicle.title}
                     className="w-full h-55 object-cover"
                   />
                   <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
                     {vehicle.badge && (
-                      <span className={`${vehicle.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}>
+                      <span
+                        className={`${vehicle.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
+                      >
                         {vehicle.badge}
                       </span>
                     )}
@@ -345,7 +375,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <h3 className="text-global-1 font-dm-sans font-medium text-lg leading-6 mb-2">
                     {vehicle.title}
@@ -353,8 +383,8 @@ const Home = () => {
                   <p className="text-global-1 font-dm-sans text-sm leading-4 mb-4 whitespace-pre-line">
                     {vehicle.description}
                   </p>
-                  
-                  <div className="border-t border-global-5 pt-4 mb-4">
+
+                  {/* <div className="border-t border-global-5 pt-4 mb-4">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
@@ -373,18 +403,22 @@ const Home = () => {
                         )}
                       </div>
                     </div>
-                  </div>
-                  
+                  </div> */}
+
                   <div className="border-t border-global-5 pt-4 flex items-center justify-between">
                     <span className="text-global-1 font-dm-sans font-bold text-xl leading-7">
                       {vehicle.price}
                     </span>
-                    <button 
+                    <button
                       onClick={() => handleViewDetails(vehicle.id)}
-                      className="flex items-center space-x-2 text-global-2 font-dm-sans font-medium text-base leading-5 hover:text-blue-600 transition-colors"
+                      className="flex items-center space-x-2 text-global-3 font-dm-sans font-medium text-base leading-5 hover:text-blue-600 transition-colors"
                     >
                       <span>View Details</span>
-                      <img src="/images/img_vector_indigo_a400.svg" alt="Arrow" className="w-4 h-4" />
+                      <img
+                        src="/images/img_vector_indigo_a400.svg"
+                        alt="Arrow"
+                        className="w-4 h-4"
+                      />
                     </button>
                   </div>
                 </div>
@@ -409,26 +443,28 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
             <div className="relative">
-              <img 
-                src="/images/img_background_693x804.png" 
+              <img
+                src="/images/img_background_693x804.png"
                 alt="Car Background"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="bg-global-7 p-16 flex flex-col justify-center">
               <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-14 mb-6">
-                Get A Fair Price For Your Car<br />Sell To Us Today
+                Book Your Special Event With Confidence
+                <br />
+                Celebrate With Us Today
               </h2>
               <p className="text-global-1 font-dm-sans text-base leading-7 mb-8">
-                We are committed to providing our customers with exceptional service, competitive<br />
-                pricing, and a wide range of.
+                We are committed to delivering unforgettable experiences, personalized planning, and
+                a wide range of services.
               </p>
-              
+
               <div className="space-y-4 mb-8">
                 {[
-                  'We are the UK\'s largest provider, with more patrols in more places',
-                  'You get 24/7 roadside assistance',
-                  'We fix 4 out of 5 cars at the roadside'
+                  'We cover weddings, birthdays & housewarmings',
+                  'You get full event coordination & support',
+                  'We handle everything from start to finish',
                 ].map((text, index) => (
                   <div key={index} className="flex items-center space-x-4">
                     <div className="bg-global-10 rounded-xl p-2">
@@ -440,10 +476,10 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-              
-              <Button 
+
+              <Button
                 onClick={handleGetStarted}
-                className="bg-global-5 text-global-5 border-global-5 hover:bg-blue-600 rounded-xl px-8 py-4 flex items-center space-x-2 w-fit"
+                className="bg-global-3 text-global-3 border-global-3 hover:bg-blue-600 rounded-xl px-8 py-4 flex items-center space-x-2 w-fit"
               >
                 <span className="font-dm-sans font-medium text-base leading-5">Get Started</span>
                 <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
@@ -458,18 +494,16 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: '836M', label: 'CARS FOR SALE' },
-              { number: '738M', label: 'DEALER REVIEWS' },
-              { number: '100M', label: 'VISITORS PER DAY' },
-              { number: '238M', label: 'VERIFIED DEALERS' }
+              { number: '836', label: 'ALL EVENTS BOOKING' },
+              { number: '738', label: 'DEALER REVIEWS' },
+              { number: '50', label: 'ENQUIRIES PER DAY' },
+              { number: '500', label: 'WEDDING BOOKINGS' },
             ].map((stat, index) => (
               <div key={index}>
                 <h3 className="text-global-1 font-dm-sans font-bold text-4xl leading-13 mb-2">
                   {stat.number}
                 </h3>
-                <p className="text-global-1 font-dm-sans text-base leading-5">
-                  {stat.label}
-                </p>
+                <p className="text-global-1 font-dm-sans text-base leading-5">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -482,29 +516,33 @@ const Home = () => {
           <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13 mb-16">
             Why Choose Us?
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: '/images/img_f1svg.svg',
-                title: 'Special Financing Offers',
-                description: 'Our stress-free finance department that can\nfind financial solutions to save you money.'
+                title: 'Tailored Packages',
+                description:
+                  'Custom event packages designed to fit your style, budget, and vision perfectly.',
               },
               {
                 icon: '/images/img_f2svg.svg',
-                title: 'Trusted Car Dealership',
-                description: 'Our stress-free finance department that can\nfind financial solutions to save you money.'
+                title: 'Experienced Planners',
+                description:
+                  'Our expert team handles every detail, \nso you can enjoy a stress-free celebration.',
               },
               {
                 icon: '/images/img_f3svg.svg',
                 title: 'Transparent Pricing',
-                description: 'Our stress-free finance department that can\nfind financial solutions to save you money.'
+                description:
+                  'Clear, upfront pricing with\nno hidden costs — \nwhat you see is what you pay..',
               },
               {
                 icon: '/images/img_f4svg.svg',
-                title: 'Expert Car Service',
-                description: 'Our stress-free finance department that can\nfind financial solutions to save you money.'
-              }
+                title: 'Full-Service Support',
+                description:
+                  'From venue selection to final cleanup, we manage it all for a seamless experience.',
+              },
             ].map((feature, index) => (
               <div key={index} className="text-center">
                 <img src={feature.icon} alt={feature.title} className="w-15 h-15 mx-auto mb-6" />
@@ -525,7 +563,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-5 font-dm-sans font-bold text-4xl leading-13">
-              Popular Makes
+              Luxury Events
             </h2>
             <div className="flex items-center space-x-2">
               <span className="text-global-5 font-dm-sans font-medium text-base leading-5">
@@ -542,8 +580,9 @@ const Home = () => {
                 key={tab}
                 onClick={() => setSelectedBrandTab(tab)}
                 className={`font-dm-sans font-medium text-base leading-5 pb-4 ${
-                  selectedBrandTab === tab 
-                    ? 'text-global-5 border-b-2 border-global-10' :'text-global-5'
+                  selectedBrandTab === tab
+                    ? 'text-global-5 border-b-2 border-global-10'
+                    : 'text-global-5'
                 }`}
               >
                 {tab}
@@ -557,13 +596,11 @@ const Home = () => {
               <div key={car.id} className="bg-global-11 rounded-2xl overflow-hidden">
                 <div className="flex">
                   <div className="relative flex-shrink-0">
-                    <img 
-                      src={car.image} 
-                      alt={car.title}
-                      className="w-80 h-68 object-cover"
-                    />
+                    <img src={car.image} alt={car.title} className="w-80 h-68 object-cover" />
                     <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
-                      <span className={`${car.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}>
+                      <span
+                        className={`${car.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
+                      >
                         {car.badge}
                       </span>
                       <button className="bg-global-10 border border-global-5 rounded-full p-2 ml-auto">
@@ -571,7 +608,7 @@ const Home = () => {
                       </button>
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 p-6">
                     <h3 className="text-global-5 font-dm-sans font-medium text-lg leading-6 mb-2">
                       {car.title}
@@ -579,35 +616,49 @@ const Home = () => {
                     <p className="text-global-5 font-dm-sans text-sm leading-4 mb-4 whitespace-pre-line">
                       {car.description}
                     </p>
-                    
+
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center space-x-2">
-                        <img src="/images/img_icon_white_a700_18x18.svg" alt="Miles" className="w-4 h-4" />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">{car.miles}</span>
+                        <img
+                          src="/images/img_icon_white_a700_18x18.svg"
+                          alt="Miles"
+                          className="w-4 h-4"
+                        />
+                        <span className="text-global-5 font-dm-sans text-sm leading-5">
+                          {car.miles}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <img src="/images/img_icon_1.svg" alt="Fuel" className="w-4 h-4" />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">{car.fuel}</span>
+                        <span className="text-global-5 font-dm-sans text-sm leading-5">
+                          {car.fuel}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <img src="/images/img_icon_2.svg" alt="Transmission" className="w-4 h-4" />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">{car.transmission}</span>
+                        <span className="text-global-5 font-dm-sans text-sm leading-5">
+                          {car.transmission}
+                        </span>
                       </div>
                     </div>
-                    
+
                     {car.originalPrice && (
                       <p className="text-global-5 font-dm-sans text-sm leading-5 line-through mb-2">
                         {car.originalPrice}
                       </p>
                     )}
-                    
+
                     <div className="flex items-center justify-between">
                       <span className="text-global-5 font-dm-sans font-bold text-xl leading-7">
                         {car.price}
                       </span>
                       <button className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors">
                         <span>View Details</span>
-                        <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
+                        <img
+                          src="/images/img_vector_white_a700.svg"
+                          alt="Arrow"
+                          className="w-4 h-4"
+                        />
                       </button>
                     </div>
                   </div>
@@ -617,13 +668,13 @@ const Home = () => {
           </div>
 
           {/* Additional Car Image */}
-          <div className="flex justify-end">
+          {/* <div className="flex justify-end">
             <img 
               src="/images/img_car12640x550jpg.png" 
               alt="Additional Car"
               className="w-58 h-68 object-cover rounded-2xl"
             />
-          </div>
+          </div> */}
 
           {/* Pagination */}
           <div className="flex justify-center space-x-4 mt-8">
@@ -638,8 +689,8 @@ const Home = () => {
       </section>
 
       {/* Shop BoxCar Your Way Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* <section className="py-20"> */}
+      {/* <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
               Shop BoxCar Your Way
@@ -650,10 +701,10 @@ const Home = () => {
               </span>
               <img src="/images/img_vector.svg" alt="Arrow" className="w-4 h-4" />
             </div>
-          </div>
+          </div> */}
 
-          {/* Shop Tabs */}
-          <div className="flex space-x-8 mb-8 border-b border-global-5">
+      {/* Shop Tabs */}
+      {/* <div className="flex space-x-8 mb-8 border-b border-global-5">
             {shopTabs.map((tab) => (
               <button
                 key={tab}
@@ -666,10 +717,10 @@ const Home = () => {
                 {tab}
               </button>
             ))}
-          </div>
+          </div> */}
 
-          {/* Car Brands Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-4">
+      {/* Car Brands Grid */}
+      {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-4">
             {carBrands.map((brand, index) => (
               <a 
                 key={index}
@@ -679,9 +730,9 @@ const Home = () => {
                 {brand}
               </a>
             ))}
-          </div>
-        </div>
-      </section>
+          </div> */}
+      {/* </div> */}
+      {/* </section> */}
 
       {/* Customer Testimonials Section */}
       <section className="bg-global-8 py-20">
@@ -701,15 +752,15 @@ const Home = () => {
             </button>
 
             <div className="flex items-center space-x-8 max-w-5xl">
-              <img 
-                src="/images/img_test1jpg.png" 
+              {/* <img
+                src="/images/img_test1jpg.png"
                 alt="Customer"
                 className="w-112 h-118 object-cover rounded-lg"
-              />
-              
+              /> */}
+
               <div className="flex-1">
                 <div className="flex items-center space-x-4 mb-4">
-                  <div 
+                  <div
                     className="flex items-center space-x-1 bg-cover bg-center p-2 rounded"
                     style={{ backgroundImage: `url('/images/img_symbol_gray_300_01.svg')` }}
                   >
@@ -719,18 +770,19 @@ const Home = () => {
                     5.0
                   </span>
                 </div>
-                
+
                 <h3 className="text-global-1 font-dm-sans font-medium text-lg leading-6 mb-2">
-                  Ali TUFAN
+                  Rohan Kohli
                 </h3>
                 <p className="text-global-1 font-dm-sans text-base leading-5 mb-6">
-                  Designer
+                  Happy Customer
                 </p>
-                
+
                 <blockquote className="text-global-1 font-dm-sans font-medium text-2xl leading-12">
-                  I would suggest Macklin Motors Nissan Glasgow South to a friend<br />
-                  because I had great service from my salesman Patrick and all of<br />
-                  the team.
+                  I would highly recommend Dratha for any event! The team made our wedding
+                  absolutely perfect. From planning to execution, everything was smooth and
+                  stress-free. Special thanks to the entire Dratha crew for making our big day
+                  unforgettable!
                 </blockquote>
               </div>
             </div>
@@ -761,8 +813,8 @@ const Home = () => {
             {blogPosts.map((post) => (
               <article key={post.id} className="group">
                 <div className="relative mb-6">
-                  <img 
-                    src={post.image} 
+                  <img
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-75 object-cover rounded-lg"
                   />
@@ -770,7 +822,7 @@ const Home = () => {
                     {post.category}
                   </span>
                 </div>
-                
+
                 <div className="flex items-center space-x-2 mb-4">
                   <span className="text-global-1 font-dm-sans text-base leading-5 capitalize">
                     {post.author}
@@ -780,7 +832,7 @@ const Home = () => {
                     {post.date}
                   </span>
                 </div>
-                
+
                 <h3 className="text-global-1 font-dm-sans font-medium text-xl leading-8 group-hover:text-global-2 transition-colors">
                   {post.title}
                 </h3>
@@ -799,22 +851,27 @@ const Home = () => {
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <h3 className="text-global-1 font-dm-sans font-bold text-3xl leading-11 mb-6">
-                    Are You Looking<br />For a Car ?
+                    Looking For
+                    <br />
+                    Ready-Made Packages?
                   </h3>
                   <p className="text-global-1 font-dm-sans text-base leading-7 mb-8">
-                    We are committed to providing our customers with<br />
-                    exceptional service.
+                    We offer pre-designed event packages
+                    <br />
+                    to make your planning easy and stress-free.
                   </p>
-                  <Button 
+                  <Button
                     onClick={handleGetStarted}
                     className="bg-global-5 text-global-5 border-global-5 hover:bg-blue-600 rounded-xl px-8 py-4 flex items-center space-x-2"
                   >
-                    <span className="font-dm-sans font-medium text-base leading-5">Get Started</span>
+                    <span className="font-dm-sans font-medium text-base leading-5">
+                      Get Started
+                    </span>
                     <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
                   </Button>
                 </div>
-                <img 
-                  src="/images/img_electriccarsvg.svg" 
+                <img
+                  src="/images/img_electriccarsvg.svg"
                   alt="Electric Car"
                   className="w-28 h-28 ml-8"
                 />
@@ -826,22 +883,27 @@ const Home = () => {
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <h3 className="text-global-1 font-dm-sans font-bold text-3xl leading-11 mb-6">
-                    Do You Want to<br />Sell a Car ?
+                    Want To Customize
+                    <br />
+                    Your Own Event?
                   </h3>
                   <p className="text-global-1 font-dm-sans text-base leading-7 mb-8">
-                    We are committed to providing our customers with<br />
-                    exceptional service.
+                    Design every detail to match your unique vision 
+                    <br />
+                    we bring your dream event to life.
                   </p>
-                  <Button 
+                  <Button
                     onClick={handleGetStarted}
                     className="bg-global-1 text-global-5 border-global-1 hover:bg-gray-800 rounded-xl px-8 py-4 flex items-center space-x-2"
                   >
-                    <span className="font-dm-sans font-medium text-base leading-5">Get Started</span>
+                    <span className="font-dm-sans font-medium text-base leading-5">
+                      Get Started
+                    </span>
                     <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
                   </Button>
                 </div>
-                <img 
-                  src="/images/img_electriccar2svg.svg" 
+                <img
+                  src="/images/img_electriccar2svg.svg"
                   alt="Electric Car 2"
                   className="w-28 h-28 ml-8"
                 />

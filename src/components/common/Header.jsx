@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 
@@ -6,6 +6,15 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let dropdownTimeout;
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 bg-transparent">
+    <header className={`fixed top-0 left-0 w-full z-50 transition-colors duration-200 ${scrolled ? 'bg-global-1 shadow-lg' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 py-7">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -39,7 +48,7 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Home
             </Link>
@@ -50,47 +59,47 @@ const Header = () => {
             >
               <Link 
                 to="/packages" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
               >
                 Packages
               </Link>
               {isDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-                  <Link to="/packages/wedding" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Wedding</Link>
-                  <Link to="/packages/birthday" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Birthday</Link>
-                  <Link to="/packages/corporate" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Corporate Event</Link>
-                  <Link to="/packages/anniversary" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Anniversary</Link>
+                  <Link to="/packages/wedding" className="block px-4 py-2 text-gray-700 hover:text-global-3 hover:bg-gray-100">Wedding</Link>
+                  <Link to="/packages/birthday" className="block px-4 py-2 text-gray-700 hover:text-global-3 hover:bg-gray-100">Birthday</Link>
+                  <Link to="/packages/corporate" className="block px-4 py-2 text-gray-700 hover:text-global-3 hover:bg-gray-100">Corporate Event</Link>
+                  <Link to="/packages/anniversary" className="block px-4 py-2 text-gray-700 hover:text-global-3 hover:bg-gray-100">Anniversary</Link>
                 </div>
               )}
             </div>
             <Link 
               to="/blog" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Blog
             </Link>
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <img 
                 src="/images/img_icon.svg" 
                 alt="Dropdown" 
                 className="w-4 h-4"
               />
-            </div>
+            </div> */}
             <Link 
               to="/pages" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Pages
             </Link>
             <Link 
               to="/about" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               About
             </Link>
             <Link 
               to="/contact" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Contact
             </Link>
@@ -102,7 +111,7 @@ const Header = () => {
               />
               <Link 
                 to="/signin" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors"
               >
                 Sign in
               </Link>
@@ -114,9 +123,9 @@ const Header = () => {
             <Button 
               variant="primary" 
               size="md"
-              className="bg-global-10 text-global-1 border-global-10 hover:bg-gray-100 rounded-full px-6 py-3"
+              className="bg-global-10 text-global-1 border-global-10 hover:bg-global-3 rounded-full px-6 py-3"
             >
-              Submit Listing
+              Enquire Now
             </Button>
           </div>
 
@@ -137,49 +146,49 @@ const Header = () => {
             <nav className="flex flex-col space-y-4">
               <Link 
                 to="/" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/listings" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Listings
               </Link>
               <Link 
                 to="/blog" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blog
               </Link>
               <Link 
                 to="/pages" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pages
               </Link>
               <Link 
                 to="/about" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link 
                 to="/contact" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link 
                 to="/signin" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors"
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sign in
