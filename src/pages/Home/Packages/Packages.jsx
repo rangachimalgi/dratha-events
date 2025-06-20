@@ -4,7 +4,7 @@ const Packages = () => {
   return (
     <div>
       <h2>Packages Page</h2>
-      <p>This is the Packages component.</p>
+      <p>This is the Packages components.</p>
     </div>
   );
 };
