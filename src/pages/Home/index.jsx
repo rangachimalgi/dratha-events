@@ -18,18 +18,18 @@ const Home = () => {
   const shopTabs = ['New Cars For Sale', 'Used Cars For Sale', 'Browse By Type', 'Browse By Brand'];
 
   const brands = [
-    { name: 'Wedding', image: '/images/img_b1jpg.png' },
-    { name: 'Birthday', image: '/images/img_b2jpg.png' },
-    { name: 'House Warming', image: '/images/img_b3jpg.png' },
-    { name: 'Corporate', image: '/images/img_b4jpg.png' },
-    { name: 'Engagement', image: '/images/img_b5jpg.png' },
-    { name: 'Birthday', image: '/images/img_b6jpg.png' },
+    { name: 'Wedding', image: '/images/Wedding.jpg' },
+    { name: 'Birthday', image: '/images/Birthday.jpg' },
+    { name: 'House Warming', image: '/images/houseWarming.jpeg' },
+    { name: 'Corporate', image: '/images/corporate.jpg' },
+    { name: 'Engagement', image: '/images/engagement.png' },
+   
   ];
 
   const vehicles = [
     {
       id: 1,
-      image: '/images/img_car13660x440jpg.png',
+      image: '/images/events.png',
       badge: 'Discounted Price',
       badgeColor: 'bg-global-3',
       title: 'Basic Package',
@@ -42,7 +42,7 @@ const Home = () => {
     },
     {
       id: 2,
-      image: '/images/img_car19660x440jpg.png',
+      image: '/images/events.png',
       badge: 'Discounted Price',
       badgeColor: 'bg-global-3',
       title: 'Premium Package',
@@ -55,7 +55,7 @@ const Home = () => {
     },
     {
       id: 3,
-      image: '/images/img_car12660x440jpg.png',
+      image: '/images/events.png',
       title: 'Pre Wedding',
       description:
         'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
@@ -66,7 +66,7 @@ const Home = () => {
     },
     {
       id: 4,
-      image: '/images/img_car5660x440jpg.png',
+      image: '/images/events.png',
       title: 'Luxury Wedding',
       description:
         'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
@@ -77,7 +77,7 @@ const Home = () => {
     },
     {
       id: 5,
-      image: '/images/img_car1660x440jpg.png',
+      image: '/images/events.png',
       badge: 'Great Price',
       badgeColor: 'bg-global-3',
       title: 'Destination Wedding',
@@ -92,8 +92,8 @@ const Home = () => {
   const popularCars = [
     {
       id: 1,
-      image: '/images/img_car15640x550jpg.png',
-      badge: 'Sale',
+      image: '/images/luxuryWedding.png',
+      badge: 'Luxury',
       badgeColor: 'bg-global-5',
       title: 'Luxury Wedding',
       description:
@@ -105,8 +105,8 @@ const Home = () => {
     },
     {
       id: 2,
-      image: '/images/img_car20640x550jpg.png',
-      badge: 'Sale',
+      image: '/images/destinationWedding.jpg',
+      badge: 'Luxury',
       badgeColor: 'bg-global-5',
       title: 'Destination Wedding',
       description:
@@ -121,7 +121,7 @@ const Home = () => {
   const blogPosts = [
     {
       id: 1,
-      image: '/images/img_detailpostqgcqjbpfnsa2eljzsmpa5fzwhwfyhukx3izjwiox88jpg.png',
+      image: '/images/events.png',
       category: 'Sound',
       author: 'admin',
       date: 'November 22, 2023',
@@ -129,7 +129,7 @@ const Home = () => {
     },
     {
       id: 2,
-      image: '/images/img_blog9qgcqjcn9umbcq7imn53wpxrd3abbpjonfnn1dsnj20jpg.png',
+      image: '/images/events.png',
       category: 'Accessories',
       author: 'admin',
       date: 'November 22, 2023',
@@ -137,7 +137,7 @@ const Home = () => {
     },
     {
       id: 3,
-      image: '/images/img_blog7qgcqjcn9umbcq7imn53wpxrd3abbpjonfnn1dsnj20jpg.png',
+      image: '/images/events.png',
       category: 'Exterior',
       author: 'admin',
       date: 'November 22, 2023',
@@ -306,11 +306,13 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {brands.map((brand) => (
-              <div
+              <div 
                 key={brand.name}
                 className="bg-global-10 border border-global-5 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow"
               >
-                <img src={brand.image} alt={brand.name} className="w-25 h-25 mx-auto mb-4" />
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden flex items-center justify-center bg-global-5">
+                  <img src={brand.image} alt={brand.name} className="w-full h-full object-cover" />
+                </div>
                 <h3 className="text-global-1 font-dm-sans font-medium text-lg leading-6">
                   {brand.name}
                 </h3>
@@ -444,7 +446,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden">
             <div className="relative">
               <img
-                src="/images/img_background_693x804.png"
+                src="/images/Img.png"
                 alt="Car Background"
                 className="w-full h-full object-cover"
               />
@@ -599,7 +601,7 @@ const Home = () => {
                     <img src={car.image} alt={car.title} className="w-80 h-68 object-cover" />
                     <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
                       <span
-                        className={`${car.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
+                        className={`${car.badgeColor} text-global-3 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
                       >
                         {car.badge}
                       </span>
