@@ -44,11 +44,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="/images/img_logosvg_fill.svg" 
-              alt="BoxCar Logo" 
-              className="h-7 w-27"
-            />
+            <span className="text-global-5 font-dm-sans font-black text-3xl tracking-wider">DRATHA</span>
           </div>
 
           {/* Desktop Navigation */}
