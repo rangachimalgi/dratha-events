@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Packages from './pages/Packages/Packages';
 import MainLayout from './components/layout/MainLayout';
+import PackageDetails from './pages/Packages/PackageDetails';
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/packages" element={<Packages />} />
+          <Route path='/package-details' element={<PackageDetails />} />
         </Routes>
       </MainLayout>
     </Router>

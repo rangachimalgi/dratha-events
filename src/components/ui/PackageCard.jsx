@@ -1,6 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel, transmission, price }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate('/package-details', { 
+      state: { 
+        packageDetails: {
+          image,
+          badge,
+          badgeColor,
+          title,
+          description,
+          miles,
+          fuel,
+          transmission,
+          price
+        }
+      }
+    });
+  };
+
   return (
     <div className="bg-global-1 border border-global-3 rounded-2xl overflow-hidden flex flex-col md:flex-row">
       <div className="relative flex-shrink-0 w-full h-56 md:w-80 md:h-68">
@@ -43,7 +64,9 @@ const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel
         </div>
         <div className="flex items-center justify-between mt-4">
           <span className="text-global-5 font-dm-sans font-bold text-xl leading-7">{price}</span>
-          <button className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors">
+          <button 
+            onClick={handleViewDetails}
+            className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors">
             <span>View Details</span>
             <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
           </button>

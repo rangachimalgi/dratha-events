@@ -42,7 +42,7 @@ const packages = [
   {
     title: 'Corporate Event',
     image: '/images/luxuryWedding.png',
-    badge: 'Pro',
+    badge: 'Premuim',
     badgeColor: 'bg-global-5',
     description:
       'Professional event management for conferences, seminars, and team-building activities.',
@@ -54,7 +54,7 @@ const packages = [
   {
     title: 'Corporate Event',
     image: '/images/luxuryWedding.png',
-    badge: 'Pro',
+    badge: 'Premuim',
     badgeColor: 'bg-global-5',
     description:
       'Professional event management for conferences, seminars, and team-building activities.',
@@ -66,7 +66,7 @@ const packages = [
   {
     title: 'Corporate Event',
     image: '/images/luxuryWedding.png',
-    badge: 'Pro',
+    badge: 'Premuim',
     badgeColor: 'bg-global-5',
     description:
       'Professional event management for conferences, seminars, and team-building activities.',
@@ -78,7 +78,7 @@ const packages = [
   {
     title: 'Corporate Event',
     image: '/images/luxuryWedding.png',
-    badge: 'Pro',
+    badge: 'Premuim',
     badgeColor: 'bg-global-5',
     description:
       'Professional event management for conferences, seminars, and team-building activities.',
@@ -90,7 +90,7 @@ const packages = [
   {
     title: 'Corporate Event',
     image: '/images/luxuryWedding.png',
-    badge: 'Pro',
+    badge: 'Premuim',
     badgeColor: 'bg-global-5',
     description:
       'Professional event management for conferences, seminars, and team-building activities.',
@@ -99,7 +99,7 @@ const packages = [
     transmission: 'Veg & Non-Veg',
     price: '₹80,000',
   },
-  
+
 ];
 
 const eventTypes = ['All Events', 'Wedding', 'Birthday', 'Corporate', 'House Warming'];
