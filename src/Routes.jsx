@@ -7,12 +7,12 @@ import MainLayout from './components/layout/MainLayout';
 const AppRoutes = () => {
   return (
     <Router>
-        <MainLayout >
+      <MainLayout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/packages" element={<Packages />} />
         </Routes>
-</MainLayout>
+      </MainLayout>
     </Router>
   );
 };
