@@ -152,11 +152,11 @@ const Header = () => {
                 Home
               </Link>
               <Link 
-                to="/listings" 
+                to="/packages" 
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Listings
+                Packages
               </Link>
               <Link 
                 to="/blog" 
@@ -164,13 +164,6 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Blog
-              </Link>
-              <Link 
-                to="/pages" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Pages
               </Link>
               <Link 
                 to="/about" 
