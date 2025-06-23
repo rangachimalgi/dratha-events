@@ -29,7 +29,7 @@ const packages = [
   },
   {
     title: 'Birthday Bash',
-    image: '/images/img_b2jpg.png',
+    image: '/images/destinationWedding.jpg',
     badge: 'Basic',
     badgeColor: 'bg-global-5',
     description:
@@ -41,7 +41,7 @@ const packages = [
   },
   {
     title: 'Corporate Event',
-    image: '/images/img_b4jpg.png',
+    image: '/images/luxuryWedding.png',
     badge: 'Pro',
     badgeColor: 'bg-global-5',
     description:
@@ -53,7 +53,7 @@ const packages = [
   },
   {
     title: 'Corporate Event',
-    image: '/images/img_b4jpg.png',
+    image: '/images/luxuryWedding.png',
     badge: 'Pro',
     badgeColor: 'bg-global-5',
     description:
@@ -63,6 +63,43 @@ const packages = [
     transmission: 'Veg & Non-Veg',
     price: '₹80,000',
   },
+  {
+    title: 'Corporate Event',
+    image: '/images/luxuryWedding.png',
+    badge: 'Pro',
+    badgeColor: 'bg-global-5',
+    description:
+      'Professional event management for conferences, seminars, and team-building activities.',
+    miles: '300 Guests',
+    fuel: 'Conference Hall',
+    transmission: 'Veg & Non-Veg',
+    price: '₹80,000',
+  },
+  {
+    title: 'Corporate Event',
+    image: '/images/luxuryWedding.png',
+    badge: 'Pro',
+    badgeColor: 'bg-global-5',
+    description:
+      'Professional event management for conferences, seminars, and team-building activities.',
+    miles: '300 Guests',
+    fuel: 'Conference Hall',
+    transmission: 'Veg & Non-Veg',
+    price: '₹80,000',
+  },
+  {
+    title: 'Corporate Event',
+    image: '/images/luxuryWedding.png',
+    badge: 'Pro',
+    badgeColor: 'bg-global-5',
+    description:
+      'Professional event management for conferences, seminars, and team-building activities.',
+    miles: '300 Guests',
+    fuel: 'Conference Hall',
+    transmission: 'Veg & Non-Veg',
+    price: '₹80,000',
+  },
+  
 ];
 
 const eventTypes = ['All Events', 'Wedding', 'Birthday', 'Corporate', 'House Warming'];
