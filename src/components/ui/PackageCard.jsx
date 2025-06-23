@@ -23,7 +23,10 @@ const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel
   };
 
   return (
-    <div className="bg-global-1 border border-global-3 rounded-2xl overflow-hidden flex flex-col md:flex-row">
+    <div 
+      onClick={handleViewDetails}
+      className="bg-global-1 border border-global-3 rounded-2xl overflow-hidden flex flex-col md:flex-row cursor-pointer hover:border-global-5 transition-colors"
+    >
       <div className="relative flex-shrink-0 w-full h-56 md:w-80 md:h-68">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
@@ -32,7 +35,10 @@ const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel
               {badge}
             </span>
           )}
-          <button className="bg-global-10 border border-global-5 rounded-full p-2 ml-auto">
+          <button 
+            className="bg-global-10 border border-global-5 rounded-full p-2 ml-auto"
+            onClick={(e) => e.stopPropagation()} // Prevent card click when clicking favorite
+          >
             <img src="/images/img_background.svg" alt="Favorite" className="w-6 h-6" />
           </button>
         </div>
@@ -64,12 +70,10 @@ const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel
         </div>
         <div className="flex items-center justify-between mt-4">
           <span className="text-global-5 font-dm-sans font-bold text-xl leading-7">{price}</span>
-          <button 
-            onClick={handleViewDetails}
-            className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors">
+          <div className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5">
             <span>View Details</span>
             <img src="/images/img_vector_white_a700.svg" alt="Arrow" className="w-4 h-4" />
-          </button>
+          </div>
         </div>
       </div>
     </div>
