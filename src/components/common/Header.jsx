@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
 
 const Header = () => {
@@ -7,6 +7,8 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let dropdownTimeout;
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +33,13 @@ const Header = () => {
     }, 200); // 200ms delay
   };
 
+  // Header style logic: transparent on home (unless scrolled), solid on all other pages
+  const headerClass = isHome && !scrolled
+    ? 'absolute top-0 left-0 w-full z-50 bg-transparent'
+    : 'fixed top-0 left-0 w-full z-50 bg-global-1 shadow-lg';
+
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-colors duration-200 ${scrolled ? 'bg-global-1 shadow-lg' : 'bg-transparent'}`}>
+    <header className={headerClass}>
       <div className="max-w-7xl mx-auto px-4 py-7">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -52,7 +59,7 @@ const Header = () => {
             >
               Home
             </Link>
-            <div 
+            {/* <div 
               className="relative"
               onMouseEnter={handleDropdownEnter}
               onMouseLeave={handleDropdownLeave}
@@ -71,25 +78,18 @@ const Header = () => {
                   <Link to="/packages/anniversary" className="block px-4 py-2 text-gray-700 hover:text-global-3 hover:bg-gray-100">Anniversary</Link>
                 </div>
               )}
-            </div>
+            </div> */}
+            <Link 
+              to="/packages" 
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+            >
+              Packages
+            </Link>
             <Link 
               to="/blog" 
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Blog
-            </Link>
-            {/* <div className="flex items-center space-x-2">
-              <img 
-                src="/images/img_icon.svg" 
-                alt="Dropdown" 
-                className="w-4 h-4"
-              />
-            </div> */}
-            <Link 
-              to="/pages" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
-            >
-              Pages
             </Link>
             <Link 
               to="/about" 
