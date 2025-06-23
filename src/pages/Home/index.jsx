@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import Button from '../../components/ui/Button';
+import PackageCard from '../../components/ui/PackageCard';
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState('All');
@@ -23,7 +24,6 @@ const Home = () => {
     { name: 'House Warming', image: '/images/houseWarming.jpeg' },
     { name: 'Corporate', image: '/images/corporate.jpg' },
     { name: 'Engagement', image: '/images/engagement.png' },
-   
   ];
 
   const vehicles = [
@@ -306,7 +306,7 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {brands.map((brand) => (
-              <div 
+              <div
                 key={brand.name}
                 className="bg-global-10 border border-global-5 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow"
               >
@@ -595,77 +595,7 @@ const Home = () => {
           {/* Popular Cars Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {popularCars.map((car) => (
-              <div key={car.id} className="bg-global-11 rounded-2xl overflow-hidden">
-                <div className="flex">
-                  <div className="relative flex-shrink-0">
-                    <img src={car.image} alt={car.title} className="w-80 h-68 object-cover" />
-                    <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
-                      <span
-                        className={`${car.badgeColor} text-global-3 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
-                      >
-                        {car.badge}
-                      </span>
-                      <button className="bg-global-10 border border-global-5 rounded-full p-2 ml-auto">
-                        <img src="/images/img_background.svg" alt="Favorite" className="w-6 h-6" />
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 p-6">
-                    <h3 className="text-global-5 font-dm-sans font-medium text-lg leading-6 mb-2">
-                      {car.title}
-                    </h3>
-                    <p className="text-global-5 font-dm-sans text-sm leading-4 mb-4 whitespace-pre-line">
-                      {car.description}
-                    </p>
-
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src="/images/img_icon_white_a700_18x18.svg"
-                          alt="Miles"
-                          className="w-4 h-4"
-                        />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">
-                          {car.miles}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <img src="/images/img_icon_1.svg" alt="Fuel" className="w-4 h-4" />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">
-                          {car.fuel}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <img src="/images/img_icon_2.svg" alt="Transmission" className="w-4 h-4" />
-                        <span className="text-global-5 font-dm-sans text-sm leading-5">
-                          {car.transmission}
-                        </span>
-                      </div>
-                    </div>
-
-                    {car.originalPrice && (
-                      <p className="text-global-5 font-dm-sans text-sm leading-5 line-through mb-2">
-                        {car.originalPrice}
-                      </p>
-                    )}
-
-                    <div className="flex items-center justify-between">
-                      <span className="text-global-5 font-dm-sans font-bold text-xl leading-7">
-                        {car.price}
-                      </span>
-                      <button className="flex items-center space-x-2 text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-gray-300 transition-colors">
-                        <span>View Details</span>
-                        <img
-                          src="/images/img_vector_white_a700.svg"
-                          alt="Arrow"
-                          className="w-4 h-4"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <PackageCard key={car.id} {...car} />
             ))}
           </div>
 
@@ -890,7 +820,7 @@ const Home = () => {
                     Your Own Event?
                   </h3>
                   <p className="text-global-1 font-dm-sans text-base leading-7 mb-8">
-                    Design every detail to match your unique vision 
+                    Design every detail to match your unique vision
                     <br />
                     we bring your dream event to life.
                   </p>
@@ -919,8 +849,6 @@ const Home = () => {
       <div className="bg-global-1">
         <div className="bg-global-10 h-20 rounded-b-10"></div>
       </div>
-
-      <Footer />
     </div>
   );
 };

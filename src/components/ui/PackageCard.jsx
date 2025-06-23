@@ -2,12 +2,12 @@ import React from 'react';
 
 const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel, transmission, price }) => {
   return (
-    <div className="bg-global-1 border border-global-3 rounded-2xl overflow-hidden flex">
-      <div className="relative flex-shrink-0 w-80 h-68">
+    <div className="bg-global-1 border border-global-3 rounded-2xl overflow-hidden flex flex-col md:flex-row">
+      <div className="relative flex-shrink-0 w-full h-56 md:w-80 md:h-68">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
           {badge && (
-            <span className={`${badgeColor} text-global-3 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}>
+            <span className={`${badgeColor} text-global-1 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}>
               {badge}
             </span>
           )}
@@ -16,7 +16,7 @@ const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel
           </button>
         </div>
       </div>
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-4 md:p-6 flex flex-col justify-between">
         <div>
           <h3 className="text-global-5 font-dm-sans font-medium text-lg leading-6 mb-2">{title}</h3>
           <p className="text-global-5 font-dm-sans text-sm leading-4 mb-4 whitespace-pre-line">{description}</p>
