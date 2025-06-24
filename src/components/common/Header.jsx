@@ -187,7 +187,7 @@ const Header = () => {
                 size="md"
                 className="bg-global-10 text-global-1 border-global-10 hover:bg-gray-100 rounded-full"
               >
-                Submit Listing
+                Enquire Now
               </Button>
             </nav>
           </div>
