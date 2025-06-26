@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Packages from './pages/Packages/Packages';
 import MainLayout from './components/layout/MainLayout';
 import PackageDetails from './pages/Packages/PackageDetails';
+import { HouseWarming } from './pages/HouseWarming/HouseWarming';
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/packages" element={<Packages />} />
           <Route path='/package-details' element={<PackageDetails />} />
+          <Route path='/planhousewarming' element={<HouseWarming />} />
         </Routes>
       </MainLayout>
     </Router>

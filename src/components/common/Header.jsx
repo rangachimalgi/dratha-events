@@ -82,10 +82,10 @@ const Header = () => {
               Packages
             </Link>
             <Link 
-              to="/blog" 
+              to="/planhousewarming" 
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
-              Blog
+              Plan your own Housewarming
             </Link>
             <Link 
               to="/about" 
@@ -155,11 +155,11 @@ const Header = () => {
                 Packages
               </Link>
               <Link 
-                to="/blog" 
+                to="/planhousewarming" 
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Blog
+                Plan your own Housewarming
               </Link>
               <Link 
                 to="/about" 
