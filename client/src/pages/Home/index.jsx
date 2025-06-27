@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Header from '../../components/common/Header';
-import Footer from '../../components/common/Footer';
+// import Header from '../../components/common/Header';
+// import Footer from '../../components/common/Footer';
 import Button from '../../components/ui/Button';
 import PackageCard from '../../components/ui/PackageCard';
 
@@ -191,8 +191,8 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-global-10">
-      <Header />
+    <div className="min-h-screen">
+      {/* <Header /> */}
 
       {/* Hero Section */}
       <section
@@ -849,6 +849,7 @@ const Home = () => {
       <div className="bg-global-1">
         <div className="bg-global-10 h-20 rounded-b-10"></div>
       </div>
+      {/* <Footer /> */}
     </div>
   );
 };

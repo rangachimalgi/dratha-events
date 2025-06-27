@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
 
-const Header = () => {
+const Header = ({ onLoginClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let dropdownTimeout;
@@ -105,12 +105,13 @@ const Header = () => {
                 alt="User" 
                 className="w-4 h-4"
               />
-              <Link 
-                to="/signin" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors"
+              <button
+                onClick={onLoginClick}
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors focus:outline-none"
+                type="button"
               >
-                Sign in
-              </Link>
+                Sign up
+              </button>
             </div>
           </nav>
 
@@ -175,13 +176,13 @@ const Header = () => {
               >
                 Contact
               </Link>
-              <Link 
-                to="/signin" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={onLoginClick}
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors focus:outline-none"
+                type="button"
               >
-                Sign in
-              </Link>
+                Sign up
+              </button>
               <Button 
                 variant="primary" 
                 size="md"

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { useLocation } from 'react-router-dom';
+import Login from '../../pages/Auth/Login';
 
 const MainLayout = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [scrolled, setScrolled] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     if (!isHome) return;
@@ -22,9 +24,10 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header onLoginClick={() => setLoginOpen(true)} />
       <main className={mainClass}>{children}</main>
       <Footer />
+      <Login open={loginOpen} onClose={() => setLoginOpen(false)} onSignUp={() => alert('Sign Up clicked!')} />
     </div>
   );
 };
