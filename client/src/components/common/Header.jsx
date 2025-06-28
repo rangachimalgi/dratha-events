@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../ui/Button';
 
-const Header = ({ onLoginClick }) => {
+const Header = ({ onLoginClick, isAdmin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   let dropdownTimeout;
@@ -99,6 +99,14 @@ const Header = ({ onLoginClick }) => {
             >
               Contact
             </Link>
+            {isAdmin && (
+              <Link 
+                to="/admin" 
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors border border-global-3 rounded px-4 py-2 ml-2"
+              >
+                Admin
+              </Link>
+            )}
             <div className="flex items-center space-x-2">
               <img 
                 src="/images/img_icon.svg" 
@@ -176,6 +184,15 @@ const Header = ({ onLoginClick }) => {
               >
                 Contact
               </Link>
+              {isAdmin && (
+                <Link 
+                  to="/admin" 
+                  className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors border border-global-3 rounded px-4 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Admin
+                </Link>
+              )}
               <button 
                 onClick={onLoginClick}
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 hover:text-global-3 transition-colors focus:outline-none"

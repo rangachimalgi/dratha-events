@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/ui/Button';
 
-const Login = ({ open, onClose, onSignUp }) => {
+const Login = ({ open, onClose, onSignUp, onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -10,7 +10,7 @@ const Login = ({ open, onClose, onSignUp }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
-    alert(`Logging in with ${email}`);
+    if (onLoginSuccess) onLoginSuccess();
   };
 
   return (

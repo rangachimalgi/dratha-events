@@ -9,6 +9,7 @@ const MainLayout = ({ children }) => {
   const isHome = location.pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (!isHome) return;
@@ -24,10 +25,15 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header onLoginClick={() => setLoginOpen(true)} />
+      <Header onLoginClick={() => setLoginOpen(true)} isAdmin={isAdmin} />
       <main className={mainClass}>{children}</main>
       <Footer />
-      <Login open={loginOpen} onClose={() => setLoginOpen(false)} onSignUp={() => alert('Sign Up clicked!')} />
+      <Login 
+        open={loginOpen} 
+        onClose={() => setLoginOpen(false)} 
+        onSignUp={() => alert('Sign Up clicked!')}
+        onLoginSuccess={() => { setIsAdmin(true); setLoginOpen(false); }}
+      />
     </div>
   );
 };
