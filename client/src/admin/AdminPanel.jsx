@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Get the base URL for API requests
+const API_BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:8080';
+
 const AdminPanel = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -29,10 +32,12 @@ const AdminPanel = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('/api/events');
-      setEvents(response.data);
+      const response = await axios.get(`${API_BASE_URL}/api/events`);
+      // Ensure events is always an array
+      setEvents(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error fetching events:', error);
+      setEvents([]); // Set to empty array on error
     }
   };
 
@@ -83,9 +88,9 @@ const AdminPanel = () => {
     e.preventDefault();
     try {
       if (selectedEvent) {
-        await axios.put(`/api/events/${selectedEvent._id}`, formData);
+        await axios.put(`${API_BASE_URL}/api/events/${selectedEvent._id}`, formData);
       } else {
-        await axios.post('/api/events', formData);
+        await axios.post(`${API_BASE_URL}/api/events`, formData);
       }
       fetchEvents();
       resetForm();
@@ -97,7 +102,7 @@ const AdminPanel = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this event?')) {
       try {
-        await axios.delete(`/api/events/${id}`);
+        await axios.delete(`${API_BASE_URL}/api/events/${id}`);
         fetchEvents();
       } catch (error) {
         console.error('Error deleting event:', error);
@@ -126,6 +131,11 @@ const AdminPanel = () => {
       }
     });
   };
+
+  // Ensure arrays exist before mapping
+  const safeImages = Array.isArray(formData.images) ? formData.images : [];
+  const safeFeatures = Array.isArray(formData.features) ? formData.features : [];
+  const safeEvents = Array.isArray(events) ? events : [];
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -227,7 +237,7 @@ const AdminPanel = () => {
                   accept="image/*"
                 />
                 <div className="mt-2 grid grid-cols-4 gap-4">
-                  {formData.images.map((image, index) => (
+                  {safeImages.map((image, index) => (
                     <div key={index} className="relative">
                       <img
                         src={image.url}
@@ -253,7 +263,7 @@ const AdminPanel = () => {
                 </button>
               </div>
               
-              {formData.features.map((feature, index) => (
+              {safeFeatures.map((feature, index) => (
                 <div key={index} className="grid grid-cols-3 gap-4">
                   <input
                     type="text"
@@ -323,13 +333,13 @@ const AdminPanel = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {events.map((event) => (
+                {safeEvents.map((event) => (
                   <tr key={event._id}>
                     <td className="px-6 py-4 whitespace-nowrap">{event.title}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{event.type}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{event.maxGuests}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {event.pricing.basePrice} {event.pricing.currency}
+                      {event.pricing?.basePrice} {event.pricing?.currency}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap space-x-2">
                       <button

@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import adminRoutes from './routes/adminRoutes.js';
+import eventRoutes from './routes/eventRoutes.js';
 import connectDB from './config/db.js';
 
 import path from 'path';
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 app.use('/api/admin', adminRoutes);
+app.use('/api/events', eventRoutes);
 
 // -----------------------------
 // Serve frontend in production
