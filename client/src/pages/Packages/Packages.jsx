@@ -1,115 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PackageCard from '../../components/ui/PackageCard';
 import CapsuleDropdown from '../../components/ui/CapsuleDropdown';
-
-const packages = [
-  {
-    title: 'Luxury Wedding',
-    image: '/images/luxuryWedding.png',
-    badge: 'Luxury',
-    badgeColor: 'bg-global-5',
-    description:
-      'Our Wedding Basic Package offers\nessential coverage of your special day with professional photography',
-    miles: '500 Guests',
-    fuel: 'Banquet Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹100,000',
-  },
-  {
-    title: 'Destination Wedding',
-    image: '/images/destinationWedding.jpg',
-    badge: 'Luxury',
-    badgeColor: 'bg-global-5',
-    description:
-      'Our Wedding Basic Package offers\nessential coverage of your special day with professional photography',
-    miles: '500 Guests',
-    fuel: 'Banquet Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹120,000',
-  },
-  {
-    title: 'Birthday Bash',
-    image: '/images/destinationWedding.jpg',
-    badge: 'Basic',
-    badgeColor: 'bg-global-5',
-    description:
-      'Fun-filled birthday parties with custom themes, entertainment, and delicious cakes.',
-    miles: '200 Guests',
-    fuel: 'Party Hall',
-    transmission: 'Veg',
-    price: '₹40,000',
-  },
-  {
-    title: 'Corporate Event',
-    image: '/images/luxuryWedding.png',
-    badge: 'Premuim',
-    badgeColor: 'bg-global-5',
-    description:
-      'Professional event management for conferences, seminars, and team-building activities.',
-    miles: '300 Guests',
-    fuel: 'Conference Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹80,000',
-  },
-  {
-    title: 'Corporate Event',
-    image: '/images/luxuryWedding.png',
-    badge: 'Premuim',
-    badgeColor: 'bg-global-5',
-    description:
-      'Professional event management for conferences, seminars, and team-building activities.',
-    miles: '300 Guests',
-    fuel: 'Conference Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹80,000',
-  },
-  {
-    title: 'Corporate Event',
-    image: '/images/luxuryWedding.png',
-    badge: 'Premuim',
-    badgeColor: 'bg-global-5',
-    description:
-      'Professional event management for conferences, seminars, and team-building activities.',
-    miles: '300 Guests',
-    fuel: 'Conference Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹80,000',
-  },
-  {
-    title: 'Corporate Event',
-    image: '/images/luxuryWedding.png',
-    badge: 'Premuim',
-    badgeColor: 'bg-global-5',
-    description:
-      'Professional event management for conferences, seminars, and team-building activities.',
-    miles: '300 Guests',
-    fuel: 'Conference Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹80,000',
-  },
-  {
-    title: 'Corporate Event',
-    image: '/images/luxuryWedding.png',
-    badge: 'Premuim',
-    badgeColor: 'bg-global-5',
-    description:
-      'Professional event management for conferences, seminars, and team-building activities.',
-    miles: '300 Guests',
-    fuel: 'Conference Hall',
-    transmission: 'Veg & Non-Veg',
-    price: '₹80,000',
-  },
-
-];
 
 const eventTypes = ['All Events', 'Wedding', 'Birthday', 'Corporate', 'House Warming'];
 const priceRanges = ['Any Price', 'Under ₹50,000', '₹50,000 - ₹1,00,000', 'Above ₹1,00,000'];
 const guestCounts = ['Any Package', 'Basic', 'Premium', 'Luxury'];
 
 const Packages = () => {
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(eventTypes[0]);
   const [selectedPrice, setSelectedPrice] = useState(priceRanges[0]);
   const [selectedGuests, setSelectedGuests] = useState(guestCounts[0]);
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await axios.get('http://localhost:8080/api/packages');
+        setPackages(Array.isArray(res.data) ? res.data : []);
+      } catch (err) {
+        setError('Failed to load packages.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPackages();
+  }, []);
 
   return (
     <div className="mt-28 max-w-7xl mx-auto px-4">
@@ -134,11 +54,17 @@ const Packages = () => {
           placeholder="Price Range"
         />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {packages.map((pkg, idx) => (
-          <PackageCard key={idx} {...pkg} />
-        ))}
-      </div>
+      {loading ? (
+        <div className="text-center py-8">Loading packages...</div>
+      ) : error ? (
+        <div className="text-center text-red-500 py-8">{error}</div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {packages.map((pkg, idx) => (
+            <PackageCard key={pkg._id || idx} {...pkg} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

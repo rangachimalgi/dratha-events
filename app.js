@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import adminRoutes from './routes/adminRoutes.js';
 import eventRoutes from './routes/eventRoutes.js';
 import connectDB from './config/db.js';
+import packageRoutes from "./routes/packages.js"
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api/admin', adminRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/packages', packageRoutes);
 
 // -----------------------------
 // Serve frontend in production
