@@ -6,6 +6,7 @@ import MainLayout from './components/layout/MainLayout';
 import PackageDetails from './pages/Packages/PackageDetails';
 import { HouseWarming } from './pages/HouseWarming/HouseWarming';
 import AdminPanel from './admin/AdminPanel';
+import ProtectedRoute from './components/routes/ProtectedRoute';
 
 const AppRoutes = () => {
   return (
@@ -16,7 +17,16 @@ const AppRoutes = () => {
           <Route path="/packages" element={<Packages />} />
           <Route path='/package-details' element={<PackageDetails />} />
           <Route path='/planhousewarming' element={<HouseWarming />} />
-          <Route path='/admin' element={<AdminPanel />} />
+          
+         {/* Protected Admin Route */}
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminPanel />
+              </ProtectedRoute>
+            } 
+          />
         </Routes> 
       </MainLayout>
     </Router>

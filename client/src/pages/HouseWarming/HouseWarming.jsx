@@ -64,7 +64,7 @@ export const HouseWarming = () => {
           />
         </div>
         {/* Two Small Images */}
-        <div className="flex flex-row md:flex-col w-full md:w-1/3 md:w-1/4 h-48 xs:h-60 sm:h-72 md:h-[500px] gap-4 md:gap-0">
+        <div className="flex flex-row md:flex-col w-full md:w-1/3 h-48 xs:h-60 sm:h-72 md:h-[500px] gap-4 md:gap-0">
           <img
             src="/images/events.png"
             alt="Event 1"
