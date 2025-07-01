@@ -3,6 +3,13 @@ import axios from 'axios';
 import PackageCard from '../../components/ui/PackageCard';
 import CapsuleDropdown from '../../components/ui/CapsuleDropdown';
 
+const getImageUrl = (img) => {
+  if (!img) return '';
+  if (img.startsWith('http')) return img;
+  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  return img;
+};
+
 const eventTypes = ['All Events', 'Wedding', 'Birthday', 'Corporate', 'House Warming'];
 const priceRanges = ['Any Price', 'Under ₹50,000', '₹50,000 - ₹1,00,000', 'Above ₹1,00,000'];
 const guestCounts = ['Any Package', 'Basic', 'Premium', 'Luxury'];
@@ -61,7 +68,7 @@ const Packages = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {packages.map((pkg, idx) => (
-            <PackageCard key={pkg._id || idx} id={pkg._id} {...pkg} />
+            <PackageCard key={pkg._id || idx} id={pkg._id} {...pkg} image={getImageUrl(pkg.image)} />
           ))}
         </div>
       )}

@@ -25,16 +25,17 @@ export const createPackage = async (req, res) => {
   try {
     const {
       title,
-      image,
       description,
       price,
       guests,
       venue,
       foodType,
-      galleryImages,
       features,
-      extraDetails // 👈 add this
+      extraDetails
     } = req.body;
+
+    const image = req.files?.image?.[0]?.path || '';
+    const galleryImages = req.files?.galleryImages?.map(file => file.path) || [];
 
     const newPackage = new Package({
       title,
@@ -45,8 +46,8 @@ export const createPackage = async (req, res) => {
       venue,
       foodType,
       galleryImages,
-      features,
-      extraDetails
+      features: JSON.parse(features || '[]'),
+      extraDetails: JSON.parse(extraDetails || '[]')
     });
 
     await newPackage.save();
@@ -57,10 +58,44 @@ export const createPackage = async (req, res) => {
   }
 };
 
-
 export const updatePackage = async (req, res) => {
-  const updated = await Package.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(updated);
+  try {
+    const {
+      title,
+      description,
+      price,
+      guests,
+      venue,
+      foodType,
+      features,
+      extraDetails
+    } = req.body;
+
+    const updates = {
+      title,
+      description,
+      price,
+      guests,
+      venue,
+      foodType,
+      features: JSON.parse(features || '[]'),
+      extraDetails: JSON.parse(extraDetails || '[]')
+    };
+
+    if (req.files?.image?.[0]) {
+      updates.image = req.files.image[0].path;
+    }
+
+    if (req.files?.galleryImages) {
+      updates.galleryImages = req.files.galleryImages.map(file => file.path);
+    }
+
+    const updatedPackage = await Package.findByIdAndUpdate(req.params.id, updates, { new: true });
+    res.json(updatedPackage);
+  } catch (err) {
+    console.error('Error updating package:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 export const deletePackage = async (req, res) => {

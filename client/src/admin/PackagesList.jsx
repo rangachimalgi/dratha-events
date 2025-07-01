@@ -5,6 +5,13 @@ const emptyEditForm = {
   _id: '', title: '', image: '', description: '', price: '', guests: '', venue: '', foodType: '', galleryImages: '', features: [], extraDetails: []
 };
 
+const getImageUrl = (img) => {
+  if (!img) return '';
+  if (img.startsWith('http')) return img;
+  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  return img;
+};
+
 const PackagesList = ({ onBack }) => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -183,7 +190,7 @@ const PackagesList = ({ onBack }) => {
                     <div className="text-sm text-gray-500">Guests: {pkg.guests}</div>
                     <div className="text-sm text-gray-500">Venue: {pkg.venue}</div>
                   </div>
-                  {pkg.image && <img src={pkg.image} alt={pkg.title} className="w-32 h-20 object-cover rounded mt-2 md:mt-0" />}
+                  {pkg.image && <img src={getImageUrl(pkg.image)} alt={pkg.title} className="w-32 h-20 object-cover rounded mt-2 md:mt-0" />}
                   <div className="flex flex-col gap-2 md:ml-4 mt-2 md:mt-0">
                     <button onClick={() => startEdit(pkg)} className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded font-semibold hover:bg-yellow-200">Edit</button>
                     <button onClick={() => handleDelete(pkg._id)} className="bg-red-100 text-red-800 px-3 py-1 rounded font-semibold hover:bg-red-200" disabled={deletingId === pkg._id}>{deletingId === pkg._id ? 'Deleting...' : 'Delete'}</button>

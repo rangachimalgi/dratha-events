@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const getImageUrl = (img) => {
+  if (!img) return '';
+  if (img.startsWith('http')) return img;
+  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  return img;
+};
+
 const PackageDetails = () => {
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
@@ -60,28 +67,28 @@ const PackageDetails = () => {
         {pkg.title || 'Event Package'}
       </h2>
 
-      {/* Responsive Images Section */}
+      {/* Responsive Images Section: 1 main image (big), 2 gallery images (small) */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden rounded-2xl shadow-2xl mb-8">
-        {/* Big Image */}
+        {/* Big Main Image */}
         <div className="flex-1 h-48 xs:h-60 sm:h-72 md:h-[600px]">
           <img
-            src={pkg.image || '/images/luxuryWedding.png'}
+            src={getImageUrl(pkg.image) || '/images/luxuryWedding.png'}
             alt={pkg.title}
             className="w-full h-full object-cover object-center rounded-t-2xl md:rounded-none md:rounded-l-2xl"
             style={{ display: 'block' }}
           />
         </div>
-        {/* Two Small Images (optional, fallback to main image) */}
+        {/* Two Small Gallery Images */}
         <div className="flex flex-row md:flex-col w-full md:w-1/3 h-48 xs:h-60 sm:h-72 md:h-[600px] gap-4 md:gap-0">
           <img
-            src={pkg.image || '/images/destinationWedding.jpg'}
-            alt={pkg.title + ' 1'}
+            src={getImageUrl(pkg.galleryImages && pkg.galleryImages[0]) || '/images/destinationWedding.jpg'}
+            alt={pkg.title + ' Gallery 1'}
             className="w-1/2 md:w-full h-full md:h-1/2 object-cover object-center rounded-bl-2xl md:rounded-none md:rounded-t-2xl"
             style={{ display: 'block' }}
           />
           <img
-            src={pkg.image || '/images/destinationWedding.jpg'}
-            alt={pkg.title + ' 2'}
+            src={getImageUrl(pkg.galleryImages && pkg.galleryImages[1]) || '/images/destinationWedding.jpg'}
+            alt={pkg.title + ' Gallery 2'}
             className="w-1/2 md:w-full h-full md:h-1/2 object-cover object-center rounded-br-2xl md:rounded-none md:rounded-b-2xl"
             style={{ display: 'block' }}
           />
