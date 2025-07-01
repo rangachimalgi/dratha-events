@@ -21,6 +21,9 @@ const PackagesList = ({ onBack }) => {
   const [editForm, setEditForm] = useState(emptyEditForm);
   const [editLoading, setEditLoading] = useState(false);
   const [editError, setEditError] = useState('');
+  const [mainImageFile, setMainImageFile] = useState(null);
+  const [galleryFiles, setGalleryFiles] = useState([]);
+  const [galleryWarning, setGalleryWarning] = useState('');
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -97,6 +100,25 @@ const PackagesList = ({ onBack }) => {
     setEditForm((prev) => ({ ...prev, extraDetails: prev.extraDetails.filter((_, i) => i !== idx) }));
   };
 
+  const handleMainImageFileChange = (e) => {
+    setMainImageFile(e.target.files[0] || null);
+  };
+  const handleGalleryFilesChange = (e) => {
+    const newFiles = Array.from(e.target.files);
+    setGalleryWarning('');
+    setGalleryFiles(prev => {
+      const total = prev.length + newFiles.length;
+      if (total > 2) {
+        setGalleryWarning('You can only upload up to 2 gallery images.');
+        return [...prev, ...newFiles].slice(0, 2);
+      }
+      return [...prev, ...newFiles];
+    });
+  };
+  const handleRemoveGalleryFile = (idx) => {
+    setGalleryFiles(prev => prev.filter((_, i) => i !== idx));
+  };
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setEditLoading(true);
@@ -105,14 +127,45 @@ const PackagesList = ({ onBack }) => {
     const galleryImages = editForm.galleryImages
       ? editForm.galleryImages.split(',').map((s) => s.trim()).filter(Boolean)
       : [];
-    const payload = {
-      ...editForm,
-      galleryImages,
-    };
     try {
-      const res = await axios.put(`http://localhost:8080/api/packages/${editForm._id}`, payload);
+      let res;
+      if (mainImageFile || galleryFiles.length > 0) {
+        // Use FormData for file upload
+        const formData = new FormData();
+        formData.append('title', editForm.title);
+        formData.append('description', editForm.description);
+        formData.append('price', editForm.price);
+        formData.append('guests', editForm.guests);
+        formData.append('venue', editForm.venue);
+        formData.append('foodType', editForm.foodType);
+        formData.append('features', JSON.stringify(editForm.features));
+        formData.append('extraDetails', JSON.stringify(editForm.extraDetails));
+        if (mainImageFile) {
+          formData.append('image', mainImageFile);
+        } else if (editForm.image) {
+          formData.append('imageUrl', editForm.image);
+        }
+        galleryFiles.forEach((file) => {
+          formData.append('galleryImages', file);
+        });
+        galleryImages.forEach((url) => {
+          formData.append('galleryImageUrls', url);
+        });
+        res = await axios.put(`http://localhost:8080/api/packages/${editForm._id}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+      } else {
+        // No files, send as JSON
+        const payload = {
+          ...editForm,
+          galleryImages,
+        };
+        res = await axios.put(`http://localhost:8080/api/packages/${editForm._id}`, payload);
+      }
       setPackages((prev) => prev.map((pkg) => pkg._id === editForm._id ? res.data : pkg));
       setEditId(null);
+      setMainImageFile(null);
+      setGalleryFiles([]);
     } catch {
       setEditError('Failed to update package.');
     } finally {
@@ -142,12 +195,36 @@ const PackagesList = ({ onBack }) => {
                 <form onSubmit={handleEditSubmit} className="w-full">
                   <div className="flex flex-col gap-2 mb-2">
                     <input type="text" name="title" value={editForm.title} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Title" required />
+                    {/* Main image upload */}
+                    <label className="block text-sm font-medium mb-1">Main Image (Upload to replace)</label>
+                    <input type="file" accept="image/*" onChange={handleMainImageFileChange} className="border rounded px-2 py-1" />
+                    {mainImageFile && (
+                      <div className="mb-2">
+                        <img src={URL.createObjectURL(mainImageFile)} alt="Main Preview" className="w-24 h-16 object-cover rounded border" />
+                      </div>
+                    )}
                     <input type="text" name="image" value={editForm.image} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Image URL" required />
                     <textarea name="description" value={editForm.description} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Description" required />
                     <input type="text" name="price" value={editForm.price} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Price" required />
                     <input type="number" name="guests" value={editForm.guests} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Guests" required />
                     <input type="text" name="venue" value={editForm.venue} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Venue" required />
                     <input type="text" name="foodType" value={editForm.foodType} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Food Type" required />
+                    {/* Gallery images upload */}
+                    <label className="block text-sm font-medium mb-1">Gallery Images (Upload up to 2 images, or enter comma separated URLs)</label>
+                    <input type="file" accept="image/*" multiple onChange={handleGalleryFilesChange} className="border rounded px-2 py-1" />
+                    {galleryWarning && (
+                      <div className="text-red-500 text-sm mb-1">{galleryWarning}</div>
+                    )}
+                    {galleryFiles.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        {galleryFiles.map((file, idx) => (
+                          <div key={idx} className="relative group">
+                            <img src={URL.createObjectURL(file)} alt={file.name} className="w-16 h-16 object-cover rounded border" />
+                            <button type="button" onClick={() => handleRemoveGalleryFile(idx)} className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs opacity-80 group-hover:opacity-100" title="Remove image">×</button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                     <input type="text" name="galleryImages" value={editForm.galleryImages} onChange={handleEditInputChange} className="border rounded px-2 py-1" placeholder="Gallery Images (comma separated)" />
                   </div>
                   {/* Features dynamic fields */}
