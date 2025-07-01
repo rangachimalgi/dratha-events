@@ -102,7 +102,7 @@ const PackageDetails = () => {
             key={idx}
             className="flex flex-col items-center justify-center px-4 py-2 rounded-2xl bg-white/90 shadow-md min-w-[110px] max-w-[140px]"
           >
-            <img src={feature.icon} alt={feature.label} className="w-8 h-8 mb-1" />
+            <img src={'/images/img_f2svg.svg'} alt={feature.label} className="w-8 h-8 mb-1" />
             <span className="text-xs font-semibold text-gray-500">{feature.label}</span>
             <span className="text-base font-bold text-gray-800 whitespace-nowrap">
               {feature.value}

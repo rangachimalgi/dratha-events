@@ -78,7 +78,7 @@ const PackagesList = ({ onBack }) => {
     });
   };
   const addFeature = () => {
-    setEditForm((prev) => ({ ...prev, features: [...(prev.features || []), { icon: '', label: '', value: '' }] }));
+    setEditForm((prev) => ({ ...prev, features: [...(prev.features || []), { icon: '/images/img_f2svg.svg', label: '', value: '' }] }));
   };
   const removeFeature = (idx) => {
     setEditForm((prev) => ({ ...prev, features: prev.features.filter((_, i) => i !== idx) }));
@@ -232,7 +232,6 @@ const PackagesList = ({ onBack }) => {
                     <label className="block text-sm font-medium mb-1">Features</label>
                     {editForm.features && editForm.features.map((feature, idx) => (
                       <div key={idx} className="flex flex-wrap gap-2 mb-2 items-center">
-                        <input type="text" placeholder="Icon URL" value={feature.icon} onChange={e => handleFeatureChange(idx, 'icon', e.target.value)} className="border rounded px-2 py-1 w-32" />
                         <input type="text" placeholder="Label" value={feature.label} onChange={e => handleFeatureChange(idx, 'label', e.target.value)} className="border rounded px-2 py-1 w-32" />
                         <input type="text" placeholder="Value" value={feature.value} onChange={e => handleFeatureChange(idx, 'value', e.target.value)} className="border rounded px-2 py-1 w-32" />
                         <button type="button" onClick={() => removeFeature(idx)} className="text-red-500 font-bold px-2">×</button>

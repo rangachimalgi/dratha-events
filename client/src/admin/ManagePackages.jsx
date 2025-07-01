@@ -44,7 +44,7 @@ const ManagePackages = ({ onBack }) => {
     });
   };
   const addFeature = () => {
-    setPackageForm((prev) => ({ ...prev, features: [...prev.features, { icon: '', label: '', value: '' }] }));
+    setPackageForm((prev) => ({ ...prev, features: [...prev.features, { icon: '/images/img_f2svg.svg', label: '', value: '' }] }));
   };
   const removeFeature = (idx) => {
     setPackageForm((prev) => ({ ...prev, features: prev.features.filter((_, i) => i !== idx) }));
@@ -291,13 +291,6 @@ const ManagePackages = ({ onBack }) => {
             <label className="block text-sm font-medium mb-1">Features</label>
             {packageForm.features.map((feature, idx) => (
               <div key={idx} className="flex flex-wrap gap-2 mb-2 items-center">
-                <input
-                  type="text"
-                  placeholder="Icon URL"
-                  value={feature.icon}
-                  onChange={e => handleFeatureChange(idx, 'icon', e.target.value)}
-                  className="border border-gray-300 rounded px-2 py-1 w-32"
-                />
                 <input
                   type="text"
                   placeholder="Label"
