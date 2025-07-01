@@ -38,15 +38,8 @@ const PackageDetails = () => {
     return <div className="mt-28 text-center text-gray-500 text-lg">No package found.</div>;
   }
 
-  // Features for display (customize as needed)
-  const features = [
-    { icon: '/images/img_f1svg.svg', label: 'Guests', value: pkg.guests },
-    { icon: '/images/img_f2svg.svg', label: 'Catering', value: pkg.foodType },
-    { icon: '/images/img_f3svg.svg', label: 'Venue Type', value: pkg.venue },
-    pkg.decoration && { icon: '/images/img_f4svg.svg', label: 'Decoration', value: pkg.decoration },
-    pkg.photography && { icon: '/images/img_f1svg.svg', label: 'Photography', value: pkg.photography },
-    pkg.type && { icon: '/images/img_f2svg.svg', label: 'Event Type', value: pkg.type },
-  ].filter(Boolean);
+  // Features for display: use pkg.features directly
+  const features = Array.isArray(pkg.features) ? pkg.features : [];
 
   // Package details for display (customize as needed)
   const packageDetails = [
