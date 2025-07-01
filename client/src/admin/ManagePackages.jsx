@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import PackagesList from './PackagesList';
 
 const initialPackageForm = {
   title: '',
@@ -18,44 +19,12 @@ const initialPackageForm = {
   ],
 };
 
-const hardcodedPackages = [
-  {
-    title: 'Elite Wedding Package',
-    image: '/images/luxuryWedding.png',
-    description: 'Premium wedding experience with full coverage.',
-    price: '₹2,50,000',
-    guests: '300',
-    venue: 'Banquet Hall',
-    foodType: 'Veg & Non-Veg',
-    galleryImages: ['/images/luxuryWedding.png','/images/luxuryWedding.png','/images/luxuryWedding.png'],
-    features: [
-      { icon: '/images/img_f1svg.svg', label: 'Guests', value: '300' },
-      { icon: '/images/img_f2svg.svg', label: 'Catering', value: 'Veg & Non-Veg' },
-      { icon: '/images/img_f3svg.svg', label: 'Venue Type', value: 'Banquet Hall' },
-      { icon: '/images/img_f4svg.svg', label: 'Decoration', value: 'Theme Based' },
-      { icon: '/images/img_f1svg.svg', label: 'Photography', value: 'Full Coverage' },
-      { icon: '/images/img_f2svg.svg', label: 'Event Type', value: 'Wedding' }
-    ],
-    extraDetails: [
-      { label: 'Package ID', value: 'WE48' },
-      { label: 'Price', value: '₹2,50,000' },
-      { label: 'Venue Size', value: '5000 Sq Ft' },
-      { label: 'Guests Capacity', value: 'Up to 300 Guests' },
-      { label: 'Catering', value: 'Veg & Non-Veg' },
-      { label: 'Decoration', value: 'Theme Based' },
-      { label: 'Photography', value: 'Full-Day Coverage' },
-      { label: 'Event Type', value: 'Wedding' },
-      { label: 'Package Status', value: 'Available' }
-    ]
-  }
-];
-
 const ManagePackages = ({ onBack }) => {
   const [packageForm, setPackageForm] = useState(initialPackageForm);
-  const [packages, setPackages] = useState(hardcodedPackages);
   const [formError, setFormError] = useState('');
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState('');
+  const [showList, setShowList] = useState(false);
 
   const handlePackageInputChange = (e) => {
     const { name, value } = e.target;
@@ -114,7 +83,6 @@ const ManagePackages = ({ onBack }) => {
     setLoading(true);
     try {
       const res = await axios.post('http://localhost:8080/api/packages', payload);
-      setPackages((prev) => [...prev, res.data]);
       setPackageForm(initialPackageForm);
     } catch (err) {
       setApiError('Failed to create package.');
@@ -123,8 +91,20 @@ const ManagePackages = ({ onBack }) => {
     }
   };
 
+  if (showList) {
+    return <PackagesList onBack={() => setShowList(false)} />;
+  }
+
   return (
     <div className="mt-28">
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => setShowList(true)}
+          className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded font-semibold hover:bg-indigo-200"
+        >
+          View All Packages
+        </button>
+      </div>
       <div className="bg-white rounded-lg shadow-md p-6 mb-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">Add New Package</h2>
@@ -295,25 +275,6 @@ const ManagePackages = ({ onBack }) => {
             </button>
           </div>
         </form>
-      </div>
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-semibold mb-4">Packages List</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {packages.map((pkg, idx) => (
-            <div key={idx} className="border rounded p-4 flex flex-col items-start w-full">
-              <img src={pkg.image} alt={pkg.title} className="w-full h-40 object-cover rounded mb-2" />
-              <h3 className="font-bold text-lg mb-1">{pkg.title}</h3>
-              <p className="text-gray-600 mb-1">{pkg.description}</p>
-              <div className="text-sm text-gray-500 mb-1">Price: {pkg.price}</div>
-              <div className="text-sm text-gray-500 mb-1">Guests: {pkg.guests}</div>
-              <div className="text-sm text-gray-500 mb-1">Venue: {pkg.venue}</div>
-              <div className="text-sm text-gray-500 mb-1">Food: {pkg.foodType}</div>
-              <div className="text-sm text-gray-500 mb-1">Gallery Images: {Array.isArray(pkg.galleryImages) ? pkg.galleryImages.join(', ') : pkg.galleryImages}</div>
-              <div className="text-sm text-gray-500 mb-1">Features: <pre className="whitespace-pre-wrap break-all">{JSON.stringify(pkg.features, null, 2)}</pre></div>
-              <div className="text-sm text-gray-500 mb-1">Extra Details: <pre className="whitespace-pre-wrap break-all">{JSON.stringify(pkg.extraDetails, null, 2)}</pre></div>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
