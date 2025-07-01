@@ -61,7 +61,7 @@ const Packages = () => {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {packages.map((pkg, idx) => (
-            <PackageCard key={pkg._id || idx} {...pkg} />
+            <PackageCard key={pkg._id || idx} id={pkg._id} {...pkg} />
           ))}
         </div>
       )}

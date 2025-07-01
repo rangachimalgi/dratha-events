@@ -16,6 +16,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/packages" element={<Packages />} />
           <Route path='/package-details' element={<PackageDetails />} />
+          <Route path='/package-details/:id' element={<PackageDetails />} />
           <Route path='/planhousewarming' element={<HouseWarming />} />
           
          {/* Protected Admin Route */}

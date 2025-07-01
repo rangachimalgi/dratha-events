@@ -1,25 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PackageCard = ({ image, badge, badgeColor, title, description, miles, fuel, transmission, price }) => {
+const PackageCard = ({ id, image, badge, badgeColor, title, description, miles, fuel, transmission, price }) => {
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate('/package-details', { 
-      state: { 
-        packageDetails: {
-          image,
-          badge,
-          badgeColor,
-          title,
-          description,
-          miles,
-          fuel,
-          transmission,
-          price
-        }
-      }
-    });
+    if (!id) return;
+    navigate(`/package-details/${id}`);
   };
 
   return (
