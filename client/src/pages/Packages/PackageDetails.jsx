@@ -136,39 +136,6 @@ const PackageDetails = () => {
           ))}
         </div>
       </div>
-
-      {/* Event Features & Services Box (optional, static for now) */}
-      <div className="w-full max-w-4xl bg-gradient-to-br from-pink-100 via-yellow-50 to-white rounded-2xl shadow-lg p-6 mb-8">
-        <h5 className="text-xl font-bold text-pink-700 mb-4">Event Features & Services</h5>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-gray-700 text-base">
-          <li>Luxurious Venue Decor</li>
-          <li>Professional Catering</li>
-          <li>Live DJ & Music</li>
-          <li>Outdoor Lawn Area</li>
-          <li>Private Bridal Suite</li>
-          <li>Custom Lighting & Ambience</li>
-          <li>On-site Parking</li>
-          <li>Air-conditioned Banquet Halls</li>
-          <li>Dedicated Event Planner</li>
-          <li>Photography & Videography</li>
-          <li>Guest WiFi Access</li>
-          <li>Special Entry Walkways</li>
-        </ul>
-      </div>
-
-      {/* Premium Packages & Ratings Box (optional, static for now) */}
-      <div className="w-full max-w-4xl bg-gradient-to-br from-yellow-100 via-pink-50 to-white rounded-2xl shadow-lg p-6 mb-12">
-        <h5 className="text-xl font-bold text-yellow-700 mb-4">Premium Packages & Ratings</h5>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 list-disc list-inside text-gray-700 text-base">
-          <li><span className="text-2xl">⭐</span> Platinum Experience Rating: <span className="font-semibold text-green-700">A+</span></li>
-          <li>Certified 5-Star Hospitality Standards</li>
-          <li>Seamless Vendor Coordination</li>
-          <li>100% Customizable Themes</li>
-          <li>Verified Safety & Hygiene Standards</li>
-          <li>High Guest Satisfaction Index: <span className="font-semibold text-green-700">92%</span></li>
-          <li>Maximum Capacity: <span className="font-semibold text-green-700">{pkg.guests || 'N/A'} Guests</span></li>
-        </ul>
-      </div>
     </div>
   );
 };
