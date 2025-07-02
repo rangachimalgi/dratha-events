@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ManagePackages from './ManagePackages';
+import ManageHouseWarming from './ManageHouseWarming';
 
 // Get the base URL for API requests
 const API_BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:8080';
@@ -609,6 +610,8 @@ const AdminPanel = () => {
           renderDashboard()
         ) : activeSection === 'packages' ? (
           <ManagePackages onBack={() => setActiveSection(null)} />
+        ) : activeSection === 'housewarming' ? (
+          <ManageHouseWarming />
         ) : (
           <>
             {selectedEvent ? renderEventForm() : null}

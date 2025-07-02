@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:8080';
 
 const features = [
   { icon: '/images/img_f1svg.svg', label: 'Guests', value: '150' },
@@ -47,59 +50,70 @@ const premiumList = [
 ];
 
 export const HouseWarming = () => {
-  // Sample price data
-  const chairTypes = [
-    { label: 'Plastic Chair', price: 20 },
-    { label: 'Cushion Chair', price: 40 },
-    { label: 'Sofa Chair', price: 100 },
-  ];
-  const tentTypes = [
-    { label: 'Small Tent (10x10 ft)', price: 500 },
-    { label: 'Medium Tent (20x20 ft)', price: 1200 },
-    { label: 'Large Tent (30x30 ft)', price: 2500 },
-  ];
-  const pendalTypes = [
-    { label: 'Basic Pendal (10x10 ft)', price: 400 },
-    { label: 'Decorated Pendal (20x20 ft)', price: 1000 },
-    { label: 'Premium Pendal (30x30 ft)', price: 2000 },
-  ];
-  const carpetSizes = [
-    { label: '6x4 ft', price: 150 },
-    { label: '8x6 ft', price: 250 },
-    { label: '10x8 ft', price: 400 },
-  ];
-  const foodTypes = [
-    { label: 'Basic', price: 250 },
-    { label: 'Premium', price: 400 },
-    { label: 'Elite', price: 600 },
-  ];
+  // Fetch plan from API
+  const [plan, setPlan] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  // State for selections
-  const [chair, setChair] = React.useState({ type: chairTypes[0], qty: '' });
-  const [tent, setTent] = React.useState({ type: tentTypes[0], qty: '' });
-  const [pendal, setPendal] = React.useState({ type: pendalTypes[0], qty: '' });
-  const [carpet, setCarpet] = React.useState({ size: carpetSizes[0], qty: '' });
-  const [food, setFood] = React.useState({ type: foodTypes[0], qty: '' });
+  useEffect(() => {
+    axios.get(`${BASE_URL}/api/housewarming`)
+      .then(res => {
+        setPlan(res.data[0] || null);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('Failed to load plan');
+        setLoading(false);
+      });
+  }, []);
+
+  // Use fetched data or fallback to empty arrays
+  const chairTypes = plan?.chairTypes || [];
+  const tentTypes = plan?.tentTypes || [];
+  const pendalTypes = plan?.pendalTypes || [];
+  const carpetSizes = plan?.carpetTypes || [];
+  const foodTypes = plan?.foodTypes || [];
+
+  // State for selections (initialize with first available type if present)
+  const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [tent, setTent] = React.useState({ type: tentTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [pendal, setPendal] = React.useState({ type: pendalTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [carpet, setCarpet] = React.useState({ size: carpetSizes[0] || { label: '', price: 0 }, qty: '' });
+  const [food, setFood] = React.useState({ type: foodTypes[0] || { label: '', price: 0 }, qty: '' });
+
+  // Update state when plan loads
+  useEffect(() => {
+    if (plan) {
+      setChair(c => ({ ...c, type: chairTypes[0] || { label: '', price: 0 } }));
+      setTent(t => ({ ...t, type: tentTypes[0] || { label: '', price: 0 } }));
+      setPendal(p => ({ ...p, type: pendalTypes[0] || { label: '', price: 0 } }));
+      setCarpet(c => ({ ...c, size: carpetSizes[0] || { label: '', price: 0 } }));
+      setFood(f => ({ ...f, type: foodTypes[0] || { label: '', price: 0 } }));
+    }
+  }, [plan]);
 
   // Calculate totals
-  const chairTotal = (parseInt(chair.qty) || 0) * chair.type.price;
-  const tentTotal = (parseInt(tent.qty) || 0) * tent.type.price;
-  const pendalTotal = (parseInt(pendal.qty) || 0) * pendal.type.price;
-  const carpetTotal = (parseInt(carpet.qty) || 0) * carpet.size.price;
-  const foodTotal = (parseInt(food.qty) || 0) * food.type.price;
+  const chairTotal = (parseInt(chair.qty) || 0) * (chair.type?.price || 0);
+  const tentTotal = (parseInt(tent.qty) || 0) * (tent.type?.price || 0);
+  const pendalTotal = (parseInt(pendal.qty) || 0) * (pendal.type?.price || 0);
+  const carpetTotal = (parseInt(carpet.qty) || 0) * (carpet.size?.price || 0);
+  const foodTotal = (parseInt(food.qty) || 0) * (food.type?.price || 0);
   const grandTotal = chairTotal + tentTotal + pendalTotal + carpetTotal + foodTotal;
+
+  if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
+  if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
 
   return (
     <div className="flex flex-col items-center px-2 sm:px-4">
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg mt-12 md:mt-20 mb-6 text-center bg-gradient-to-r from-yellow-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-        House Warming Package
+        {plan.title || 'House Warming Package'}
       </h2>
       {/* Responsive Images Section */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden rounded-2xl shadow-2xl mb-8">
         {/* Big Image */}
         <div className="flex-1 h-48 xs:h-60 sm:h-72 md:h-[500px]">
           <img
-            src="/images/luxuryWedding.png"
+            src={plan.images?.[0] ? `${BASE_URL}/${plan.images[0]}` : '/images/luxuryWedding.png'}
             alt="House Warming"
             className="w-full h-full object-cover object-center rounded-t-2xl md:rounded-none md:rounded-l-2xl"
             style={{ display: 'block' }}
@@ -108,13 +122,13 @@ export const HouseWarming = () => {
         {/* Two Small Images */}
         <div className="flex flex-row md:flex-col w-full md:w-1/3 h-48 xs:h-60 sm:h-72 md:h-[500px] gap-4 md:gap-0">
           <img
-            src="/images/events.png"
+            src={plan.images?.[1] ? `${BASE_URL}/${plan.images[1]}` : '/images/events.png'}
             alt="Event 1"
             className="w-1/2 md:w-full h-full md:h-1/2 object-cover object-center rounded-bl-2xl md:rounded-none md:rounded-t-2xl"
             style={{ display: 'block' }}
           />
           <img
-            src="/images/engagement.png"
+            src={plan.images?.[2] ? `${BASE_URL}/${plan.images[2]}` : '/images/engagement.png'}
             alt="Event 2"
             className="w-1/2 md:w-full h-full md:h-1/2 object-cover object-center rounded-br-2xl md:rounded-none md:rounded-b-2xl"
             style={{ display: 'block' }}
@@ -127,7 +141,7 @@ export const HouseWarming = () => {
         <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Event Package Description</h3>
         <h4 className="text-base sm:text-lg font-semibold text-yellow-600 mb-2">Premium House Warming Package</h4>
         <p className="text-gray-700 mb-2 text-sm sm:text-base">
-          Welcome your new beginnings with our all-inclusive house warming package. From traditional decor and puja arrangements to live music and pure veg catering, we ensure your special day is memorable and auspicious. Enjoy a cozy venue, custom lighting, and a dedicated event manager for a seamless experience.
+          {plan.description || 'Welcome your new beginnings with our all-inclusive house warming package. From traditional decor and puja arrangements to live music and pure veg catering, we ensure your special day is memorable and auspicious. Enjoy a cozy venue, custom lighting, and a dedicated event manager for a seamless experience.'}
         </p>
         <button className="text-yellow-600 font-semibold hover:underline focus:outline-none text-sm sm:text-base">Show more</button>
       </div>
