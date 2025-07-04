@@ -8,7 +8,7 @@ const emptyEditForm = {
 const getImageUrl = (img) => {
   if (!img) return '';
   if (img.startsWith('http')) return img;
-  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  if (img.startsWith('uploads/')) return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
   return img;
 };
 
@@ -30,7 +30,7 @@ const PackagesList = ({ onBack }) => {
       setLoading(true);
       setError('');
       try {
-        const res = await axios.get('http://localhost:8080/api/packages');
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/packages`);
         setPackages(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setError('Failed to fetch packages.');
@@ -45,7 +45,7 @@ const PackagesList = ({ onBack }) => {
     if (!window.confirm('Are you sure you want to delete this package?')) return;
     setDeletingId(id);
     try {
-      await axios.delete(`http://localhost:8080/api/packages/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/packages/${id}`);
       setPackages((prev) => prev.filter((pkg) => pkg._id !== id));
     } catch {
       alert('Failed to delete package.');
@@ -151,7 +151,7 @@ const PackagesList = ({ onBack }) => {
         galleryImages.forEach((url) => {
           formData.append('galleryImageUrls', url);
         });
-        res = await axios.put(`http://localhost:8080/api/packages/${editForm._id}`, formData, {
+        res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/packages/${editForm._id}`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
       } else {
@@ -160,7 +160,7 @@ const PackagesList = ({ onBack }) => {
           ...editForm,
           galleryImages,
         };
-        res = await axios.put(`http://localhost:8080/api/packages/${editForm._id}`, payload);
+        res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/packages/${editForm._id}`, payload);
       }
       setPackages((prev) => prev.map((pkg) => pkg._id === editForm._id ? res.data : pkg));
       setEditId(null);

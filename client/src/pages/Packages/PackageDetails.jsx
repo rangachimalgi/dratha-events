@@ -5,7 +5,7 @@ import axios from 'axios';
 const getImageUrl = (img) => {
   if (!img) return '';
   if (img.startsWith('http')) return img;
-  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  if (img.startsWith('uploads/')) return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
   return img;
 };
 
@@ -24,7 +24,7 @@ const PackageDetails = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`http://localhost:8080/api/packages/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/packages/${id}`);
         setPkg(res.data);
       } catch (err) {
         setError('Failed to load package details.');

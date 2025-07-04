@@ -14,7 +14,7 @@ const Login = ({ open, onClose, onSignUp, onLoginSuccess }) => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:8080/api/admin/login', {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/admin/login`, {
         username,
         password,
       });

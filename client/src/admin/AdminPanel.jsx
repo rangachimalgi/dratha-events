@@ -4,7 +4,7 @@ import ManagePackages from './ManagePackages';
 import ManageHouseWarming from './ManageHouseWarming';
 
 // Get the base URL for API requests
-const API_BASE_URL = import.meta.env.PROD ? '' : 'http://localhost:8080';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const initialPackageForm = {
   title: '',

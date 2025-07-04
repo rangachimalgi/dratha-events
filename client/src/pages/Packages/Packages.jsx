@@ -6,7 +6,7 @@ import CapsuleDropdown from '../../components/ui/CapsuleDropdown';
 const getImageUrl = (img) => {
   if (!img) return '';
   if (img.startsWith('http')) return img;
-  if (img.startsWith('uploads/')) return `http://localhost:8080/${img}`;
+  if (img.startsWith('uploads/')) return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
   return img;
 };
 
@@ -27,7 +27,7 @@ const Packages = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get('http://localhost:8080/api/packages');
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/packages`);
         setPackages(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setError('Failed to load packages.');

@@ -122,7 +122,7 @@ const ManagePackages = ({ onBack }) => {
     });
     setLoading(true);
     try {
-      await axios.post('http://localhost:8080/api/packages', formData, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/packages`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setPackageForm(initialPackageForm);
