@@ -6,7 +6,7 @@ import eventRoutes from './routes/eventRoutes.js';
 import connectDB from './config/db.js';
 import packageRoutes from "./routes/packages.js";
 import housewarmingRoutes from './routes/housewarmingRoutes.js';
-
+import "./keepAlive.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 
