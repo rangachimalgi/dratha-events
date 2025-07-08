@@ -15,6 +15,22 @@ const ManageHouseWarming = () => {
   const [pendalTypes, setPendalTypes] = useState([{ ...emptyType }]);
   const [carpetTypes, setCarpetTypes] = useState([{ ...emptyType }]);
   const [foodTypes, setFoodTypes] = useState([{ ...emptyType }]);
+  const [foodTableTypes, setFoodTableTypes] = useState([{ ...emptyType }]);
+  const [chapraStandardTypes, setChapraStandardTypes] = useState([{ ...emptyType }]);
+  const [pandalWaterproofPakodaTypes, setPandalWaterproofPakodaTypes] = useState([{ ...emptyType }]);
+  const [jamkanaTypes, setJamkanaTypes] = useState([{ ...emptyType }]);
+  const [thomalaForDoorsTypes, setThomalaForDoorsTypes] = useState([{ ...emptyType }]);
+  const [welcomeBoardTypes, setWelcomeBoardTypes] = useState([{ ...emptyType }]);
+  const [railingDecorsTypes, setRailingDecorsTypes] = useState([{ ...emptyType }]);
+  const [chapraPremiumTypes, setChapraPremiumTypes] = useState([{ ...emptyType }]);
+  const [foodLunchTypes, setFoodLunchTypes] = useState([{ ...emptyType }]);
+  const [foodBreakfastTypes, setFoodBreakfastTypes] = useState([{ ...emptyType }]);
+  const [foodNightDinnerTypes, setFoodNightDinnerTypes] = useState([{ ...emptyType }]);
+  const [garlandsTypes, setGarlandsTypes] = useState([{ ...emptyType }]);
+  const [poojaBackdropsTypes, setPoojaBackdropsTypes] = useState([{ ...emptyType }]);
+  const [matressTypes, setMatressTypes] = useState([{ ...emptyType }]);
+  const [flowerBouquetsTypes, setFlowerBouquetsTypes] = useState([{ ...emptyType }]);
+  const [goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes] = useState([{ ...emptyType }]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -49,6 +65,22 @@ const ManageHouseWarming = () => {
       formData.append('pendalTypes', JSON.stringify(pendalTypes.filter(t => t.label && t.price)));
       formData.append('carpetTypes', JSON.stringify(carpetTypes.filter(t => t.label && t.price)));
       formData.append('foodTypes', JSON.stringify(foodTypes.filter(t => t.label && t.price)));
+      formData.append('foodTableTypes', JSON.stringify(foodTableTypes.filter(t => t.label && t.price)));
+      formData.append('chapraStandardTypes', JSON.stringify(chapraStandardTypes.filter(t => t.label && t.price)));
+      formData.append('pandalWaterproofPakodaTypes', JSON.stringify(pandalWaterproofPakodaTypes.filter(t => t.label && t.price)));
+      formData.append('jamkanaTypes', JSON.stringify(jamkanaTypes.filter(t => t.label && t.price)));
+      formData.append('thomalaForDoorsTypes', JSON.stringify(thomalaForDoorsTypes.filter(t => t.label && t.price)));
+      formData.append('welcomeBoardTypes', JSON.stringify(welcomeBoardTypes.filter(t => t.label && t.price)));
+      formData.append('railingDecorsTypes', JSON.stringify(railingDecorsTypes.filter(t => t.label && t.price)));
+      formData.append('chapraPremiumTypes', JSON.stringify(chapraPremiumTypes.filter(t => t.label && t.price)));
+      formData.append('foodLunchTypes', JSON.stringify(foodLunchTypes.filter(t => t.label && t.price)));
+      formData.append('foodBreakfastTypes', JSON.stringify(foodBreakfastTypes.filter(t => t.label && t.price)));
+      formData.append('foodNightDinnerTypes', JSON.stringify(foodNightDinnerTypes.filter(t => t.label && t.price)));
+      formData.append('garlandsTypes', JSON.stringify(garlandsTypes.filter(t => t.label && t.price)));
+      formData.append('poojaBackdropsTypes', JSON.stringify(poojaBackdropsTypes.filter(t => t.label && t.price)));
+      formData.append('matressTypes', JSON.stringify(matressTypes.filter(t => t.label && t.price)));
+      formData.append('flowerBouquetsTypes', JSON.stringify(flowerBouquetsTypes.filter(t => t.label && t.price)));
+      formData.append('goldenIronStandBouquetsTypes', JSON.stringify(goldenIronStandBouquetsTypes.filter(t => t.label && t.price)));
       await axios.post(`${BASE_URL}/api/housewarming`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -62,6 +94,22 @@ const ManageHouseWarming = () => {
       setPendalTypes([{ ...emptyType }]);
       setCarpetTypes([{ ...emptyType }]);
       setFoodTypes([{ ...emptyType }]);
+      setFoodTableTypes([{ ...emptyType }]);
+      setChapraStandardTypes([{ ...emptyType }]);
+      setPandalWaterproofPakodaTypes([{ ...emptyType }]);
+      setJamkanaTypes([{ ...emptyType }]);
+      setThomalaForDoorsTypes([{ ...emptyType }]);
+      setWelcomeBoardTypes([{ ...emptyType }]);
+      setRailingDecorsTypes([{ ...emptyType }]);
+      setChapraPremiumTypes([{ ...emptyType }]);
+      setFoodLunchTypes([{ ...emptyType }]);
+      setFoodBreakfastTypes([{ ...emptyType }]);
+      setFoodNightDinnerTypes([{ ...emptyType }]);
+      setGarlandsTypes([{ ...emptyType }]);
+      setPoojaBackdropsTypes([{ ...emptyType }]);
+      setMatressTypes([{ ...emptyType }]);
+      setFlowerBouquetsTypes([{ ...emptyType }]);
+      setGoldenIronStandBouquetsTypes([{ ...emptyType }]);
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to create plan');
     } finally {
@@ -141,6 +189,22 @@ const ManageHouseWarming = () => {
         {renderTypeFields('Pendal Types', pendalTypes, setPendalTypes)}
         {renderTypeFields('Carpet Types', carpetTypes, setCarpetTypes)}
         {renderTypeFields('Food Types', foodTypes, setFoodTypes)}
+        {renderTypeFields('Food Tables', foodTableTypes, setFoodTableTypes)}
+        {renderTypeFields('Chapra Standard', chapraStandardTypes, setChapraStandardTypes)}
+        {renderTypeFields('Pandal Waterproof Pakoda with Sidecover', pandalWaterproofPakodaTypes, setPandalWaterproofPakodaTypes)}
+        {renderTypeFields('Jamkana', jamkanaTypes, setJamkanaTypes)}
+        {renderTypeFields('Thomala for Doors', thomalaForDoorsTypes, setThomalaForDoorsTypes)}
+        {renderTypeFields('Welcome Board', welcomeBoardTypes, setWelcomeBoardTypes)}
+        {renderTypeFields('Railing Decors', railingDecorsTypes, setRailingDecorsTypes)}
+        {renderTypeFields('Chapra Premium', chapraPremiumTypes, setChapraPremiumTypes)}
+        {renderTypeFields('Food Lunch', foodLunchTypes, setFoodLunchTypes)}
+        {renderTypeFields('Food Breakfast', foodBreakfastTypes, setFoodBreakfastTypes)}
+        {renderTypeFields('Food Night Dinner', foodNightDinnerTypes, setFoodNightDinnerTypes)}
+        {renderTypeFields('Garlands', garlandsTypes, setGarlandsTypes)}
+        {renderTypeFields('Pooja Backdrops', poojaBackdropsTypes, setPoojaBackdropsTypes)}
+        {renderTypeFields('Matress', matressTypes, setMatressTypes)}
+        {renderTypeFields('Flower Bouquets for Kitchen and Other Places', flowerBouquetsTypes, setFlowerBouquetsTypes)}
+        {renderTypeFields('Golden Iron Stand Bouquets of 3 Feet Height for Corners', goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes)}
         {error && <div className="text-red-500 font-semibold">{error}</div>}
         {success && <div className="text-green-600 font-semibold">{success}</div>}
         <button

@@ -34,6 +34,102 @@ const HousewarmingPlanSchema = new mongoose.Schema({
       price: { type: Number, required: true },
     }
   ],
+  foodTableTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  chapraStandardTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  pandalWaterproofPakodaTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  jamkanaTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  thomalaForDoorsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  welcomeBoardTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  railingDecorsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  chapraPremiumTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  foodLunchTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  foodBreakfastTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  foodNightDinnerTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  garlandsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  poojaBackdropsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  matressTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  flowerBouquetsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
+  goldenIronStandBouquetsTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
 }, { timestamps: true });
 
 const HousewarmingPlan = mongoose.model('HousewarmingPlan', HousewarmingPlanSchema);

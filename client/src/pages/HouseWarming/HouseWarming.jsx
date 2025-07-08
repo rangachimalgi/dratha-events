@@ -73,6 +73,22 @@ export const HouseWarming = () => {
   const pendalTypes = plan?.pendalTypes || [];
   const carpetSizes = plan?.carpetTypes || [];
   const foodTypes = plan?.foodTypes || [];
+  const foodTableTypes = plan?.foodTableTypes || [];
+  const chapraStandardTypes = plan?.chapraStandardTypes || [];
+  const pandalWaterproofPakodaTypes = plan?.pandalWaterproofPakodaTypes || [];
+  const jamkanaTypes = plan?.jamkanaTypes || [];
+  const thomalaForDoorsTypes = plan?.thomalaForDoorsTypes || [];
+  const welcomeBoardTypes = plan?.welcomeBoardTypes || [];
+  const railingDecorsTypes = plan?.railingDecorsTypes || [];
+  const chapraPremiumTypes = plan?.chapraPremiumTypes || [];
+  const foodLunchTypes = plan?.foodLunchTypes || [];
+  const foodBreakfastTypes = plan?.foodBreakfastTypes || [];
+  const foodNightDinnerTypes = plan?.foodNightDinnerTypes || [];
+  const garlandsTypes = plan?.garlandsTypes || [];
+  const poojaBackdropsTypes = plan?.poojaBackdropsTypes || [];
+  const matressTypes = plan?.matressTypes || [];
+  const flowerBouquetsTypes = plan?.flowerBouquetsTypes || [];
+  const goldenIronStandBouquetsTypes = plan?.goldenIronStandBouquetsTypes || [];
 
   // State for selections (initialize with first available type if present)
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -80,6 +96,22 @@ export const HouseWarming = () => {
   const [pendal, setPendal] = React.useState({ type: pendalTypes[0] || { label: '', price: 0 }, qty: '' });
   const [carpet, setCarpet] = React.useState({ size: carpetSizes[0] || { label: '', price: 0 }, qty: '' });
   const [food, setFood] = React.useState({ type: foodTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [foodTable, setFoodTable] = React.useState({ type: foodTableTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [chapraStandard, setChapraStandard] = React.useState({ type: chapraStandardTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [pandalWaterproofPakoda, setPandalWaterproofPakoda] = React.useState({ type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [jamkana, setJamkana] = React.useState({ type: jamkanaTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [thomalaForDoors, setThomalaForDoors] = React.useState({ type: thomalaForDoorsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [welcomeBoard, setWelcomeBoard] = React.useState({ type: welcomeBoardTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [railingDecors, setRailingDecors] = React.useState({ type: railingDecorsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [chapraPremium, setChapraPremium] = React.useState({ type: chapraPremiumTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [foodLunch, setFoodLunch] = React.useState({ type: foodLunchTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [foodBreakfast, setFoodBreakfast] = React.useState({ type: foodBreakfastTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [foodNightDinner, setFoodNightDinner] = React.useState({ type: foodNightDinnerTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [garlands, setGarlands] = React.useState({ type: garlandsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [poojaBackdrops, setPoojaBackdrops] = React.useState({ type: poojaBackdropsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [matress, setMatress] = React.useState({ type: matressTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [flowerBouquets, setFlowerBouquets] = React.useState({ type: flowerBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
 
   // Update state when plan loads
   useEffect(() => {
@@ -89,6 +121,22 @@ export const HouseWarming = () => {
       setPendal(p => ({ ...p, type: pendalTypes[0] || { label: '', price: 0 } }));
       setCarpet(c => ({ ...c, size: carpetSizes[0] || { label: '', price: 0 } }));
       setFood(f => ({ ...f, type: foodTypes[0] || { label: '', price: 0 } }));
+      setFoodTable(ft => ({ ...ft, type: foodTableTypes[0] || { label: '', price: 0 } }));
+      setChapraStandard(cs => ({ ...cs, type: chapraStandardTypes[0] || { label: '', price: 0 } }));
+      setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 } }));
+      setJamkana(j => ({ ...j, type: jamkanaTypes[0] || { label: '', price: 0 } }));
+      setThomalaForDoors(tfd => ({ ...tfd, type: thomalaForDoorsTypes[0] || { label: '', price: 0 } }));
+      setWelcomeBoard(wb => ({ ...wb, type: welcomeBoardTypes[0] || { label: '', price: 0 } }));
+      setRailingDecors(rd => ({ ...rd, type: railingDecorsTypes[0] || { label: '', price: 0 } }));
+      setChapraPremium(cp => ({ ...cp, type: chapraPremiumTypes[0] || { label: '', price: 0 } }));
+      setFoodLunch(fl => ({ ...fl, type: foodLunchTypes[0] || { label: '', price: 0 } }));
+      setFoodBreakfast(fb => ({ ...fb, type: foodBreakfastTypes[0] || { label: '', price: 0 } }));
+      setFoodNightDinner(fnd => ({ ...fnd, type: foodNightDinnerTypes[0] || { label: '', price: 0 } }));
+      setGarlands(g => ({ ...g, type: garlandsTypes[0] || { label: '', price: 0 } }));
+      setPoojaBackdrops(pb => ({ ...pb, type: poojaBackdropsTypes[0] || { label: '', price: 0 } }));
+      setMatress(m => ({ ...m, type: matressTypes[0] || { label: '', price: 0 } }));
+      setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes[0] || { label: '', price: 0 } }));
+      setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
     }
   }, [plan]);
 
@@ -98,7 +146,24 @@ export const HouseWarming = () => {
   const pendalTotal = (parseInt(pendal.qty) || 0) * (pendal.type?.price || 0);
   const carpetTotal = (parseInt(carpet.qty) || 0) * (carpet.size?.price || 0);
   const foodTotal = (parseInt(food.qty) || 0) * (food.type?.price || 0);
-  const grandTotal = chairTotal + tentTotal + pendalTotal + carpetTotal + foodTotal;
+  const foodTableTotal = (parseInt(foodTable.qty) || 0) * (foodTable.type?.price || 0);
+  const chapraStandardTotal = (parseInt(chapraStandard.qty) || 0) * (chapraStandard.type?.price || 0);
+  const pandalWaterproofPakodaTotal = (parseInt(pandalWaterproofPakoda.qty) || 0) * (pandalWaterproofPakoda.type?.price || 0);
+  const jamkanaTotal = (parseInt(jamkana.qty) || 0) * (jamkana.type?.price || 0);
+  const thomalaForDoorsTotal = (parseInt(thomalaForDoors.qty) || 0) * (thomalaForDoors.type?.price || 0);
+  const welcomeBoardTotal = (parseInt(welcomeBoard.qty) || 0) * (welcomeBoard.type?.price || 0);
+  const railingDecorsTotal = (parseInt(railingDecors.qty) || 0) * (railingDecors.type?.price || 0);
+  const chapraPremiumTotal = (parseInt(chapraPremium.qty) || 0) * (chapraPremium.type?.price || 0);
+  const foodLunchTotal = (parseInt(foodLunch.qty) || 0) * (foodLunch.type?.price || 0);
+  const foodBreakfastTotal = (parseInt(foodBreakfast.qty) || 0) * (foodBreakfast.type?.price || 0);
+  const foodNightDinnerTotal = (parseInt(foodNightDinner.qty) || 0) * (foodNightDinner.type?.price || 0);
+  const garlandsTotal = (parseInt(garlands.qty) || 0) * (garlands.type?.price || 0);
+  const poojaBackdropsTotal = (parseInt(poojaBackdrops.qty) || 0) * (poojaBackdrops.type?.price || 0);
+  const matressTotal = (parseInt(matress.qty) || 0) * (matress.type?.price || 0);
+  const flowerBouquetsTotal = (parseInt(flowerBouquets.qty) || 0) * (flowerBouquets.type?.price || 0);
+  const goldenIronStandBouquetsTotal = (parseInt(goldenIronStandBouquets.qty) || 0) * (goldenIronStandBouquets.type?.price || 0);
+
+  const grandTotal = chairTotal + tentTotal + pendalTotal + carpetTotal + foodTotal + foodTableTotal + chapraStandardTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal;
 
   if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
   if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
@@ -284,6 +349,438 @@ export const HouseWarming = () => {
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodTotal}</div>
+          </div>
+          {/* Food Table Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Food Table Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={foodTable.type.label}
+                onChange={e => setFoodTable(ft => ({ ...ft, type: foodTableTypes.find(t => t.label === e.target.value) }))}
+              >
+                {foodTableTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/table)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Tables</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={foodTable.qty}
+                onChange={e => setFoodTable(ft => ({ ...ft, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodTableTotal}</div>
+          </div>
+          {/* Chapra Standard Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Chapra Standard Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={chapraStandard.type.label}
+                onChange={e => setChapraStandard(cs => ({ ...cs, type: chapraStandardTypes.find(t => t.label === e.target.value) }))}
+              >
+                {chapraStandardTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={chapraStandard.qty}
+                onChange={e => setChapraStandard(cs => ({ ...cs, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chapraStandardTotal}</div>
+          </div>
+          {/* Pandal Waterproof Pakoda with Sidecover Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Pandal Waterproof Pakoda with Sidecover</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={pandalWaterproofPakoda.type.label}
+                onChange={e => setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes.find(t => t.label === e.target.value) }))}
+              >
+                {pandalWaterproofPakodaTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={pandalWaterproofPakoda.qty}
+                onChange={e => setPandalWaterproofPakoda(pw => ({ ...pw, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{pandalWaterproofPakodaTotal}</div>
+          </div>
+          {/* Jamkana Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Jamkana Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={jamkana.type.label}
+                onChange={e => setJamkana(j => ({ ...j, type: jamkanaTypes.find(t => t.label === e.target.value) }))}
+              >
+                {jamkanaTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={jamkana.qty}
+                onChange={e => setJamkana(j => ({ ...j, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{jamkanaTotal}</div>
+          </div>
+          {/* Thomala for Doors Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Thomala for Doors Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={thomalaForDoors.type.label}
+                onChange={e => setThomalaForDoors(tfd => ({ ...tfd, type: thomalaForDoorsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {thomalaForDoorsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={thomalaForDoors.qty}
+                onChange={e => setThomalaForDoors(tfd => ({ ...tfd, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{thomalaForDoorsTotal}</div>
+          </div>
+          {/* Welcome Board Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Welcome Board Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={welcomeBoard.type.label}
+                onChange={e => setWelcomeBoard(wb => ({ ...wb, type: welcomeBoardTypes.find(t => t.label === e.target.value) }))}
+              >
+                {welcomeBoardTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={welcomeBoard.qty}
+                onChange={e => setWelcomeBoard(wb => ({ ...wb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{welcomeBoardTotal}</div>
+          </div>
+          {/* Railing Decors Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Railing Decors Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={railingDecors.type.label}
+                onChange={e => setRailingDecors(rd => ({ ...rd, type: railingDecorsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {railingDecorsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={railingDecors.qty}
+                onChange={e => setRailingDecors(rd => ({ ...rd, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{railingDecorsTotal}</div>
+          </div>
+          {/* Chapra Premium Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Chapra Premium Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={chapraPremium.type.label}
+                onChange={e => setChapraPremium(cp => ({ ...cp, type: chapraPremiumTypes.find(t => t.label === e.target.value) }))}
+              >
+                {chapraPremiumTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={chapraPremium.qty}
+                onChange={e => setChapraPremium(cp => ({ ...cp, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chapraPremiumTotal}</div>
+          </div>
+          {/* Food Lunch Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Food Lunch Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={foodLunch.type.label}
+                onChange={e => setFoodLunch(fl => ({ ...fl, type: foodLunchTypes.find(t => t.label === e.target.value) }))}
+              >
+                {foodLunchTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/plate)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Plates</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={foodLunch.qty}
+                onChange={e => setFoodLunch(fl => ({ ...fl, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodLunchTotal}</div>
+          </div>
+          {/* Food Breakfast Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Food Breakfast Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={foodBreakfast.type.label}
+                onChange={e => setFoodBreakfast(fb => ({ ...fb, type: foodBreakfastTypes.find(t => t.label === e.target.value) }))}
+              >
+                {foodBreakfastTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/plate)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Plates</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={foodBreakfast.qty}
+                onChange={e => setFoodBreakfast(fb => ({ ...fb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodBreakfastTotal}</div>
+          </div>
+          {/* Food Night Dinner Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Food Night Dinner Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={foodNightDinner.type.label}
+                onChange={e => setFoodNightDinner(fnd => ({ ...fnd, type: foodNightDinnerTypes.find(t => t.label === e.target.value) }))}
+              >
+                {foodNightDinnerTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/plate)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Plates</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={foodNightDinner.qty}
+                onChange={e => setFoodNightDinner(fnd => ({ ...fnd, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodNightDinnerTotal}</div>
+          </div>
+          {/* Garlands Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Garlands Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={garlands.type.label}
+                onChange={e => setGarlands(g => ({ ...g, type: garlandsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {garlandsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={garlands.qty}
+                onChange={e => setGarlands(g => ({ ...g, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{garlandsTotal}</div>
+          </div>
+          {/* Pooja Backdrops Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Pooja Backdrops Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={poojaBackdrops.type.label}
+                onChange={e => setPoojaBackdrops(pb => ({ ...pb, type: poojaBackdropsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {poojaBackdropsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={poojaBackdrops.qty}
+                onChange={e => setPoojaBackdrops(pb => ({ ...pb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{poojaBackdropsTotal}</div>
+          </div>
+          {/* Matress Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Matress Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={matress.type.label}
+                onChange={e => setMatress(m => ({ ...m, type: matressTypes.find(t => t.label === e.target.value) }))}
+              >
+                {matressTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={matress.qty}
+                onChange={e => setMatress(m => ({ ...m, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{matressTotal}</div>
+          </div>
+          {/* Flower Bouquets Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Flower Bouquets for Kitchen and Other Places</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={flowerBouquets.type.label}
+                onChange={e => setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {flowerBouquetsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={flowerBouquets.qty}
+                onChange={e => setFlowerBouquets(fbq => ({ ...fbq, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{flowerBouquetsTotal}</div>
+          </div>
+          {/* Golden Iron Stand Bouquets Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Golden Iron Stand Bouquets of 3 Feet Height for Corners</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={goldenIronStandBouquets.type.label}
+                onChange={e => setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes.find(t => t.label === e.target.value) }))}
+              >
+                {goldenIronStandBouquetsTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={goldenIronStandBouquets.qty}
+                onChange={e => setGoldenIronStandBouquets(gisb => ({ ...gisb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{goldenIronStandBouquetsTotal}</div>
           </div>
         </div>
         {/* Grand Total */}
