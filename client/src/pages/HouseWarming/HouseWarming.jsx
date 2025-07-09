@@ -91,18 +91,18 @@ export const HouseWarming = () => {
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
  
   const [foodTable, setFoodTable] = React.useState({ type: foodTableTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [chapraStandard, setChapraStandard] = React.useState({ type: chapraStandardTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [chapraStandard, setChapraStandard] = React.useState({ type: chapraStandardTypes[0] || { label: '', price: 0 } });
   const [pandalWaterproofPakoda, setPandalWaterproofPakoda] = React.useState({ type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, qty: '' });
   const [jamkana, setJamkana] = React.useState({ type: jamkanaTypes[0] || { label: '', price: 0 }, qty: '' });
   const [thomalaForDoors, setThomalaForDoors] = React.useState({ type: thomalaForDoorsTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [welcomeBoard, setWelcomeBoard] = React.useState({ type: welcomeBoardTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [welcomeBoard, setWelcomeBoard] = React.useState({ type: welcomeBoardTypes[0] || { label: '', price: 0 } });
   const [railingDecors, setRailingDecors] = React.useState({ type: railingDecorsTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [chapraPremium, setChapraPremium] = React.useState({ type: chapraPremiumTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [chapraPremium, setChapraPremium] = React.useState({ type: chapraPremiumTypes[0] || { label: '', price: 0 } });
   const [foodLunch, setFoodLunch] = React.useState({ type: foodLunchTypes[0] || { label: '', price: 0 }, qty: '' });
   const [foodBreakfast, setFoodBreakfast] = React.useState({ type: foodBreakfastTypes[0] || { label: '', price: 0 }, qty: '' });
   const [foodNightDinner, setFoodNightDinner] = React.useState({ type: foodNightDinnerTypes[0] || { label: '', price: 0 }, qty: '' });
   const [garlands, setGarlands] = React.useState({ type: garlandsTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [poojaBackdrops, setPoojaBackdrops] = React.useState({ type: poojaBackdropsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [poojaBackdrops, setPoojaBackdrops] = React.useState({ type: poojaBackdropsTypes[0] || { label: '', price: 0 } });
   const [matress, setMatress] = React.useState({ type: matressTypes[0] || { label: '', price: 0 }, qty: '' });
   const [flowerBouquets, setFlowerBouquets] = React.useState({ type: flowerBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -113,18 +113,18 @@ export const HouseWarming = () => {
       setChair(c => ({ ...c, type: chairTypes[0] || { label: '', price: 0 } }));
    
       setFoodTable(ft => ({ ...ft, type: foodTableTypes[0] || { label: '', price: 0 } }));
-      setChapraStandard(cs => ({ ...cs, type: chapraStandardTypes[0] || { label: '', price: 0 } }));
+      setChapraStandard({ type: chapraStandardTypes[0] || { label: '', price: 0 } });
       setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 } }));
       setJamkana(j => ({ ...j, type: jamkanaTypes[0] || { label: '', price: 0 } }));
       setThomalaForDoors(tfd => ({ ...tfd, type: thomalaForDoorsTypes[0] || { label: '', price: 0 } }));
-      setWelcomeBoard(wb => ({ ...wb, type: welcomeBoardTypes[0] || { label: '', price: 0 } }));
+      setWelcomeBoard({ type: welcomeBoardTypes[0] || { label: '', price: 0 } });
       setRailingDecors(rd => ({ ...rd, type: railingDecorsTypes[0] || { label: '', price: 0 } }));
-      setChapraPremium(cp => ({ ...cp, type: chapraPremiumTypes[0] || { label: '', price: 0 } }));
+      setChapraPremium({ type: chapraPremiumTypes[0] || { label: '', price: 0 } });
       setFoodLunch(fl => ({ ...fl, type: foodLunchTypes[0] || { label: '', price: 0 } }));
       setFoodBreakfast(fb => ({ ...fb, type: foodBreakfastTypes[0] || { label: '', price: 0 } }));
       setFoodNightDinner(fnd => ({ ...fnd, type: foodNightDinnerTypes[0] || { label: '', price: 0 } }));
       setGarlands(g => ({ ...g, type: garlandsTypes[0] || { label: '', price: 0 } }));
-      setPoojaBackdrops(pb => ({ ...pb, type: poojaBackdropsTypes[0] || { label: '', price: 0 } }));
+      setPoojaBackdrops({ type: poojaBackdropsTypes[0] || { label: '', price: 0 } });
       setMatress(m => ({ ...m, type: matressTypes[0] || { label: '', price: 0 } }));
       setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes[0] || { label: '', price: 0 } }));
       setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
@@ -133,20 +133,20 @@ export const HouseWarming = () => {
 
   // Calculate totals
   const chairTotal = (parseInt(chair.qty) || 0) * (chair.type?.price || 0);
-  // Removed: tentTotal, pendalTotal, carpetTotal, foodTotal
   const foodTableTotal = (parseInt(foodTable.qty) || 0) * (foodTable.type?.price || 0);
-  const chapraStandardTotal = (parseInt(chapraStandard.qty) || 0) * (chapraStandard.type?.price || 0);
   const pandalWaterproofPakodaTotal = (parseInt(pandalWaterproofPakoda.qty) || 0) * (pandalWaterproofPakoda.type?.price || 0);
+  // For fields without quantity
+  const chapraStandardTotal = chapraStandard.type?.price || 0;
+  const welcomeBoardTotal = welcomeBoard.type?.price || 0;
+  const chapraPremiumTotal = chapraPremium.type?.price || 0;
+  const poojaBackdropsTotal = poojaBackdrops.type?.price || 0;
   const jamkanaTotal = (parseInt(jamkana.qty) || 0) * (jamkana.type?.price || 0);
   const thomalaForDoorsTotal = (parseInt(thomalaForDoors.qty) || 0) * (thomalaForDoors.type?.price || 0);
-  const welcomeBoardTotal = (parseInt(welcomeBoard.qty) || 0) * (welcomeBoard.type?.price || 0);
   const railingDecorsTotal = (parseInt(railingDecors.qty) || 0) * (railingDecors.type?.price || 0);
-  const chapraPremiumTotal = (parseInt(chapraPremium.qty) || 0) * (chapraPremium.type?.price || 0);
   const foodLunchTotal = (parseInt(foodLunch.qty) || 0) * (foodLunch.type?.price || 0);
   const foodBreakfastTotal = (parseInt(foodBreakfast.qty) || 0) * (foodBreakfast.type?.price || 0);
   const foodNightDinnerTotal = (parseInt(foodNightDinner.qty) || 0) * (foodNightDinner.type?.price || 0);
   const garlandsTotal = (parseInt(garlands.qty) || 0) * (garlands.type?.price || 0);
-  const poojaBackdropsTotal = (parseInt(poojaBackdrops.qty) || 0) * (poojaBackdrops.type?.price || 0);
   const matressTotal = (parseInt(matress.qty) || 0) * (matress.type?.price || 0);
   const flowerBouquetsTotal = (parseInt(flowerBouquets.qty) || 0) * (flowerBouquets.type?.price || 0);
   const goldenIronStandBouquetsTotal = (parseInt(goldenIronStandBouquets.qty) || 0) * (goldenIronStandBouquets.type?.price || 0);
@@ -264,23 +264,12 @@ export const HouseWarming = () => {
               <select
                 className="w-full border rounded px-3 py-2"
                 value={chapraStandard.type.label}
-                onChange={e => setChapraStandard(cs => ({ ...cs, type: chapraStandardTypes.find(t => t.label === e.target.value) }))}
+                onChange={e => setChapraStandard({ type: chapraStandardTypes.find(t => t.label === e.target.value) })}
               >
                 {chapraStandardTypes.map((t, i) => (
                   <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
                 ))}
               </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={chapraStandard.qty}
-                onChange={e => setChapraStandard(cs => ({ ...cs, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chapraStandardTotal}</div>
           </div>
@@ -372,23 +361,12 @@ export const HouseWarming = () => {
               <select
                 className="w-full border rounded px-3 py-2"
                 value={welcomeBoard.type.label}
-                onChange={e => setWelcomeBoard(wb => ({ ...wb, type: welcomeBoardTypes.find(t => t.label === e.target.value) }))}
+                onChange={e => setWelcomeBoard({ type: welcomeBoardTypes.find(t => t.label === e.target.value) })}
               >
                 {welcomeBoardTypes.map((t, i) => (
                   <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
                 ))}
               </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={welcomeBoard.qty}
-                onChange={e => setWelcomeBoard(wb => ({ ...wb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{welcomeBoardTotal}</div>
           </div>
@@ -426,23 +404,12 @@ export const HouseWarming = () => {
               <select
                 className="w-full border rounded px-3 py-2"
                 value={chapraPremium.type.label}
-                onChange={e => setChapraPremium(cp => ({ ...cp, type: chapraPremiumTypes.find(t => t.label === e.target.value) }))}
+                onChange={e => setChapraPremium({ type: chapraPremiumTypes.find(t => t.label === e.target.value) })}
               >
                 {chapraPremiumTypes.map((t, i) => (
                   <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
                 ))}
               </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={chapraPremium.qty}
-                onChange={e => setChapraPremium(cp => ({ ...cp, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chapraPremiumTotal}</div>
           </div>
@@ -561,23 +528,12 @@ export const HouseWarming = () => {
               <select
                 className="w-full border rounded px-3 py-2"
                 value={poojaBackdrops.type.label}
-                onChange={e => setPoojaBackdrops(pb => ({ ...pb, type: poojaBackdropsTypes.find(t => t.label === e.target.value) }))}
+                onChange={e => setPoojaBackdrops({ type: poojaBackdropsTypes.find(t => t.label === e.target.value) })}
               >
                 {poojaBackdropsTypes.map((t, i) => (
                   <option key={i} value={t.label}>{t.label} (₹{t.price}/unit)</option>
                 ))}
               </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={poojaBackdrops.qty}
-                onChange={e => setPoojaBackdrops(pb => ({ ...pb, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{poojaBackdropsTotal}</div>
           </div>
