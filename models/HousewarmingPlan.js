@@ -10,30 +10,7 @@ const HousewarmingPlanSchema = new mongoose.Schema({
       price: { type: Number, required: true },
     }
   ],
-  tentTypes: [
-    {
-      label: { type: String, required: true },
-      price: { type: Number, required: true },
-    }
-  ],
-  pendalTypes: [
-    {
-      label: { type: String, required: true },
-      price: { type: Number, required: true },
-    }
-  ],
-  carpetTypes: [
-    {
-      label: { type: String, required: true },
-      price: { type: Number, required: true },
-    }
-  ],
-  foodTypes: [
-    {
-      label: { type: String, required: true },
-      price: { type: Number, required: true },
-    }
-  ],
+  
   foodTableTypes: [
     {
       label: { type: String, required: true },

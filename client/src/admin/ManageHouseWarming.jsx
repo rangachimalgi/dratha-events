@@ -11,10 +11,7 @@ const ManageHouseWarming = () => {
   const [images, setImages] = useState([]); // File objects
   const [imagePreviews, setImagePreviews] = useState([]);
   const [chairTypes, setChairTypes] = useState([{ ...emptyType }]);
-  const [tentTypes, setTentTypes] = useState([{ ...emptyType }]);
-  const [pendalTypes, setPendalTypes] = useState([{ ...emptyType }]);
-  const [carpetTypes, setCarpetTypes] = useState([{ ...emptyType }]);
-  const [foodTypes, setFoodTypes] = useState([{ ...emptyType }]);
+ 
   const [foodTableTypes, setFoodTableTypes] = useState([{ ...emptyType }]);
   const [chapraStandardTypes, setChapraStandardTypes] = useState([{ ...emptyType }]);
   const [pandalWaterproofPakodaTypes, setPandalWaterproofPakodaTypes] = useState([{ ...emptyType }]);
@@ -61,10 +58,6 @@ const ManageHouseWarming = () => {
       formData.append('description', description);
       images.forEach(img => formData.append('images', img));
       formData.append('chairTypes', JSON.stringify(chairTypes.filter(t => t.label && t.price)));
-      formData.append('tentTypes', JSON.stringify(tentTypes.filter(t => t.label && t.price)));
-      formData.append('pendalTypes', JSON.stringify(pendalTypes.filter(t => t.label && t.price)));
-      formData.append('carpetTypes', JSON.stringify(carpetTypes.filter(t => t.label && t.price)));
-      formData.append('foodTypes', JSON.stringify(foodTypes.filter(t => t.label && t.price)));
       formData.append('foodTableTypes', JSON.stringify(foodTableTypes.filter(t => t.label && t.price)));
       formData.append('chapraStandardTypes', JSON.stringify(chapraStandardTypes.filter(t => t.label && t.price)));
       formData.append('pandalWaterproofPakodaTypes', JSON.stringify(pandalWaterproofPakodaTypes.filter(t => t.label && t.price)));
@@ -90,10 +83,6 @@ const ManageHouseWarming = () => {
       setImages([]);
       setImagePreviews([]);
       setChairTypes([{ ...emptyType }]);
-      setTentTypes([{ ...emptyType }]);
-      setPendalTypes([{ ...emptyType }]);
-      setCarpetTypes([{ ...emptyType }]);
-      setFoodTypes([{ ...emptyType }]);
       setFoodTableTypes([{ ...emptyType }]);
       setChapraStandardTypes([{ ...emptyType }]);
       setPandalWaterproofPakodaTypes([{ ...emptyType }]);
@@ -185,10 +174,7 @@ const ManageHouseWarming = () => {
           </div>
         </div>
         {renderTypeFields('Chair Types', chairTypes, setChairTypes)}
-        {renderTypeFields('Tent Types', tentTypes, setTentTypes)}
-        {renderTypeFields('Pendal Types', pendalTypes, setPendalTypes)}
-        {renderTypeFields('Carpet Types', carpetTypes, setCarpetTypes)}
-        {renderTypeFields('Food Types', foodTypes, setFoodTypes)}
+      
         {renderTypeFields('Food Tables', foodTableTypes, setFoodTableTypes)}
         {renderTypeFields('Chapra Standard', chapraStandardTypes, setChapraStandardTypes)}
         {renderTypeFields('Pandal Waterproof Pakoda with Sidecover', pandalWaterproofPakodaTypes, setPandalWaterproofPakodaTypes)}

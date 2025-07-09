@@ -69,10 +69,7 @@ export const HouseWarming = () => {
 
   // Use fetched data or fallback to empty arrays
   const chairTypes = plan?.chairTypes || [];
-  const tentTypes = plan?.tentTypes || [];
-  const pendalTypes = plan?.pendalTypes || [];
-  const carpetSizes = plan?.carpetTypes || [];
-  const foodTypes = plan?.foodTypes || [];
+  
   const foodTableTypes = plan?.foodTableTypes || [];
   const chapraStandardTypes = plan?.chapraStandardTypes || [];
   const pandalWaterproofPakodaTypes = plan?.pandalWaterproofPakodaTypes || [];
@@ -92,10 +89,7 @@ export const HouseWarming = () => {
 
   // State for selections (initialize with first available type if present)
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [tent, setTent] = React.useState({ type: tentTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [pendal, setPendal] = React.useState({ type: pendalTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [carpet, setCarpet] = React.useState({ size: carpetSizes[0] || { label: '', price: 0 }, qty: '' });
-  const [food, setFood] = React.useState({ type: foodTypes[0] || { label: '', price: 0 }, qty: '' });
+ 
   const [foodTable, setFoodTable] = React.useState({ type: foodTableTypes[0] || { label: '', price: 0 }, qty: '' });
   const [chapraStandard, setChapraStandard] = React.useState({ type: chapraStandardTypes[0] || { label: '', price: 0 }, qty: '' });
   const [pandalWaterproofPakoda, setPandalWaterproofPakoda] = React.useState({ type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -117,10 +111,7 @@ export const HouseWarming = () => {
   useEffect(() => {
     if (plan) {
       setChair(c => ({ ...c, type: chairTypes[0] || { label: '', price: 0 } }));
-      setTent(t => ({ ...t, type: tentTypes[0] || { label: '', price: 0 } }));
-      setPendal(p => ({ ...p, type: pendalTypes[0] || { label: '', price: 0 } }));
-      setCarpet(c => ({ ...c, size: carpetSizes[0] || { label: '', price: 0 } }));
-      setFood(f => ({ ...f, type: foodTypes[0] || { label: '', price: 0 } }));
+   
       setFoodTable(ft => ({ ...ft, type: foodTableTypes[0] || { label: '', price: 0 } }));
       setChapraStandard(cs => ({ ...cs, type: chapraStandardTypes[0] || { label: '', price: 0 } }));
       setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 } }));
@@ -142,10 +133,7 @@ export const HouseWarming = () => {
 
   // Calculate totals
   const chairTotal = (parseInt(chair.qty) || 0) * (chair.type?.price || 0);
-  const tentTotal = (parseInt(tent.qty) || 0) * (tent.type?.price || 0);
-  const pendalTotal = (parseInt(pendal.qty) || 0) * (pendal.type?.price || 0);
-  const carpetTotal = (parseInt(carpet.qty) || 0) * (carpet.size?.price || 0);
-  const foodTotal = (parseInt(food.qty) || 0) * (food.type?.price || 0);
+  // Removed: tentTotal, pendalTotal, carpetTotal, foodTotal
   const foodTableTotal = (parseInt(foodTable.qty) || 0) * (foodTable.type?.price || 0);
   const chapraStandardTotal = (parseInt(chapraStandard.qty) || 0) * (chapraStandard.type?.price || 0);
   const pandalWaterproofPakodaTotal = (parseInt(pandalWaterproofPakoda.qty) || 0) * (pandalWaterproofPakoda.type?.price || 0);
@@ -163,7 +151,7 @@ export const HouseWarming = () => {
   const flowerBouquetsTotal = (parseInt(flowerBouquets.qty) || 0) * (flowerBouquets.type?.price || 0);
   const goldenIronStandBouquetsTotal = (parseInt(goldenIronStandBouquets.qty) || 0) * (goldenIronStandBouquets.type?.price || 0);
 
-  const grandTotal = chairTotal + tentTotal + pendalTotal + carpetTotal + foodTotal + foodTableTotal + chapraStandardTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal;
+  const grandTotal = chairTotal + foodTableTotal + chapraStandardTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal;
 
   if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
   if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
@@ -241,114 +229,6 @@ export const HouseWarming = () => {
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chairTotal}</div>
-          </div>
-          {/* Tent Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex-1">
-              <label className="block text-gray-700 font-semibold mb-1">Tent Type/Size</label>
-              <select
-                className="w-full border rounded px-3 py-2"
-                value={tent.type.label}
-                onChange={e => setTent(t => ({ ...t, type: tentTypes.find(tt => tt.label === e.target.value) }))}
-              >
-                {tentTypes.map((t, i) => (
-                  <option key={i} value={t.label}>{t.label} (₹{t.price}/tent)</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Tents</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={tent.qty}
-                onChange={e => setTent(t => ({ ...t, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
-            </div>
-            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{tentTotal}</div>
-          </div>
-          {/* Pendal Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex-1">
-              <label className="block text-gray-700 font-semibold mb-1">Pendal Type/Size</label>
-              <select
-                className="w-full border rounded px-3 py-2"
-                value={pendal.type.label}
-                onChange={e => setPendal(p => ({ ...p, type: pendalTypes.find(pt => pt.label === e.target.value) }))}
-              >
-                {pendalTypes.map((p, i) => (
-                  <option key={i} value={p.label}>{p.label} (₹{p.price}/pendal)</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Pendals</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={pendal.qty}
-                onChange={e => setPendal(p => ({ ...p, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
-            </div>
-            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{pendalTotal}</div>
-          </div>
-          {/* Carpet Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex-1">
-              <label className="block text-gray-700 font-semibold mb-1">Carpet Size</label>
-              <select
-                className="w-full border rounded px-3 py-2"
-                value={carpet.size.label}
-                onChange={e => setCarpet(c => ({ ...c, size: carpetSizes.find(cs => cs.label === e.target.value) }))}
-              >
-                {carpetSizes.map((c, i) => (
-                  <option key={i} value={c.label}>{c.label} (₹{c.price}/carpet)</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Carpets</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={carpet.qty}
-                onChange={e => setCarpet(c => ({ ...c, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
-            </div>
-            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{carpetTotal}</div>
-          </div>
-          {/* Food Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex-1">
-              <label className="block text-gray-700 font-semibold mb-1">Food Type</label>
-              <select
-                className="w-full border rounded px-3 py-2"
-                value={food.type.label}
-                onChange={e => setFood(f => ({ ...f, type: foodTypes.find(ft => ft.label === e.target.value) }))}
-              >
-                {foodTypes.map((f, i) => (
-                  <option key={i} value={f.label}>{f.label} (₹{f.price}/plate)</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-gray-700 font-semibold mb-1">No. of Persons</label>
-              <input
-                type="number"
-                min="0"
-                className="w-20 border rounded px-3 py-2 text-right font-mono"
-                placeholder="0"
-                value={food.qty}
-                onChange={e => setFood(f => ({ ...f, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
-              />
-            </div>
-            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodTotal}</div>
           </div>
           {/* Food Table Row */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
