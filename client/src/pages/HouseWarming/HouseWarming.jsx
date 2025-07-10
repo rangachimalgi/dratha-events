@@ -86,6 +86,7 @@ export const HouseWarming = () => {
   const matressTypes = plan?.matressTypes || [];
   const flowerBouquetsTypes = plan?.flowerBouquetsTypes || [];
   const goldenIronStandBouquetsTypes = plan?.goldenIronStandBouquetsTypes || [];
+  const lightingTypes = plan?.lightingTypes || [];
 
   // State for selections (initialize with first available type if present)
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -106,6 +107,7 @@ export const HouseWarming = () => {
   const [matress, setMatress] = React.useState({ type: matressTypes[0] || { label: '', price: 0 }, qty: '' });
   const [flowerBouquets, setFlowerBouquets] = React.useState({ type: flowerBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [lighting, setLighting] = React.useState({ type: lightingTypes[0] || { label: '', price: 0 }, qty: '', days: '' });
 
   // Update state when plan loads
   useEffect(() => {
@@ -128,6 +130,7 @@ export const HouseWarming = () => {
       setMatress(m => ({ ...m, type: matressTypes[0] || { label: '', price: 0 } }));
       setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes[0] || { label: '', price: 0 } }));
       setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
+      setLighting(l => ({ ...l, type: lightingTypes[0] || { label: '', price: 0 } }));
     }
   }, [plan]);
 
@@ -150,8 +153,9 @@ export const HouseWarming = () => {
   const matressTotal = (parseInt(matress.qty) || 0) * (matress.type?.price || 0);
   const flowerBouquetsTotal = (parseInt(flowerBouquets.qty) || 0) * (flowerBouquets.type?.price || 0);
   const goldenIronStandBouquetsTotal = (parseInt(goldenIronStandBouquets.qty) || 0) * (goldenIronStandBouquets.type?.price || 0);
+  const lightingTotal = (parseInt(lighting.qty) || 0) * (lighting.type?.price || 0) * (parseInt(lighting.days) || 0);
 
-  const grandTotal = chairTotal + foodTableTotal + chapraStandardTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal;
+  const grandTotal = chairTotal + foodTableTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraStandardTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal + lightingTotal;
 
   if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
   if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
@@ -617,6 +621,44 @@ export const HouseWarming = () => {
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{goldenIronStandBouquetsTotal}</div>
+          </div>
+          {/* Lighting Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Lighting Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={lighting.type.label}
+                onChange={e => setLighting(l => ({ ...l, type: lightingTypes.find(t => t.label === e.target.value) }))}
+              >
+                {lightingTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/unit/day)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Units</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={lighting.qty}
+                onChange={e => setLighting(l => ({ ...l, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Days</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={lighting.days}
+                onChange={e => setLighting(l => ({ ...l, days: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{lightingTotal}</div>
           </div>
         </div>
         {/* Grand Total */}
