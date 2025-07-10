@@ -119,6 +119,13 @@ const HousewarmingPlanSchema = new mongoose.Schema({
       price: { type: Number, required: true },
     }
   ],
+  photographyTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+      sessionDuration: { type: Number, required: true }, // hours per session
+    }
+  ],
 }, { timestamps: true });
 
 const HousewarmingPlan = mongoose.model('HousewarmingPlan', HousewarmingPlanSchema);

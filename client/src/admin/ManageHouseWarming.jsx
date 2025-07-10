@@ -30,6 +30,7 @@ const ManageHouseWarming = () => {
   const [goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes] = useState([{ ...emptyType }]);
   const [lightingTypes, setLightingTypes] = useState([{ ...emptyType }]);
   const [transportationTypes, setTransportationTypes] = useState([{ ...emptyType }]);
+  const [photographyTypes, setPhotographyTypes] = useState([{ label: '', price: '', sessionDuration: '' }]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -78,6 +79,7 @@ const ManageHouseWarming = () => {
       formData.append('goldenIronStandBouquetsTypes', JSON.stringify(goldenIronStandBouquetsTypes.filter(t => t.label && t.price)));
       formData.append('lightingTypes', JSON.stringify(lightingTypes.filter(t => t.label && t.price)));
       formData.append('transportationTypes', JSON.stringify(transportationTypes.filter(t => t.label && t.price)));
+      formData.append('photographyTypes', JSON.stringify(photographyTypes.filter(t => t.label && t.price && t.sessionDuration)));
       await axios.post(`${BASE_URL}/api/housewarming`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -105,6 +107,7 @@ const ManageHouseWarming = () => {
       setGoldenIronStandBouquetsTypes([{ ...emptyType }]);
       setLightingTypes([{ ...emptyType }]);
       setTransportationTypes([{ ...emptyType }]);
+      setPhotographyTypes([{ label: '', price: '', sessionDuration: '' }]);
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to create plan');
     } finally {
@@ -138,6 +141,42 @@ const ManageHouseWarming = () => {
         </div>
       ))}
       <button type="button" className="text-blue-600 font-semibold text-sm mt-1" onClick={() => addType(setter)}>+ Add {label.slice(0, -1)}</button>
+    </div>
+  );
+
+  // Custom render function for Photography
+  const renderPhotographyFields = (label, types, setter) => (
+    <div className="mb-4">
+      <label className="block font-semibold mb-1">{label}</label>
+      {types.map((type, idx) => (
+        <div key={idx} className="flex gap-2 mb-2">
+          <input
+            type="text"
+            placeholder="Label"
+            className="border rounded px-2 py-1 flex-1"
+            value={type.label}
+            onChange={e => setter(types => types.map((t, i) => i === idx ? { ...t, label: e.target.value } : t))}
+          />
+          <input
+            type="number"
+            placeholder="Price"
+            className="border rounded px-2 py-1 w-24 text-right font-mono"
+            value={type.price}
+            onChange={e => setter(types => types.map((t, i) => i === idx ? { ...t, price: e.target.value.replace(/^0+(?!$)/, '') } : t))}
+          />
+          <input
+            type="number"
+            placeholder="Session (hrs)"
+            className="border rounded px-2 py-1 w-28 text-right font-mono"
+            value={type.sessionDuration}
+            onChange={e => setter(types => types.map((t, i) => i === idx ? { ...t, sessionDuration: e.target.value.replace(/^0+(?!$)/, '') } : t))}
+          />
+          {types.length > 1 && (
+            <button type="button" className="text-red-500 font-bold px-2" onClick={() => setter(types => types.filter((_, i) => i !== idx))}>-</button>
+          )}
+        </div>
+      ))}
+      <button type="button" className="text-blue-600 font-semibold text-sm mt-1" onClick={() => setter(types => [...types, { label: '', price: '', sessionDuration: '' }])}>+ Add {label.slice(0, -1)}</button>
     </div>
   );
 
@@ -199,6 +238,7 @@ const ManageHouseWarming = () => {
         {renderTypeFields('Golden Iron Stand Bouquets of 3 Feet Height for Corners', goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes)}
         {renderTypeFields('Lighting', lightingTypes, setLightingTypes)}
         {renderTypeFields('Transportation', transportationTypes, setTransportationTypes)}
+        {renderPhotographyFields('Photography', photographyTypes, setPhotographyTypes)}
         {error && <div className="text-red-500 font-semibold">{error}</div>}
         {success && <div className="text-green-600 font-semibold">{success}</div>}
         <button

@@ -88,6 +88,7 @@ export const HouseWarming = () => {
   const goldenIronStandBouquetsTypes = plan?.goldenIronStandBouquetsTypes || [];
   const lightingTypes = plan?.lightingTypes || [];
   const transportationTypes = plan?.transportationTypes || [];
+  const photographyTypes = plan?.photographyTypes || [];
 
   // State for selections (initialize with first available type if present)
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -110,6 +111,7 @@ export const HouseWarming = () => {
   const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [lighting, setLighting] = React.useState({ type: lightingTypes[0] || { label: '', price: 0 }, qty: '', days: '' });
   const [transportation, setTransportation] = React.useState({ type: transportationTypes[0] || { label: '', price: 0 } });
+  const [photography, setPhotography] = React.useState({ type: photographyTypes[0] || { label: '', price: 0, sessionDuration: 0 }, sessions: '' });
 
   // Update state when plan loads
   useEffect(() => {
@@ -134,6 +136,7 @@ export const HouseWarming = () => {
       setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
       setLighting(l => ({ ...l, type: lightingTypes[0] || { label: '', price: 0 } }));
       setTransportation({ type: transportationTypes[0] || { label: '', price: 0 } });
+      setPhotography(p => ({ ...p, type: photographyTypes[0] || { label: '', price: 0, sessionDuration: 0 } }));
     }
   }, [plan]);
 
@@ -161,8 +164,9 @@ export const HouseWarming = () => {
   const transportationPrice = transportationTypes[0]?.price || 0;
   const transportationLabel = transportationTypes[0]?.label || 'Transportation';
   const transportationTotal = transportationPrice;
+  const photographyTotal = (parseInt(photography.sessions) || 0) * (photography.type?.price || 0);
 
-  const grandTotal = chairTotal + foodTableTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraStandardTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal + lightingTotal + transportationTotal;
+  const grandTotal = chairTotal + foodTableTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraStandardTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal + lightingTotal + transportationTotal + photographyTotal;
 
   if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
   if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
@@ -673,6 +677,42 @@ export const HouseWarming = () => {
               <label className="block text-gray-700 font-semibold mb-1">{transportationLabel}</label>
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{transportationTotal}</div>
+          </div>
+          {/* Photography Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">Photography Type</label>
+              <select
+                className="w-full border rounded px-3 py-2"
+                value={photography.type.label}
+                onChange={e => setPhotography(p => ({ ...p, type: photographyTypes.find(t => t.label === e.target.value) }))}
+              >
+                {photographyTypes.map((t, i) => (
+                  <option key={i} value={t.label}>{t.label} (₹{t.price}/session, {t.sessionDuration} hrs)</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">Session Duration</label>
+              <input
+                type="text"
+                className="w-24 border rounded px-3 py-2 text-right font-mono bg-gray-100"
+                value={photography.type.sessionDuration ? `${photography.type.sessionDuration} hrs` : ''}
+                readOnly
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Sessions</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={photography.sessions}
+                onChange={e => setPhotography(p => ({ ...p, sessions: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{photographyTotal}</div>
           </div>
         </div>
         {/* Grand Total */}
