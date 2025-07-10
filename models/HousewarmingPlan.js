@@ -107,6 +107,12 @@ const HousewarmingPlanSchema = new mongoose.Schema({
       price: { type: Number, required: true },
     }
   ],
+  lightingTypes: [
+    {
+      label: { type: String, required: true },
+      price: { type: Number, required: true },
+    }
+  ],
 }, { timestamps: true });
 
 const HousewarmingPlan = mongoose.model('HousewarmingPlan', HousewarmingPlanSchema);

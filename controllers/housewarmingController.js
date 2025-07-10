@@ -61,6 +61,7 @@ export async function createHousewarmingPlan(req, res) {
       matressTypes: parseArrayField(req.body.matressTypes),
       flowerBouquetsTypes: parseArrayField(req.body.flowerBouquetsTypes),
       goldenIronStandBouquetsTypes: parseArrayField(req.body.goldenIronStandBouquetsTypes),
+      lightingTypes: parseArrayField(req.body.lightingTypes),
     });
     await plan.save();
     res.status(201).json(plan);
@@ -97,6 +98,7 @@ export async function updateHousewarmingPlan(req, res) {
       matressTypes: parseArrayField(req.body.matressTypes),
       flowerBouquetsTypes: parseArrayField(req.body.flowerBouquetsTypes),
       goldenIronStandBouquetsTypes: parseArrayField(req.body.goldenIronStandBouquetsTypes),
+      lightingTypes: parseArrayField(req.body.lightingTypes),
     };
     const plan = await HousewarmingPlan.findByIdAndUpdate(req.params.id, update, { new: true });
     if (!plan) return res.status(404).json({ error: 'Not found' });
