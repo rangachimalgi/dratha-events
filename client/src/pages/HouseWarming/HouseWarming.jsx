@@ -87,6 +87,7 @@ export const HouseWarming = () => {
   const flowerBouquetsTypes = plan?.flowerBouquetsTypes || [];
   const goldenIronStandBouquetsTypes = plan?.goldenIronStandBouquetsTypes || [];
   const lightingTypes = plan?.lightingTypes || [];
+  const transportationTypes = plan?.transportationTypes || [];
 
   // State for selections (initialize with first available type if present)
   const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -108,6 +109,7 @@ export const HouseWarming = () => {
   const [flowerBouquets, setFlowerBouquets] = React.useState({ type: flowerBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [lighting, setLighting] = React.useState({ type: lightingTypes[0] || { label: '', price: 0 }, qty: '', days: '' });
+  const [transportation, setTransportation] = React.useState({ type: transportationTypes[0] || { label: '', price: 0 } });
 
   // Update state when plan loads
   useEffect(() => {
@@ -131,6 +133,7 @@ export const HouseWarming = () => {
       setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes[0] || { label: '', price: 0 } }));
       setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
       setLighting(l => ({ ...l, type: lightingTypes[0] || { label: '', price: 0 } }));
+      setTransportation({ type: transportationTypes[0] || { label: '', price: 0 } });
     }
   }, [plan]);
 
@@ -154,8 +157,12 @@ export const HouseWarming = () => {
   const flowerBouquetsTotal = (parseInt(flowerBouquets.qty) || 0) * (flowerBouquets.type?.price || 0);
   const goldenIronStandBouquetsTotal = (parseInt(goldenIronStandBouquets.qty) || 0) * (goldenIronStandBouquets.type?.price || 0);
   const lightingTotal = (parseInt(lighting.qty) || 0) * (lighting.type?.price || 0) * (parseInt(lighting.days) || 0);
+  // For transportation, just use the first type (if present)
+  const transportationPrice = transportationTypes[0]?.price || 0;
+  const transportationLabel = transportationTypes[0]?.label || 'Transportation';
+  const transportationTotal = transportationPrice;
 
-  const grandTotal = chairTotal + foodTableTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraStandardTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal + lightingTotal;
+  const grandTotal = chairTotal + foodTableTotal + pandalWaterproofPakodaTotal + jamkanaTotal + thomalaForDoorsTotal + welcomeBoardTotal + railingDecorsTotal + chapraStandardTotal + chapraPremiumTotal + foodLunchTotal + foodBreakfastTotal + foodNightDinnerTotal + garlandsTotal + poojaBackdropsTotal + matressTotal + flowerBouquetsTotal + goldenIronStandBouquetsTotal + lightingTotal + transportationTotal;
 
   if (loading) return <div className="flex justify-center items-center min-h-[300px]">Loading...</div>;
   if (error || !plan) return <div className="flex justify-center items-center min-h-[300px] text-red-500">{error || 'No plan found'}</div>;
@@ -659,6 +666,13 @@ export const HouseWarming = () => {
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{lightingTotal}</div>
+          </div>
+          {/* Transportation Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 font-semibold mb-1">{transportationLabel}</label>
+            </div>
+            <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{transportationTotal}</div>
           </div>
         </div>
         {/* Grand Total */}

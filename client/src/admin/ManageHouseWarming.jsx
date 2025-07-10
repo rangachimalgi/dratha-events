@@ -29,6 +29,7 @@ const ManageHouseWarming = () => {
   const [flowerBouquetsTypes, setFlowerBouquetsTypes] = useState([{ ...emptyType }]);
   const [goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes] = useState([{ ...emptyType }]);
   const [lightingTypes, setLightingTypes] = useState([{ ...emptyType }]);
+  const [transportationTypes, setTransportationTypes] = useState([{ ...emptyType }]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -76,6 +77,7 @@ const ManageHouseWarming = () => {
       formData.append('flowerBouquetsTypes', JSON.stringify(flowerBouquetsTypes.filter(t => t.label && t.price)));
       formData.append('goldenIronStandBouquetsTypes', JSON.stringify(goldenIronStandBouquetsTypes.filter(t => t.label && t.price)));
       formData.append('lightingTypes', JSON.stringify(lightingTypes.filter(t => t.label && t.price)));
+      formData.append('transportationTypes', JSON.stringify(transportationTypes.filter(t => t.label && t.price)));
       await axios.post(`${BASE_URL}/api/housewarming`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -102,6 +104,7 @@ const ManageHouseWarming = () => {
       setFlowerBouquetsTypes([{ ...emptyType }]);
       setGoldenIronStandBouquetsTypes([{ ...emptyType }]);
       setLightingTypes([{ ...emptyType }]);
+      setTransportationTypes([{ ...emptyType }]);
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to create plan');
     } finally {
@@ -195,6 +198,7 @@ const ManageHouseWarming = () => {
         {renderTypeFields('Flower Bouquets for Kitchen and Other Places', flowerBouquetsTypes, setFlowerBouquetsTypes)}
         {renderTypeFields('Golden Iron Stand Bouquets of 3 Feet Height for Corners', goldenIronStandBouquetsTypes, setGoldenIronStandBouquetsTypes)}
         {renderTypeFields('Lighting', lightingTypes, setLightingTypes)}
+        {renderTypeFields('Transportation', transportationTypes, setTransportationTypes)}
         {error && <div className="text-red-500 font-semibold">{error}</div>}
         {success && <div className="text-green-600 font-semibold">{success}</div>}
         <button
