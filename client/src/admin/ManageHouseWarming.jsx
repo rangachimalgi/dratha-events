@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -34,6 +34,46 @@ const ManageHouseWarming = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [planId, setPlanId] = useState(null);
+
+  // Fetch existing plan on mount
+  useEffect(() => {
+    setLoading(true);
+    setError('');
+    axios.get(`${BASE_URL}/api/housewarming`)
+      .then(res => {
+        const plan = res.data[0];
+        if (plan) {
+          setPlanId(plan._id);
+          setTitle(plan.title || '');
+          setDescription(plan.description || '');
+          setChairTypes(plan.chairTypes?.length ? plan.chairTypes : [{ ...emptyType }]);
+          setFoodTableTypes(plan.foodTableTypes?.length ? plan.foodTableTypes : [{ ...emptyType }]);
+          setChapraStandardTypes(plan.chapraStandardTypes?.length ? plan.chapraStandardTypes : [{ ...emptyType }]);
+          setPandalWaterproofPakodaTypes(plan.pandalWaterproofPakodaTypes?.length ? plan.pandalWaterproofPakodaTypes : [{ ...emptyType }]);
+          setJamkanaTypes(plan.jamkanaTypes?.length ? plan.jamkanaTypes : [{ ...emptyType }]);
+          setThomalaForDoorsTypes(plan.thomalaForDoorsTypes?.length ? plan.thomalaForDoorsTypes : [{ ...emptyType }]);
+          setWelcomeBoardTypes(plan.welcomeBoardTypes?.length ? plan.welcomeBoardTypes : [{ ...emptyType }]);
+          setRailingDecorsTypes(plan.railingDecorsTypes?.length ? plan.railingDecorsTypes : [{ ...emptyType }]);
+          setChapraPremiumTypes(plan.chapraPremiumTypes?.length ? plan.chapraPremiumTypes : [{ ...emptyType }]);
+          setFoodLunchTypes(plan.foodLunchTypes?.length ? plan.foodLunchTypes : [{ ...emptyType }]);
+          setFoodBreakfastTypes(plan.foodBreakfastTypes?.length ? plan.foodBreakfastTypes : [{ ...emptyType }]);
+          setFoodNightDinnerTypes(plan.foodNightDinnerTypes?.length ? plan.foodNightDinnerTypes : [{ ...emptyType }]);
+          setGarlandsTypes(plan.garlandsTypes?.length ? plan.garlandsTypes : [{ ...emptyType }]);
+          setPoojaBackdropsTypes(plan.poojaBackdropsTypes?.length ? plan.poojaBackdropsTypes : [{ ...emptyType }]);
+          setMatressTypes(plan.matressTypes?.length ? plan.matressTypes : [{ ...emptyType }]);
+          setFlowerBouquetsTypes(plan.flowerBouquetsTypes?.length ? plan.flowerBouquetsTypes : [{ ...emptyType }]);
+          setGoldenIronStandBouquetsTypes(plan.goldenIronStandBouquetsTypes?.length ? plan.goldenIronStandBouquetsTypes : [{ ...emptyType }]);
+          setLightingTypes(plan.lightingTypes?.length ? plan.lightingTypes : [{ ...emptyType }]);
+          setTransportationTypes(plan.transportationTypes?.length ? plan.transportationTypes : [{ ...emptyType }]);
+          setPhotographyTypes(plan.photographyTypes?.length ? plan.photographyTypes : [{ label: '', price: '', sessionDuration: '' }]);
+          setImages([]);
+          setImagePreviews(plan.images?.map(img => `${BASE_URL}/${img}`) || []);
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   // Handle image selection and preview
   const handleImageChange = (e) => {
@@ -80,36 +120,22 @@ const ManageHouseWarming = () => {
       formData.append('lightingTypes', JSON.stringify(lightingTypes.filter(t => t.label && t.price)));
       formData.append('transportationTypes', JSON.stringify(transportationTypes.filter(t => t.label && t.price)));
       formData.append('photographyTypes', JSON.stringify(photographyTypes.filter(t => t.label && t.price && t.sessionDuration)));
-      await axios.post(`${BASE_URL}/api/housewarming`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      setSuccess('Plan created successfully!');
-      setTitle('');
-      setDescription('');
-      setImages([]);
-      setImagePreviews([]);
-      setChairTypes([{ ...emptyType }]);
-      setFoodTableTypes([{ ...emptyType }]);
-      setChapraStandardTypes([{ ...emptyType }]);
-      setPandalWaterproofPakodaTypes([{ ...emptyType }]);
-      setJamkanaTypes([{ ...emptyType }]);
-      setThomalaForDoorsTypes([{ ...emptyType }]);
-      setWelcomeBoardTypes([{ ...emptyType }]);
-      setRailingDecorsTypes([{ ...emptyType }]);
-      setChapraPremiumTypes([{ ...emptyType }]);
-      setFoodLunchTypes([{ ...emptyType }]);
-      setFoodBreakfastTypes([{ ...emptyType }]);
-      setFoodNightDinnerTypes([{ ...emptyType }]);
-      setGarlandsTypes([{ ...emptyType }]);
-      setPoojaBackdropsTypes([{ ...emptyType }]);
-      setMatressTypes([{ ...emptyType }]);
-      setFlowerBouquetsTypes([{ ...emptyType }]);
-      setGoldenIronStandBouquetsTypes([{ ...emptyType }]);
-      setLightingTypes([{ ...emptyType }]);
-      setTransportationTypes([{ ...emptyType }]);
-      setPhotographyTypes([{ label: '', price: '', sessionDuration: '' }]);
+      // If planId exists, update; else, create
+      let response;
+      if (planId) {
+        response = await axios.put(`${BASE_URL}/api/housewarming/${planId}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+      } else {
+        response = await axios.post(`${BASE_URL}/api/housewarming`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        setPlanId(response.data._id);
+      }
+      setSuccess('Plan saved successfully!');
+      // Optionally, update state with new/updated plan
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to create plan');
+      setError(err.response?.data?.error || 'Failed to save plan');
     } finally {
       setLoading(false);
     }
