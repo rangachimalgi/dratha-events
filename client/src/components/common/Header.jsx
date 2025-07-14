@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Button from '../ui/Button';
+import EnquiryButton from '../buttons/EnquireButton';
 
 const Header = ({ onLoginClick, isAdmin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -125,13 +125,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
 
           {/* Submit Listing Button */}
           <div className="hidden lg:block">
-            <Button 
-              variant="primary" 
-              size="md"
-              className="bg-global-10 text-global-1 border-global-10 hover:bg-global-3 rounded-full px-6 py-3"
-            >
-              Enquire Now
-            </Button>
+            <EnquiryButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -200,13 +194,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
               >
                 Sign up
               </button>
-              <Button 
-                variant="primary" 
-                size="md"
-                className="bg-global-10 text-global-1 border-global-10 hover:bg-gray-100 rounded-full"
-              >
-                Enquire Now
-              </Button>
+              <EnquiryButton />
             </nav>
           </div>
         )}
