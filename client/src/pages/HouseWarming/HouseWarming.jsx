@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BookNowButton from '@/components/buttons/BookNowButton';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -173,9 +174,12 @@ export const HouseWarming = () => {
 
   return (
     <div className="flex flex-col items-center px-2 sm:px-4">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg mt-12 md:mt-20 mb-6 text-center bg-gradient-to-r from-yellow-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-        {plan.title || 'House Warming Package'}
-      </h2>
+      <div className="flex w-full max-w-4xl items-center justify-between mt-12 md:mt-20 mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg bg-gradient-to-r from-yellow-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+          {plan.title || 'House Warming Package'}
+        </h2>
+        <div className="ml-4 flex-shrink-0"><BookNowButton /></div>
+      </div>
       {/* Responsive Images Section */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden rounded-2xl shadow-2xl mb-8">
         {/* Big Image */}
