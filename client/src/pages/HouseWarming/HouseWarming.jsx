@@ -92,12 +92,14 @@ export const HouseWarming = () => {
   const photographyTypes = plan?.photographyTypes || [];
 
   // State for selections (initialize with first available type if present)
-  const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '' });
+  // 1. Update chair state to include days
+  const [chair, setChair] = React.useState({ type: chairTypes[0] || { label: '', price: 0 }, qty: '', days: '1' });
  
-  const [foodTable, setFoodTable] = React.useState({ type: foodTableTypes[0] || { label: '', price: 0 }, qty: '' });
+  // 1. Update state to include days for foodTable, pandalWaterproofPakoda, jamkana
+  const [foodTable, setFoodTable] = React.useState({ type: foodTableTypes[0] || { label: '', price: 0 }, qty: '', days: '1' });
   const [chapraStandard, setChapraStandard] = React.useState({ type: chapraStandardTypes[0] || { label: '', price: 0 } });
-  const [pandalWaterproofPakoda, setPandalWaterproofPakoda] = React.useState({ type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [jamkana, setJamkana] = React.useState({ type: jamkanaTypes[0] || { label: '', price: 0 }, qty: '' });
+  const [pandalWaterproofPakoda, setPandalWaterproofPakoda] = React.useState({ type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, qty: '', days: '1' });
+  const [jamkana, setJamkana] = React.useState({ type: jamkanaTypes[0] || { label: '', price: 0 }, qty: '', days: '1' });
   const [thomalaForDoors, setThomalaForDoors] = React.useState({ type: thomalaForDoorsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [welcomeBoard, setWelcomeBoard] = React.useState({ type: welcomeBoardTypes[0] || { label: '', price: 0 } });
   const [railingDecors, setRailingDecors] = React.useState({ type: railingDecorsTypes[0] || { label: '', price: 0 }, qty: '' });
@@ -110,19 +112,19 @@ export const HouseWarming = () => {
   const [matress, setMatress] = React.useState({ type: matressTypes[0] || { label: '', price: 0 }, qty: '' });
   const [flowerBouquets, setFlowerBouquets] = React.useState({ type: flowerBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
   const [goldenIronStandBouquets, setGoldenIronStandBouquets] = React.useState({ type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 }, qty: '' });
-  const [lighting, setLighting] = React.useState({ type: lightingTypes[0] || { label: '', price: 0 }, qty: '', days: '' });
+  const [lighting, setLighting] = React.useState({ type: lightingTypes[0] || { label: '', price: 0 }, qty: '', days: '1' });
   const [transportation, setTransportation] = React.useState({ type: transportationTypes[0] || { label: '', price: 0 } });
   const [photography, setPhotography] = React.useState({ type: photographyTypes[0] || { label: '', price: 0, sessionDuration: 0 }, sessions: '' });
 
   // Update state when plan loads
   useEffect(() => {
     if (plan) {
-      setChair(c => ({ ...c, type: chairTypes[0] || { label: '', price: 0 } }));
+      setChair(c => ({ ...c, type: chairTypes[0] || { label: '', price: 0 }, days: '1' }));
    
-      setFoodTable(ft => ({ ...ft, type: foodTableTypes[0] || { label: '', price: 0 } }));
+      setFoodTable(ft => ({ ...ft, type: foodTableTypes[0] || { label: '', price: 0 }, days: '1' }));
       setChapraStandard({ type: chapraStandardTypes[0] || { label: '', price: 0 } });
-      setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 } }));
-      setJamkana(j => ({ ...j, type: jamkanaTypes[0] || { label: '', price: 0 } }));
+      setPandalWaterproofPakoda(pw => ({ ...pw, type: pandalWaterproofPakodaTypes[0] || { label: '', price: 0 }, days: '1' }));
+      setJamkana(j => ({ ...j, type: jamkanaTypes[0] || { label: '', price: 0 }, days: '1' }));
       setThomalaForDoors(tfd => ({ ...tfd, type: thomalaForDoorsTypes[0] || { label: '', price: 0 } }));
       setWelcomeBoard({ type: welcomeBoardTypes[0] || { label: '', price: 0 } });
       setRailingDecors(rd => ({ ...rd, type: railingDecorsTypes[0] || { label: '', price: 0 } }));
@@ -135,22 +137,25 @@ export const HouseWarming = () => {
       setMatress(m => ({ ...m, type: matressTypes[0] || { label: '', price: 0 } }));
       setFlowerBouquets(fbq => ({ ...fbq, type: flowerBouquetsTypes[0] || { label: '', price: 0 } }));
       setGoldenIronStandBouquets(gisb => ({ ...gisb, type: goldenIronStandBouquetsTypes[0] || { label: '', price: 0 } }));
-      setLighting(l => ({ ...l, type: lightingTypes[0] || { label: '', price: 0 } }));
+      setLighting(l => ({ ...l, type: lightingTypes[0] || { label: '', price: 0 }, days: '1' }));
       setTransportation({ type: transportationTypes[0] || { label: '', price: 0 } });
       setPhotography(p => ({ ...p, type: photographyTypes[0] || { label: '', price: 0, sessionDuration: 0 } }));
     }
   }, [plan]);
 
   // Calculate totals
-  const chairTotal = (parseInt(chair.qty) || 0) * (chair.type?.price || 0);
-  const foodTableTotal = (parseInt(foodTable.qty) || 0) * (foodTable.type?.price || 0);
-  const pandalWaterproofPakodaTotal = (parseInt(pandalWaterproofPakoda.qty) || 0) * (pandalWaterproofPakoda.type?.price || 0);
+  // 3. Update chairTotal calculation
+  const chairTotal = (parseInt(chair.qty) || 0) * (chair.type?.price || 0) * (parseInt(chair.days) || 0);
+  // 3. Update foodTableTotal calculation
+  const foodTableTotal = (parseInt(foodTable.qty) || 0) * (foodTable.type?.price || 0) * (parseInt(foodTable.days) || 0);
+  // 3. Update pandalWaterproofPakodaTotal calculation
+  const pandalWaterproofPakodaTotal = (parseInt(pandalWaterproofPakoda.qty) || 0) * (pandalWaterproofPakoda.type?.price || 0) * (parseInt(pandalWaterproofPakoda.days) || 0);
   // For fields without quantity
   const chapraStandardTotal = chapraStandard.type?.price || 0;
   const welcomeBoardTotal = welcomeBoard.type?.price || 0;
   const chapraPremiumTotal = chapraPremium.type?.price || 0;
   const poojaBackdropsTotal = poojaBackdrops.type?.price || 0;
-  const jamkanaTotal = (parseInt(jamkana.qty) || 0) * (jamkana.type?.price || 0);
+  const jamkanaTotal = (parseInt(jamkana.qty) || 0) * (jamkana.type?.price || 0) * (parseInt(jamkana.days) || 0);
   const thomalaForDoorsTotal = (parseInt(thomalaForDoors.qty) || 0) * (thomalaForDoors.type?.price || 0);
   const railingDecorsTotal = (parseInt(railingDecors.qty) || 0) * (railingDecors.type?.price || 0);
   const foodLunchTotal = (parseInt(foodLunch.qty) || 0) * (foodLunch.type?.price || 0);
@@ -247,6 +252,17 @@ export const HouseWarming = () => {
                 onChange={e => setChair(c => ({ ...c, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
               />
             </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Days</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={chair.days}
+                onChange={e => setChair(c => ({ ...c, days: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{chairTotal}</div>
           </div>
           {/* Food Table Row */}
@@ -272,6 +288,17 @@ export const HouseWarming = () => {
                 placeholder="0"
                 value={foodTable.qty}
                 onChange={e => setFoodTable(ft => ({ ...ft, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Days</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={foodTable.days}
+                onChange={e => setFoodTable(ft => ({ ...ft, days: e.target.value.replace(/^0+(?!$)/, '') }))}
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{foodTableTotal}</div>
@@ -317,6 +344,17 @@ export const HouseWarming = () => {
                 onChange={e => setPandalWaterproofPakoda(pw => ({ ...pw, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
               />
             </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Days</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={pandalWaterproofPakoda.days}
+                onChange={e => setPandalWaterproofPakoda(pw => ({ ...pw, days: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{pandalWaterproofPakodaTotal}</div>
           </div>
           {/* Jamkana Row */}
@@ -342,6 +380,17 @@ export const HouseWarming = () => {
                 placeholder="0"
                 value={jamkana.qty}
                 onChange={e => setJamkana(j => ({ ...j, qty: e.target.value.replace(/^0+(?!$)/, '') }))}
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-semibold mb-1">No. of Days</label>
+              <input
+                type="number"
+                min="0"
+                className="w-20 border rounded px-3 py-2 text-right font-mono"
+                placeholder="0"
+                value={jamkana.days}
+                onChange={e => setJamkana(j => ({ ...j, days: e.target.value.replace(/^0+(?!$)/, '') }))}
               />
             </div>
             <div className="text-gray-800 font-bold min-w-[110px]">Total: ₹{jamkanaTotal}</div>
