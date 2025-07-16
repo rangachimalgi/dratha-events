@@ -7,6 +7,9 @@ import PackageDetails from './pages/Packages/PackageDetails';
 import { HouseWarming } from './pages/HouseWarming/HouseWarming';
 import AdminPanel from './admin/AdminPanel';
 import ProtectedRoute from './components/routes/ProtectedRoute';
+import BabyShower from './pages/BabyShower';
+import Wedding from './pages/Wedding';
+import Birthday from './pages/Birthday';
 
 const AppRoutes = () => {
   return (
@@ -18,7 +21,9 @@ const AppRoutes = () => {
           <Route path='/package-details' element={<PackageDetails />} />
           <Route path='/package-details/:id' element={<PackageDetails />} />
           <Route path='/planhousewarming' element={<HouseWarming />} />
-          
+          <Route path='/babyshower' element={<BabyShower />} />
+          <Route path='/wedding' element={<Wedding />} />
+          <Route path='/birthday' element={<Birthday />} />
          {/* Protected Admin Route */}
           <Route 
             path="/admin" 

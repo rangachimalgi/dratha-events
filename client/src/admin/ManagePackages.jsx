@@ -10,6 +10,7 @@ const initialPackageForm = {
   guests: '',
   venue: '',
   foodType: '',
+  type: 'wedding', // default to wedding
   galleryImages: '', // comma-separated URLs
   features: [
     { icon: '', label: '', value: '' }
@@ -105,6 +106,7 @@ const ManagePackages = ({ onBack }) => {
     formData.append('guests', packageForm.guests);
     formData.append('venue', packageForm.venue);
     formData.append('foodType', packageForm.foodType);
+    formData.append('type', packageForm.type);
     formData.append('features', JSON.stringify(packageForm.features));
     formData.append('extraDetails', JSON.stringify(packageForm.extraDetails));
     // Main image: file or URL
@@ -160,6 +162,20 @@ const ManagePackages = ({ onBack }) => {
           </button>
         </div>
         <form onSubmit={handleAddPackage} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium mb-1">Event Type</label>
+            <select
+              name="type"
+              value={packageForm.type}
+              onChange={handlePackageInputChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+              required
+            >
+              <option value="wedding">Wedding</option>
+              <option value="birthday">Birthday</option>
+              <option value="babyshower">Baby Shower</option>
+            </select>
+          </div>
           <div>
             <label className="block text-sm font-medium mb-1">Package Name</label>
             <input
