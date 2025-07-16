@@ -53,6 +53,9 @@ if (process.env.NODE_ENV === 'production') {
 // Serve uploads folder statically
 app.use('/static_uploads', express.static(path.join(__dirname, 'static_uploads')));
 
+// Serve uploads folder statically for package images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Test route
 app.get('/', (req, res) => {
   res.send('Admin backend is running 🚀');
