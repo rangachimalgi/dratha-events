@@ -55,6 +55,24 @@ const Header = ({ onLoginClick, isAdmin }) => {
             >
               Home
             </Link>
+            <Link 
+              to="/babyshower" 
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+            >
+              Baby Shower
+            </Link>
+            <Link 
+              to="/wedding" 
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+            >
+              Wedding
+            </Link>
+            <Link 
+              to="/birthday" 
+              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+            >
+              Birthday
+            </Link>
             {/* <div 
               className="relative"
               onMouseEnter={handleDropdownEnter}
@@ -149,6 +167,27 @@ const Header = ({ onLoginClick, isAdmin }) => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
+              </Link>
+              <Link 
+                to="/babyshower" 
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Baby Shower
+              </Link>
+              <Link 
+                to="/wedding" 
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Wedding
+              </Link>
+              <Link 
+                to="/birthday" 
+                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Birthday
               </Link>
               <Link 
                 to="/packages" 
