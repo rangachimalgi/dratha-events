@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // import Header from '../../components/common/Header';
 // import Footer from '../../components/common/Footer';
 import Button from '../../components/ui/Button';
@@ -10,12 +11,15 @@ const Home = () => {
   const [selectedMake, setSelectedMake] = useState('Any Makes');
   const [selectedModel, setSelectedModel] = useState('Any Models');
   const [selectedPrice, setSelectedPrice] = useState('All Prices');
-  const [selectedVehicleTab, setSelectedVehicleTab] = useState('In Stock');
+  const [selectedVehicleTab, setSelectedVehicleTab] = useState('Wedding');
   const [selectedBrandTab, setSelectedBrandTab] = useState('Audi');
   const [selectedShopTab, setSelectedShopTab] = useState('New Cars For Sale');
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const vehicleTabs = ['All'];
-  const vehicleTypeTabs = ['Wedding', 'Birthday', 'Housewarming'];
+  const vehicleTypeTabs = ['Wedding', 'Birthday', 'BabyShower'];
   const brandTabs = ['Wedding', 'House Warming', 'Birthday'];
   const shopTabs = ['New Cars For Sale', 'Used Cars For Sale', 'Browse By Type', 'Browse By Brand'];
 
@@ -24,98 +28,6 @@ const Home = () => {
     { name: 'Birthday', image: '/images/Birthday.jpg' },
     { name: 'House Warming', image: '/images/houseWarming.jpeg' },
     { name: 'Baby Shower', image: '/images/corporate.jpg' },
-  ];
-
-  const vehicles = [
-    {
-      id: 1,
-      image: '/images/events.png',
-      badge: 'Discounted Price',
-      badgeColor: 'bg-global-3',
-      title: 'Basic Package',
-      description:
-        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
-      miles: '2500 Miles',
-      fuel: 'Diesel',
-      transmission: 'Manual',
-      price: '₹22,000',
-    },
-    {
-      id: 2,
-      image: '/images/events.png',
-      badge: 'Discounted Price',
-      badgeColor: 'bg-global-3',
-      title: 'Premium Package',
-      description:
-        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
-      miles: '50 Miles',
-      fuel: 'Petrol',
-      transmission: 'Automatic',
-      price: '₹45,000',
-    },
-    {
-      id: 3,
-      image: '/images/events.png',
-      title: 'Pre Wedding',
-      description:
-        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
-      miles: '100 Miles',
-      fuel: 'Petrol',
-      transmission: 'Automatic',
-      price: '₹58,000',
-    },
-    {
-      id: 4,
-      image: '/images/events.png',
-      title: 'Luxury Wedding',
-      description:
-        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
-      miles: '15000 Miles',
-      fuel: 'Petrol',
-      transmission: 'CVT',
-      price: '₹90,000',
-    },
-    {
-      id: 5,
-      image: '/images/events.png',
-      badge: 'Great Price',
-      badgeColor: 'bg-global-3',
-      title: 'Destination Wedding',
-      description:
-        'Our Wedding Basic Package offers essential coverage of your special day with professional photography',
-      miles: '10 Miles',
-      fuel: 'Diesel',
-      price: '₹100,000',
-    },
-  ];
-
-  const popularCars = [
-    {
-      id: 1,
-      image: '/images/luxuryWedding.png',
-      badge: 'Luxury',
-      badgeColor: 'bg-global-5',
-      title: 'Luxury Wedding',
-      description:
-        'Our Wedding Basic Package offers \nessential coverage of your special day with professional photography',
-      miles: '500 Guests',
-      fuel: 'Banquet Hall',
-      transmission: 'Veg & Non-Veg',
-      price: '₹100,000',
-    },
-    {
-      id: 2,
-      image: '/images/destinationWedding.jpg',
-      badge: 'Luxury',
-      badgeColor: 'bg-global-5',
-      title: 'Destination Wedding',
-      description:
-        'Our Wedding Basic Package offers \nessential coverage of your special day with professional photography',
-      miles: '500 Guests',
-      fuel: 'Banquet Hall',
-      transmission: 'Veg & Non-Veg',
-      price: '₹120,000',
-    },
   ];
 
   const blogPosts = [
@@ -177,6 +89,22 @@ const Home = () => {
     'Porsche Cars',
     'Renault Cars',
   ];
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/packages`);
+        setPackages(res.data || []);
+      } catch (err) {
+        setError('Failed to load packages');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPackages();
+  }, []);
 
   const handleSearch = () => {
     console.log('Searching with:', { selectedMake, selectedModel, selectedPrice });
@@ -304,7 +232,7 @@ const Home = () => {
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
               Explore Our Premium Events
             </h2>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate('/packages')}>
               <span className="text-global-1 font-dm-sans font-medium text-base leading-5">
                 Show All Events
               </span>
@@ -316,7 +244,13 @@ const Home = () => {
             {brands.map((brand) => (
               <div
                 key={brand.name}
-                className="bg-global-10 border border-global-5 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow"
+                className="bg-global-10 border border-global-5 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => {
+                  if (brand.name === 'Wedding') navigate('/wedding');
+                  else if (brand.name === 'Birthday') navigate('/birthday');
+                  else if (brand.name === 'Baby Shower') navigate('/babyshower');
+                  else if (brand.name === 'House Warming') navigate('/planhousewarming');
+                }}
               >
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden flex items-center justify-center bg-global-5">
                   <img src={brand.image} alt={brand.name} className="w-full h-full object-cover" />
@@ -364,76 +298,24 @@ const Home = () => {
 
           {/* Vehicle Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-            {vehicles.map((vehicle) => (
-              <div key={vehicle.id} className="bg-global-10 rounded-2xl overflow-hidden shadow-lg">
-                <div className="relative">
-                  <img
-                    src={vehicle.image}
-                    alt={vehicle.title}
-                    className="w-full h-55 object-cover"
+            {loading ? (
+              <div className="col-span-full text-center">Loading packages...</div>
+            ) : error ? (
+              <div className="col-span-full text-center text-red-500">{error}</div>
+            ) : (
+              packages
+                .filter(pkg => pkg.type && pkg.type.toLowerCase() === selectedVehicleTab.toLowerCase())
+                .map(pkg => (
+                  <PackageCard
+                    key={pkg._id}
+                    id={pkg._id}
+                    image={pkg.image}
+                    title={pkg.title}
+                    description={pkg.description}
+                    price={pkg.price}
                   />
-                  <div className="absolute top-4 left-4 flex items-center justify-between w-full pr-8">
-                    {vehicle.badge && (
-                      <span
-                        className={`${vehicle.badgeColor} text-global-5 font-dm-sans font-medium text-sm leading-5 px-4 py-2 rounded-2xl capitalize`}
-                      >
-                        {vehicle.badge}
-                      </span>
-                    )}
-                    <button className="bg-global-10 rounded-full p-2 ml-auto">
-                      <img src="/images/img_background.svg" alt="Favorite" className="w-6 h-6" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-global-1 font-dm-sans font-medium text-lg leading-6 mb-2">
-                    {vehicle.title}
-                  </h3>
-                  <p className="text-global-1 font-dm-sans text-sm leading-4 mb-4 whitespace-pre-line">
-                    {vehicle.description}
-                  </p>
-
-                  {/* <div className="border-t border-global-5 pt-4 mb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <img src="/images/img_icon_black_900.svg" alt="Miles" className="w-4 h-4" />
-                          <span className="text-global-1 font-dm-sans text-sm leading-5">{vehicle.miles}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <img src="/images/img_icon_black_900_18x18.svg" alt="Fuel" className="w-4 h-4" />
-                          <span className="text-global-1 font-dm-sans text-sm leading-5">{vehicle.fuel}</span>
-                        </div>
-                        {vehicle.transmission && (
-                          <div className="flex items-center space-x-1">
-                            <img src="/images/img_icon_18x18.svg" alt="Transmission" className="w-4 h-4" />
-                            <span className="text-global-1 font-dm-sans text-sm leading-5">{vehicle.transmission}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div> */}
-
-                  <div className="border-t border-global-5 pt-4 flex items-center justify-between">
-                    <span className="text-global-1 font-dm-sans font-bold text-xl leading-7">
-                      {vehicle.price}
-                    </span>
-                    <button
-                      onClick={() => handleViewDetails(vehicle.id)}
-                      className="flex items-center space-x-2 text-global-3 font-dm-sans font-medium text-base leading-5 hover:text-blue-600 transition-colors"
-                    >
-                      <span>View Details</span>
-                      <img
-                        src="/images/img_vector_indigo_a400.svg"
-                        alt="Arrow"
-                        className="w-4 h-4"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
+                ))
+            )}
           </div>
 
           {/* Pagination */}
@@ -602,9 +484,29 @@ const Home = () => {
 
           {/* Popular Cars Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            {popularCars.map((car) => (
-              <PackageCard key={car.id} {...car} />
-            ))}
+            {loading ? (
+              <div className="col-span-full text-center">Loading packages...</div>
+            ) : error ? (
+              <div className="col-span-full text-center text-red-500">{error}</div>
+            ) : (
+              packages
+                .filter(pkg => {
+                  // Map tab to type
+                  let type = selectedBrandTab;
+                  if (type === 'House Warming') type = 'Housewarming';
+                  return pkg.type && pkg.type.toLowerCase() === type.toLowerCase();
+                })
+                .map(pkg => (
+                  <PackageCard
+                    key={pkg._id}
+                    id={pkg._id}
+                    image={pkg.image}
+                    title={pkg.title}
+                    description={pkg.description}
+                    price={pkg.price}
+                  />
+                ))
+            )}
           </div>
 
           {/* Additional Car Image */}
