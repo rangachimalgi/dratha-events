@@ -8,6 +8,7 @@ const packageSchema = new mongoose.Schema({
   guests: String,
   venue: String,
   foodType: String,
+  type: { type: String, required: true },
 
   galleryImages: [String], // extra images
   features: [

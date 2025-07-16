@@ -93,12 +93,12 @@ const Header = ({ onLoginClick, isAdmin }) => {
                 </div>
               )}
             </div> */}
-            <Link 
+            {/* <Link 
               to="/packages" 
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Packages
-            </Link>
+            </Link> */}
             <Link 
               to="/planhousewarming" 
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
@@ -189,13 +189,13 @@ const Header = ({ onLoginClick, isAdmin }) => {
               >
                 Birthday
               </Link>
-              <Link 
+              {/* <Link 
                 to="/packages" 
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Packages
-              </Link>
+              </Link> */}
               <Link 
                 to="/planhousewarming" 
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"

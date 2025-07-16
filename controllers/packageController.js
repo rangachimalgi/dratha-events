@@ -31,7 +31,8 @@ export const createPackage = async (req, res) => {
       venue,
       foodType,
       features,
-      extraDetails
+      extraDetails,
+      type
     } = req.body;
 
     const image = req.files?.image?.[0]?.path || '';
@@ -45,6 +46,7 @@ export const createPackage = async (req, res) => {
       guests,
       venue,
       foodType,
+      type,
       galleryImages,
       features: JSON.parse(features || '[]'),
       extraDetails: JSON.parse(extraDetails || '[]')
@@ -68,7 +70,8 @@ export const updatePackage = async (req, res) => {
       venue,
       foodType,
       features,
-      extraDetails
+      extraDetails,
+      type
     } = req.body;
 
     const updates = {
@@ -78,6 +81,7 @@ export const updatePackage = async (req, res) => {
       guests,
       venue,
       foodType,
+      type,
       features: JSON.parse(features || '[]'),
       extraDetails: JSON.parse(extraDetails || '[]')
     };
