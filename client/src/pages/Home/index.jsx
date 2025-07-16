@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import Footer from '../../components/common/Footer';
 import Button from '../../components/ui/Button';
 import PackageCard from '../../components/ui/PackageCard';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState('All');
@@ -22,8 +23,7 @@ const Home = () => {
     { name: 'Wedding', image: '/images/Wedding.jpg' },
     { name: 'Birthday', image: '/images/Birthday.jpg' },
     { name: 'House Warming', image: '/images/houseWarming.jpeg' },
-    { name: 'Corporate', image: '/images/corporate.jpg' },
-    { name: 'Engagement', image: '/images/engagement.png' },
+    { name: 'Baby Shower', image: '/images/corporate.jpg' },
   ];
 
   const vehicles = [
@@ -190,6 +190,8 @@ const Home = () => {
     console.log('Get Started clicked');
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen">
       {/* <Header /> */}
@@ -277,10 +279,16 @@ const Home = () => {
 
           {/* Featured Models */}
           <div className="flex flex-wrap justify-center gap-4">
-            {['Wedding', 'Birthday', 'Corporate', 'House Warming'].map((model) => (
+            {['Wedding', 'Birthday', 'Baby Shower', 'House Warming'].map((model) => (
               <button
                 key={model}
                 className="bg-global-12 text-global-5 font-dm-sans font-medium text-base leading-5 px-6 py-3 rounded-full hover:bg-global-3 transition-colors"
+                onClick={() => {
+                  if (model === 'Wedding') navigate('/wedding');
+                  else if (model === 'Birthday') navigate('/birthday');
+                  else if (model === 'Baby Shower') navigate('/babyshower');
+                  else if (model === 'House Warming') navigate('/planhousewarming');
+                }}
               >
                 {model}
               </button>
