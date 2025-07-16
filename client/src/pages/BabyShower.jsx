@@ -6,10 +6,8 @@ const getImageUrl = (img) => {
   if (!img) return '';
   if (img.startsWith('http')) return img;
   if (img.startsWith('/images/')) return img; // for static images in public
-  if (img.startsWith('uploads/')) {
-    return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
-  }
-  return `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`;
+  // The image path already includes 'uploads/', so we just prepend the base URL
+  return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
 };
 
 const BabyShower = () => {

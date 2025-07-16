@@ -3,8 +3,6 @@ import Package from "../models/Package.js";
 export const getAllPackages = async (req, res) => {
   try {
     const packages = await Package.find();
-    console.log('Fetched packages:', packages.length);
-    console.log('Sample package image:', packages[0]?.image);
     res.json(packages);
   } catch (err) {
     console.error('Error fetching packages:', err);
@@ -57,8 +55,7 @@ export const createPackage = async (req, res) => {
       galleryImages = [...galleryImages, ...galleryImageUrls];
     }
 
-    console.log('Creating package with image:', image);
-    console.log('Gallery images:', galleryImages);
+
 
     const newPackage = new Package({
       title,
@@ -126,8 +123,7 @@ export const updatePackage = async (req, res) => {
       updates.galleryImages = galleryImages;
     }
 
-    console.log('Updating package with image:', updates.image);
-    console.log('Gallery images:', updates.galleryImages);
+
 
     const updatedPackage = await Package.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(updatedPackage);

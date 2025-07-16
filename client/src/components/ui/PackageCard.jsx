@@ -15,11 +15,8 @@ const PackageCard = ({ id, image, title, description, price }) => {
     if (!image) return '';
     if (image.startsWith('http')) return image;
     if (image.startsWith('/images/')) return image; // for static images in public
-    // For uploaded images, prepend backend URL
-    if (image.startsWith('uploads/')) {
-      return `${import.meta.env.VITE_API_BASE_URL}/${image}`;
-    }
-    return `${import.meta.env.VITE_API_BASE_URL}/uploads/${image}`;
+    // The image path already includes 'uploads/', so we just prepend the base URL
+    return `${import.meta.env.VITE_API_BASE_URL}/${image}`;
   };
 
   return (

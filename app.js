@@ -69,12 +69,27 @@ app.get('/', (req, res) => {
 // Test route for uploads
 app.get('/test-uploads', (req, res) => {
   const uploadsPath = path.join(__dirname, 'uploads');
-  const files = fs.readdirSync(uploadsPath);
+  const staticUploadsPath = path.join(__dirname, 'static_uploads');
+  
+  let files = [];
+  let staticFiles = [];
+  
+  if (fs.existsSync(uploadsPath)) {
+    files = fs.readdirSync(uploadsPath);
+  }
+  
+  if (fs.existsSync(staticUploadsPath)) {
+    staticFiles = fs.readdirSync(staticUploadsPath);
+  }
+  
   res.json({ 
     message: 'Uploads directory test',
     uploadsPath,
+    staticUploadsPath,
+    uploadsDirExists: fs.existsSync(uploadsPath),
+    staticUploadsDirExists: fs.existsSync(staticUploadsPath),
     files,
-    uploadsDirExists: fs.existsSync(uploadsPath)
+    staticFiles
   });
 });
 
