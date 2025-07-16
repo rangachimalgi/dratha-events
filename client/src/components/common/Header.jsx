@@ -87,7 +87,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
             >
               Plan your own Housewarming
             </Link>
-            <Link 
+            {/* <Link 
               to="/about" 
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
@@ -98,7 +98,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
               className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
             >
               Contact
-            </Link>
+            </Link> */}
             {isAdmin && (
               <Link 
                 to="/admin" 
@@ -164,7 +164,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
               >
                 Plan your own Housewarming
               </Link>
-              <Link 
+              {/* <Link 
                 to="/about" 
                 className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
@@ -177,7 +177,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
-              </Link>
+              </Link> */}
               {isAdmin && (
                 <Link 
                   to="/admin" 
