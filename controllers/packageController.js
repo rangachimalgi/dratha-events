@@ -1,8 +1,15 @@
 import Package from "../models/Package.js";
 
 export const getAllPackages = async (req, res) => {
-  const packages = await Package.find();
-  res.json(packages);
+  try {
+    const packages = await Package.find();
+    console.log('Fetched packages:', packages.length);
+    console.log('Sample package image:', packages[0]?.image);
+    res.json(packages);
+  } catch (err) {
+    console.error('Error fetching packages:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
 };
 
 export const getPackageById = async (req, res) => {
@@ -32,11 +39,26 @@ export const createPackage = async (req, res) => {
       foodType,
       features,
       extraDetails,
-      type
+      type,
+      imageUrl,
+      galleryImageUrls
     } = req.body;
 
-    const image = req.files?.image?.[0]?.path || '';
-    const galleryImages = req.files?.galleryImages?.map(file => file.path) || [];
+    let image = req.files?.image?.[0]?.path || '';
+    let galleryImages = req.files?.galleryImages?.map(file => file.path) || [];
+
+    // Handle imageUrl if provided (for URL-based images)
+    if (!image && imageUrl) {
+      image = imageUrl;
+    }
+
+    // Handle galleryImageUrls if provided
+    if (galleryImageUrls && Array.isArray(galleryImageUrls)) {
+      galleryImages = [...galleryImages, ...galleryImageUrls];
+    }
+
+    console.log('Creating package with image:', image);
+    console.log('Gallery images:', galleryImages);
 
     const newPackage = new Package({
       title,
@@ -71,7 +93,9 @@ export const updatePackage = async (req, res) => {
       foodType,
       features,
       extraDetails,
-      type
+      type,
+      imageUrl,
+      galleryImageUrls
     } = req.body;
 
     const updates = {
@@ -86,13 +110,24 @@ export const updatePackage = async (req, res) => {
       extraDetails: JSON.parse(extraDetails || '[]')
     };
 
+    // Handle main image
     if (req.files?.image?.[0]) {
       updates.image = req.files.image[0].path;
+    } else if (imageUrl) {
+      updates.image = imageUrl;
     }
 
-    if (req.files?.galleryImages) {
-      updates.galleryImages = req.files.galleryImages.map(file => file.path);
+    // Handle gallery images
+    let galleryImages = req.files?.galleryImages?.map(file => file.path) || [];
+    if (galleryImageUrls && Array.isArray(galleryImageUrls)) {
+      galleryImages = [...galleryImages, ...galleryImageUrls];
     }
+    if (galleryImages.length > 0) {
+      updates.galleryImages = galleryImages;
+    }
+
+    console.log('Updating package with image:', updates.image);
+    console.log('Gallery images:', updates.galleryImages);
 
     const updatedPackage = await Package.findByIdAndUpdate(req.params.id, updates, { new: true });
     res.json(updatedPackage);

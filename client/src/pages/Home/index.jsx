@@ -496,16 +496,28 @@ const Home = () => {
                   if (type === 'House Warming') type = 'Housewarming';
                   return pkg.type && pkg.type.toLowerCase() === type.toLowerCase();
                 })
-                .map(pkg => (
-                  <PackageCard
-                    key={pkg._id}
-                    id={pkg._id}
-                    image={pkg.image}
-                    title={pkg.title}
-                    description={pkg.description}
-                    price={pkg.price}
-                  />
-                ))
+                .map(pkg => {
+                  const getImageUrl = (img) => {
+                    if (!img) return '';
+                    if (img.startsWith('http')) return img;
+                    if (img.startsWith('/images/')) return img; // for static images in public
+                    if (img.startsWith('uploads/')) {
+                      return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
+                    }
+                    return `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`;
+                  };
+                  
+                  return (
+                    <PackageCard
+                      key={pkg._id}
+                      id={pkg._id}
+                      image={getImageUrl(pkg.image)}
+                      title={pkg.title}
+                      description={pkg.description}
+                      price={pkg.price}
+                    />
+                  );
+                })
             )}
           </div>
 

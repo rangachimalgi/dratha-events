@@ -42,6 +42,11 @@ if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
 
+const staticUploadsDir = path.join(__dirname, 'static_uploads');
+if (!fs.existsSync(staticUploadsDir)) {
+  fs.mkdirSync(staticUploadsDir);
+}
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
@@ -59,6 +64,18 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Test route
 app.get('/', (req, res) => {
   res.send('Admin backend is running 🚀');
+});
+
+// Test route for uploads
+app.get('/test-uploads', (req, res) => {
+  const uploadsPath = path.join(__dirname, 'uploads');
+  const files = fs.readdirSync(uploadsPath);
+  res.json({ 
+    message: 'Uploads directory test',
+    uploadsPath,
+    files,
+    uploadsDirExists: fs.existsSync(uploadsPath)
+  });
 });
 
 // Start server
