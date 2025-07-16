@@ -125,15 +125,19 @@ const PackageDetails = () => {
       <div className="w-full max-w-4xl bg-white/90 rounded-2xl shadow-lg p-6 mb-8">
         <h5 className="text-xl font-bold text-gray-800 mb-4">Package Details</h5>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-          {packageDetails.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex justify-between items-center py-1 border-b border-gray-100 last:border-b-0"
-            >
-              <span className="text-gray-500 font-medium">{item.label}</span>
-              <span className="text-gray-800 font-semibold">{item.value}</span>
-            </div>
-          ))}
+          {Array.isArray(pkg.extraDetails) && pkg.extraDetails.length > 0 ? (
+            pkg.extraDetails.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex justify-between items-center py-1 border-b border-gray-100 last:border-b-0"
+              >
+                <span className="text-gray-500 font-medium">{item.label}</span>
+                <span className="text-gray-800 font-semibold">{item.value}</span>
+              </div>
+            ))
+          ) : (
+            <div className="text-gray-500 col-span-2">No package details available.</div>
+          )}
         </div>
       </div>
     </div>
