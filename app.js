@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Serve uploads folder statically
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/static_uploads', express.static(path.join(__dirname, 'static_uploads')));
 
 // Test route
 app.get('/', (req, res) => {
