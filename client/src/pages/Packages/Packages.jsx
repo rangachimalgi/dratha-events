@@ -6,8 +6,11 @@ import CapsuleDropdown from '../../components/ui/CapsuleDropdown';
 const getImageUrl = (img) => {
   if (!img) return '';
   if (img.startsWith('http')) return img;
-  if (img.startsWith('uploads/')) return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
-  return img;
+  if (img.startsWith('/images/')) return img; // for static images in public
+  if (img.startsWith('uploads/')) {
+    return `${import.meta.env.VITE_API_BASE_URL}/${img}`;
+  }
+  return `${import.meta.env.VITE_API_BASE_URL}/uploads/${img}`;
 };
 
 const eventTypes = ['All Events', 'Wedding', 'Birthday', 'Corporate', 'House Warming'];
