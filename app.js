@@ -47,6 +47,12 @@ if (!fs.existsSync(staticUploadsDir)) {
   fs.mkdirSync(staticUploadsDir);
 }
 
+// Serve uploads folder statically
+app.use('/static_uploads', express.static(path.join(__dirname, 'static_uploads')));
+
+// Serve uploads folder statically for package images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
@@ -54,12 +60,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
   });
 }
-
-// Serve uploads folder statically
-app.use('/static_uploads', express.static(path.join(__dirname, 'static_uploads')));
-
-// Serve uploads folder statically for package images
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Test route
 app.get('/', (req, res) => {
@@ -92,6 +92,8 @@ app.get('/test-uploads', (req, res) => {
     staticFiles
   });
 });
+
+
 
 // Start server
 app.listen(PORT, () => {
