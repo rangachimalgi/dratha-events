@@ -647,7 +647,7 @@ const Home = () => {
       </section>
 
       {/* Latest Blog Posts Section */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
@@ -692,7 +692,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action Section */}
       <section className="py-20">
