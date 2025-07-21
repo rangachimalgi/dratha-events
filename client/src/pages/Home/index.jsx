@@ -12,7 +12,7 @@ const Home = () => {
   const [selectedModel, setSelectedModel] = useState('Any Models');
   const [selectedPrice, setSelectedPrice] = useState('All Prices');
   const [selectedVehicleTab, setSelectedVehicleTab] = useState('Wedding');
-  const [selectedBrandTab, setSelectedBrandTab] = useState('Audi');
+  const [selectedBrandTab, setSelectedBrandTab] = useState('Wedding');
   const [selectedShopTab, setSelectedShopTab] = useState('New Cars For Sale');
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ const Home = () => {
 
   const vehicleTabs = ['All'];
   const vehicleTypeTabs = ['Wedding', 'Birthday', 'BabyShower'];
-  const brandTabs = ['Wedding', 'House Warming', 'Birthday'];
+  const brandTabs = ['Wedding', 'Baby Shower', 'Birthday'];
   const shopTabs = ['New Cars For Sale', 'Used Cars For Sale', 'Browse By Type', 'Browse By Brand'];
 
   const brands = [
@@ -493,7 +493,7 @@ const Home = () => {
                 .filter(pkg => {
                   // Map tab to type
                   let type = selectedBrandTab;
-                  if (type === 'House Warming') type = 'Housewarming';
+                  if (type === 'Baby Shower') type = 'babyshower';
                   return pkg.type && pkg.type.toLowerCase() === type.toLowerCase();
                 })
                 .map(pkg => {
