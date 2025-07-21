@@ -115,7 +115,7 @@ const Home = () => {
   };
 
   const handleGetStarted = () => {
-    console.log('Get Started clicked');
+    navigate('/packages');
   };
 
   const navigate = useNavigate();
