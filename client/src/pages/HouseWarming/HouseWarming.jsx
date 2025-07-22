@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import BookNowButton from '@/components/buttons/BookNowButton';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -55,6 +54,10 @@ export const HouseWarming = () => {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [booking, setBooking] = useState({ name: '', email: '', phone: '' });
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const modalRef = useRef();
 
   useEffect(() => {
     axios.get(`${BASE_URL}/api/housewarming`)
@@ -183,8 +186,156 @@ export const HouseWarming = () => {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg bg-gradient-to-r from-yellow-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
           {plan.title || 'House Warming Package'}
         </h2>
-        <div className="ml-4 flex-shrink-0"><BookNowButton /></div>
+        <div className="ml-4 flex-shrink-0">
+          <button
+            className="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white text-lg font-bold rounded-full shadow-lg transition-colors duration-200"
+            onClick={() => { setShowBookingForm(true); setBookingSuccess(false); }}
+          >
+            Book Now
+          </button>
+        </div>
       </div>
+
+      {/* Booking Modal */}
+      {showBookingForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+          <div ref={modalRef} className="relative w-full max-w-md bg-white rounded-xl shadow-2xl p-8 mx-2 animate-fadeIn">
+            {/* Close Button */}
+            <button
+              className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none"
+              onClick={() => { setShowBookingForm(false); setBookingSuccess(false); }}
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            {!bookingSuccess ? (
+              <form
+                className="flex flex-col gap-4"
+                onSubmit={async e => {
+                  e.preventDefault();
+                  try {
+                    const housewarmingDetails = {
+                      chair,
+                      foodTable,
+                      chapraStandard,
+                      pandalWaterproofPakoda,
+                      jamkana,
+                      thomalaForDoors,
+                      welcomeBoard,
+                      railingDecors,
+                      chapraPremium,
+                      foodLunch,
+                      foodBreakfast,
+                      foodNightDinner,
+                      garlands,
+                      poojaBackdrops,
+                      matress,
+                      flowerBouquets,
+                      goldenIronStandBouquets,
+                      lighting,
+                      transportation,
+                      photography,
+                      totals: {
+                        chairTotal,
+                        foodTableTotal,
+                        pandalWaterproofPakodaTotal,
+                        jamkanaTotal,
+                        thomalaForDoorsTotal,
+                        welcomeBoardTotal,
+                        railingDecorsTotal,
+                        chapraStandardTotal,
+                        chapraPremiumTotal,
+                        foodLunchTotal,
+                        foodBreakfastTotal,
+                        foodNightDinnerTotal,
+                        garlandsTotal,
+                        poojaBackdropsTotal,
+                        matressTotal,
+                        flowerBouquetsTotal,
+                        goldenIronStandBouquetsTotal,
+                        lightingTotal,
+                        transportationTotal,
+                        photographyTotal,
+                        grandTotal
+                      }
+                    };
+                    const res = await fetch(`${BASE_URL}/api/book-housewarming`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        name: booking.name,
+                        email: booking.email,
+                        phone: booking.phone,
+                        package: plan?.title || 'Housewarming',
+                        housewarmingDetails
+                      })
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                      setBookingSuccess(true);
+                    } else {
+                      alert('Failed to send booking. Please try again.');
+                    }
+                  } catch (err) {
+                    alert('Failed to send booking. Please try again.');
+                  }
+                }}
+              >
+                <div>
+                  <label className="block text-sm font-medium mb-1">Name</label>
+                  <input
+                    type="text"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    value={booking.name}
+                    onChange={e => setBooking({ ...booking, name: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Email</label>
+                  <input
+                    type="email"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    value={booking.email}
+                    onChange={e => setBooking({ ...booking, email: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    className="w-full border border-gray-300 rounded px-3 py-2"
+                    value={booking.phone}
+                    onChange={e => setBooking({ ...booking, phone: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Package</label>
+                  <input
+                    type="text"
+                    className="w-full border border-gray-300 rounded px-3 py-2 bg-gray-100"
+                    value={plan?.title || 'Housewarming'}
+                    readOnly
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="mt-4 px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg font-bold rounded-full shadow-lg transition-colors duration-200"
+                >
+                  Submit Booking
+                </button>
+              </form>
+            ) : (
+              <div className="text-center text-lg font-semibold text-green-700 py-8">
+                Thank you for your booking! We will contact you soon.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Responsive Images Section */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden rounded-2xl shadow-2xl mb-8">
         {/* Big Image */}
