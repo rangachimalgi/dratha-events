@@ -64,9 +64,18 @@ const PackageDetails = () => {
 
   return (
     <div className="flex flex-col items-center mt-28">
-      <h2 className="text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg mt-12 md:mt-20 mb-6 text-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
-        {pkg.title || 'Event Package'}
-      </h2>
+      {/* Title and Book Now Button Row */}
+      <div className="w-full max-w-4xl flex flex-col md:flex-row items-center justify-between mt-12 md:mt-20 mb-6">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-black drop-shadow-lg text-center md:text-left bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-transparent">
+          {pkg.title || 'Event Package'}
+        </h2>
+        <button
+          className="mt-4 md:mt-0 px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white text-lg font-bold rounded-full shadow-lg transition-colors duration-200"
+          onClick={() => alert('Booking coming soon!')}
+        >
+          Book Now
+        </button>
+      </div>
 
       {/* Responsive Images Section: 1 main image (big), 2 gallery images (small) */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-0 overflow-hidden rounded-2xl shadow-2xl mb-8">
