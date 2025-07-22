@@ -5,15 +5,18 @@ const Footer = () => {
     <footer className="bg-global-1 w-full">
       {/* Newsletter Section */}
       <div className="bg-global-1 py-12">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div className="flex flex-col">
-            <h2 className="text-global-5 font-dm-sans font-medium text-3xl leading-10 mb-4">
-              Join Dratha
-            </h2>
-            <p className="text-global-5 font-dm-sans text-base leading-5">
-              Get Event Tips, Exclusive Offers & More! Subscribe to receive package updates,
-              planning tips, and special deals for your next big celebration.
-            </p>
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 w-full">
+            <img src="/images/logo.png" alt="Dratha Logo" className="h-16 w-auto shadow-lg mb-4 lg:mb-0" />
+            <div className="flex flex-col items-start">
+              <h2 className="text-global-5 font-dm-sans font-medium text-3xl leading-10 mb-4">
+                Join Dratha
+              </h2>
+              <p className="text-global-5 font-dm-sans text-base leading-5">
+                Get Event Tips, Exclusive Offers & More! Subscribe to receive package updates,
+                planning tips, and special deals for your next big celebration.
+              </p>
+            </div>
           </div>
           <div className="bg-footer-2 rounded-full flex items-center p-4 w-full max-w-lg">
             <input

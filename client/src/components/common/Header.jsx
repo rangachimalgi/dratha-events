@@ -44,7 +44,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <span className="text-global-5 font-dm-sans font-black text-3xl tracking-wider">DRATHA</span>
+            <img src="/images/logo.png" alt="Dratha Logo" className="h-16 w-auto shadow-lg" />
           </div>
 
           {/* Desktop Navigation */}
