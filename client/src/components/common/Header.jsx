@@ -49,7 +49,9 @@ const Header = ({ onLoginClick, isAdmin }) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/images/logo.png" alt="Dratha Logo" className={`h-16 w-auto shadow-lg ${navHighlightClass}`} />
+            <Link to="/">
+              <img src="/images/logo.png" alt="Dratha Logo" className={`h-16 w-auto shadow-lg ${navHighlightClass}`} />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
