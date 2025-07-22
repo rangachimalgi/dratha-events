@@ -10,6 +10,7 @@ import "./keepAlive.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import bookRoutes from './routes/bookRoutes.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/packages', packageRoutes);
 app.use('/api/housewarming', housewarmingRoutes);
+app.use('/api', bookRoutes);
 
 // -----------------------------
 // Serve frontend in production
