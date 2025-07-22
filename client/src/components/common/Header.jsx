@@ -38,38 +38,43 @@ const Header = ({ onLoginClick, isAdmin }) => {
     ? 'absolute top-0 left-0 w-full z-50 bg-transparent'
     : 'fixed top-0 left-0 w-full z-50 bg-global-1 shadow-lg';
 
+  // Highlight nav and logo when transparent
+  const navHighlightClass = isHome && !scrolled
+    ? 'text-white drop-shadow-lg'
+    : 'text-global-5';
+
   return (
     <header className={headerClass}>
       <div className="max-w-7xl mx-auto px-4 py-7">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <img src="/images/logo.png" alt="Dratha Logo" className="h-16 w-auto shadow-lg" />
+            <img src="/images/logo.png" alt="Dratha Logo" className={`h-16 w-auto shadow-lg ${navHighlightClass}`} />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             <Link 
               to="/" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+              className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
             >
               Home
             </Link>
             <Link 
               to="/babyshower" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+              className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
             >
               Baby Shower
             </Link>
             <Link 
               to="/wedding" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+              className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
             >
               Wedding
             </Link>
             <Link 
               to="/birthday" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+              className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
             >
               Birthday
             </Link>
@@ -101,7 +106,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
             </Link> */}
             <Link 
               to="/planhousewarming" 
-              className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+              className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
             >
               Plan your own Housewarming
             </Link>
@@ -163,28 +168,28 @@ const Header = ({ onLoginClick, isAdmin }) => {
             <nav className="flex flex-col space-y-4">
               <Link 
                 to="/" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/babyshower" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Baby Shower
               </Link>
               <Link 
                 to="/wedding" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Wedding
               </Link>
               <Link 
                 to="/birthday" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Birthday
@@ -198,7 +203,7 @@ const Header = ({ onLoginClick, isAdmin }) => {
               </Link> */}
               <Link 
                 to="/planhousewarming" 
-                className="text-global-5 font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors"
+                className={`${navHighlightClass} font-dm-sans font-medium text-base leading-5 capitalize hover:text-global-3 transition-colors`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Plan your own Housewarming

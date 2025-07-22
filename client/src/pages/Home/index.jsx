@@ -127,9 +127,9 @@ const Home = () => {
       {/* Hero Section */}
       <section
         className="relative min-h-screen bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('/images/events.png')` }}
+        style={{ backgroundImage: `url('/images/banner.png')` }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
           <p className="text-global-5 font-dm-sans text-base leading-5 mb-4">
             Find Packages for wedding, birthday parties, etc ..
