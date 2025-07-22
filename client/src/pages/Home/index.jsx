@@ -746,7 +746,7 @@ const Home = () => {
                   </p>
                   <Button
                     onClick={() => navigate('/planhousewarming')}
-                    className="bg-global-1 text-global-5 border-global-1 hover:bg-gray-800 rounded-xl px-8 py-4 flex items-center space-x-2"
+                    className="bg-global-1 text-global-5 border-global-1 hover:bg-gray-200 rounded-xl px-8 py-4 flex items-center space-x-2"
                   >
                     <span className="font-dm-sans font-medium text-base leading-5">
                       Get Started
