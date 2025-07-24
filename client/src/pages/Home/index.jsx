@@ -587,7 +587,7 @@ const Home = () => {
       {/* </section> */}
 
       {/* Customer Testimonials Section */}
-      <section className="bg-global-8 py-20">
+      {/* <section className="bg-global-8 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-16">
             <h2 className="text-global-1 font-dm-sans font-bold text-4xl leading-13">
@@ -604,11 +604,11 @@ const Home = () => {
             </button>
 
             <div className="flex items-center space-x-8 max-w-5xl">
-              {/* <img
+              <img
                 src="/images/img_test1jpg.png"
                 alt="Customer"
                 className="w-112 h-118 object-cover rounded-lg"
-              /> */}
+              />
 
               <div className="flex-1">
                 <div className="flex items-center space-x-4 mb-4">
@@ -644,7 +644,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Latest Blog Posts Section */}
       {/* <section className="py-20">
