@@ -3,7 +3,7 @@ import https from 'https';
 
 // Function to make an HTTPS request to your own server
 function pingServer() {
-  https.get('https://dratha-events.onrender.com', (res) => {
+  https.get('https://dratha-events-k276.onrender.com', (res) => {
     console.log('Server pinged with response status code:', res.statusCode);
   }).on('error', (e) => {
     console.error('Error pinging server:', e.message);
